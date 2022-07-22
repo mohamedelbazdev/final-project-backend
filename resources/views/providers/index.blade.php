@@ -1,11 +1,11 @@
-@extends('layouts.master')
-@section('content')
-<div class="card-body">
+@extends('admin.admin_master')
+@section('admin')
+    <div class="card-body">
         <div class="box-header with-border">
             <div class="box-title">
                 <h2>Providers</h2>
             </div>
-            
+
         </div>
         <div class="card-body">
             <table class="table table-bordered">
@@ -20,9 +20,9 @@
                     </tr>
                 </thead>
                 <tbody>
-                        
-                        
-                        
+
+
+
 
                 </tbody>
             </table>

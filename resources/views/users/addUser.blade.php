@@ -1,67 +1,69 @@
-@extends('layouts.master')
-@section('css')
-    <!--  Owl-carousel css-->
-    <link href="{{ URL::asset('assets/plugins/owl-carousel/owl.carousel.css') }}" rel="stylesheet" />
-    <!-- Maps css -->
-    <link href="{{ URL::asset('assets/plugins/jqvmap/jqvmap.min.css') }}" rel="stylesheet">
-@endsection
-@section('page-header')
-@endsection
-@section('content')
-    <div class="card-body">
-        <div class="main-content-label mg-b-5">
-            Add New User
+@extends('admin.admin_master')
+@section('admin')
+    <div class="content-wrapper">
+        <div class="row">
+            <div class="col-12 grid-margin stretch-card">
+                <div class="card corona-gradient-card">
+                    <div class="card-body py-0 px-0 px-sm-3">
+                        <div class="row align-items-center">
+                            <div class="col-4 col-sm-3 col-xl-2">
+                                <img src="{{ asset('backend/assets/images/dashboard/Group126@2x.png') }}"
+                                    class="gradient-corona-img img-fluid" alt="">
+                            </div>
+                            <div class="col-5 col-sm-7 col-xl-8 p-0">
+                                <h4 class="mb-1 mb-sm-0">create new user account </h4>
+
+                            </div>
+                            <div class="col-3 col-sm-2 col-xl-2 pl-0 text-center">
+                                <span>
+                                    <a href=" {{ url('/') }} " target="_blank"
+                                        class="btn btn-outline-light btn-rounded get-started-btn">Visit Fontend ? </a>
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
-        <p class="mg-b-20">create new user account</p>
-        <div class="pd-30 pd-sm-40 bg-gray-200">
-            <div class="row row-xs align-items-center mg-b-20">
-                <div class="col-md-4">
-                    <label class="form-label mg-b-0">Name</label>
-                </div>
-                <div class="col-md-8 mg-t-5 mg-md-t-0">
-                    <input class="form-control" placeholder="Enter your firstname" type="text">
+
+
+
+        <div class="col-md-12 grid-margin stretch-card">
+            <div class="card">
+                <div class="card-body">
+                    <h4 class="card-title">Add User</h4>
+
+                    <form class="forms-sample" method="POST" action="">
+                        @csrf
+                        <div class="form-group">
+                            <label class="form-label mg-b-0">Name</label>
+                            <input class="form-control" name="name" type="text" placeholder="Enter your firstname"
+                                type="text">
+
+
+                        </div>
+
+                        <div class="form-group">
+                            <label class="form-label mg-b-0">address</label>
+                            <input name="address" class="form-control" placeholder="Enter your address" type="text">
+
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label mg-b-0">Email</label>
+                            <input class="form-control" name="email" type="text" placeholder="Enter your email"
+                                type="text">
+
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label mg-b-0">Image</label>
+                            <input class="form-control" type="file">
+
+                        </div>
+
+                        <button type="submit" class="btn btn-primary mr-2">Submit</button>
+
+                    </form>
                 </div>
             </div>
-            <div class="row row-xs align-items-center mg-b-20">
-                <div class="col-md-4">
-                    <label class="form-label mg-b-0">address</label>
-                </div>
-                <div class="col-md-8 mg-t-5 mg-md-t-0">
-                    <input class="form-control" placeholder="Enter your address" type="text">
-                </div>
-            </div>
-            <div class="row row-xs align-items-center mg-b-20">
-                <div class="col-md-4">
-                    <label class="form-label mg-b-0">Email</label>
-                </div>
-                <div class="col-md-8 mg-t-5 mg-md-t-0">
-                    <input class="form-control" placeholder="Enter your email" type="email">
-                </div>
-            </div>
-            <button class="btn btn-main-primary pd-x-30 mg-r-5 mg-t-5">Add New User</button>
-            <button class="btn btn-dark pd-x-30 mg-t-5">Cancel</button>
         </div>
-    </div>
-@endsection
-@section('js')
-    <!--Internal  Chart.bundle js -->
-    <script src="{{ URL::asset('assets/plugins/chart.js/Chart.bundle.min.js') }}"></script>
-    <!-- Moment js -->
-    <script src="{{ URL::asset('assets/plugins/raphael/raphael.min.js') }}"></script>
-    <!--Internal  Flot js-->
-    <script src="{{ URL::asset('assets/plugins/jquery.flot/jquery.flot.js') }}"></script>
-    <script src="{{ URL::asset('assets/plugins/jquery.flot/jquery.flot.pie.js') }}"></script>
-    <script src="{{ URL::asset('assets/plugins/jquery.flot/jquery.flot.resize.js') }}"></script>
-    <script src="{{ URL::asset('assets/plugins/jquery.flot/jquery.flot.categories.js') }}"></script>
-    <script src="{{ URL::asset('assets/js/dashboard.sampledata.js') }}"></script>
-    <script src="{{ URL::asset('assets/js/chart.flot.sampledata.js') }}"></script>
-    <!--Internal Apexchart js-->
-    <script src="{{ URL::asset('assets/js/apexcharts.js') }}"></script>
-    <!-- Internal Map -->
-    <script src="{{ URL::asset('assets/plugins/jqvmap/jquery.vmap.min.js') }}"></script>
-    <script src="{{ URL::asset('assets/plugins/jqvmap/maps/jquery.vmap.usa.js') }}"></script>
-    <script src="{{ URL::asset('assets/js/modal-popup.js') }}"></script>
-    <!--Internal  index js -->
-    <script src="{{ URL::asset('assets/js/index.js') }}"></script>
-    <script src="{{ URL::asset('assets/js/jquery.vmap.sampledata.js') }}"></script>
-@endsection
+    @endsection
