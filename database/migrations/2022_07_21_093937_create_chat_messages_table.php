@@ -18,7 +18,7 @@ class CreateChatMessagesTable extends Migration
 
             $table->text('message');
 
-            $table->foreignId('room_id')
+            $table->foreignId('chat_rooms_id')
                 ->constrained()
                 ->onDelete('cascade')
                 ->onUpdate('cascade');
