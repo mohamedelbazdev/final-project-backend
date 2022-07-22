@@ -1,49 +1,77 @@
-@extends('layouts.master')
+@extends('admin.admin_master')
+@section('admin')
+    <div class="content-wrapper">
+        <div class="row">
+            <div class="col-12 grid-margin stretch-card">
+                <div class="card corona-gradient-card">
+                    <div class="card-body py-0 px-0 px-sm-3">
+                        <div class="row align-items-center">
+                            <div class="col-4 col-sm-3 col-xl-2">
+                                <img src="{{ asset('backend/assets/images/dashboard/Group126@2x.png') }}"
+                                    class="gradient-corona-img img-fluid" alt="">
+                            </div>
+                            <div class="col-5 col-sm-7 col-xl-8 p-0">
+                                <h4 class="mb-1 mb-sm-0">Welcome to Easy News </h4>
 
-@section('content')
-    <div class="card-body">
-        <div class="main-content-label mg-b-5">
-            Add New Provider
+                            </div>
+                            <div class="col-3 col-sm-2 col-xl-2 pl-0 text-center">
+                                <span>
+                                    <a href=" {{ url('/') }} " target="_blank"
+                                        class="btn btn-outline-light btn-rounded get-started-btn">Vist Fontend ? </a>
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
-        <p class="mg-b-20">create new Provider</p>
-        <div class="pd-30 pd-sm-40 bg-gray-200">
-            <div class="row row-xs align-items-center mg-b-20">
-                <div class="col-md-4">
-                    <label class="form-label mg-b-0">Name</label>
-                </div>
-                <div class="col-md-8 mg-t-5 mg-md-t-0">
-                    <input class="form-control" placeholder="Enter Provider Name" type="text">
-                </div>
-            </div>
-            <div class="form-group row row-xs align-items-center mg-b-20">
-                <div class="col-md-4">
-                                <label for="file" class="form-label mg-b-0">Image</label> 
-                </div>
-                <div class="col-md-8 mg-t-5 mg-md-t-0 custom-file">
-                                    <input type="file" name="image" class="form-control">  
-                </div>
-            </div>
-            <div class="form-group row row-xs align-items-center mg-b-20">
-                <div class="col-md-4">
-                <label for="file" class="form-label mg-b-0">Description</label> 
-                </div>
-                <div class="col-md-8 mg-t-5 mg-md-t-0">
-                    <input class="form-control" placeholder="Enter Provider Description" type="textarea">
-                </div>
-            </div>
 
-            <div class="row row-xs align-items-center mg-b-20">
-                <div class="col-md-4">
-                    <label class="form-label mg-b-0">Price</label>
-                </div>
-                <div class="col-md-8 mg-t-5 mg-md-t-0">
-                    <input class="form-control" placeholder="Enter Provider Price" type="text">
+
+
+        <div class="col-md-12 grid-margin stretch-card">
+            <div class="card">
+                <div class="card-body">
+                    <h4 class="card-title">Add new Provider</h4>
+
+                    <form class="forms-sample" method="POST" action="">
+                        @csrf
+                        <div class="form-group">
+                            <label for="exampleInputUsername1">Name</label>
+                            <input class="form-control" placeholder="Enter Provider Name" type="text" name="name">
+
+                            @error('name')
+                                <span class="text-danger">{{ $message }}</span>
+                            @enderror
+                        </div>
+
+                        <div class="form-group">
+                            <label for="exampleInputEmail1">SubCategory Arabic</label>
+                            <input type="text" class="form-control" name="subcategory_ar"
+                                placeholder="SubCategory Arabic">
+                            @error('subcategory_ar')
+                                <span class="text-danger">{{ $message }}</span>
+                            @enderror
+                        </div>
+
+                        <div class="form-group">
+                            <label for="exampleFormControlSelect2">Image</label>
+                            <input type="file" name="image" class="form-control">
+
+                        </div>
+                        <div class="form-group">
+                            <label for="exampleFormControlSelect2">Description</label>
+                            <input class="form-control" placeholder="Enter Provider Description" type="textarea">
+                        </div>
+                        <div class="form-group">
+                            <label for="exampleFormControlSelect2">Price</label>
+                            <input class="form-control" placeholder="Enter Provider Description" type="textarea">
+                        </div>
+
+
+                        <button type="submit" class="btn btn-primary mr-2">add provider</button>
+
+                    </form>
                 </div>
             </div>
-           
-            <button class="btn btn-main-primary pd-x-30 mg-r-5 mg-t-5">Add Provider</button>
-            <button class="btn btn-dark pd-x-30 mg-t-5">Cancel</button>
         </div>
-    </div>
-@endsection
-
+    @endsection
