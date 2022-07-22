@@ -15,8 +15,12 @@
                     </div>
                     <div class="col-md-8 mg-t-5 mg-md-t-0">
                         <input name="name" class="form-control" placeholder="Enter Category Name" type="text">
+                        @if($errors->has('name'))
+                                    <div class="alert alert-danger">{{$errors->first('name')}}</div>
+                        @endif
                     </div>
                 </div>
+                
                 <div class="form-group row row-xs align-items-center mg-b-20">
                     <div class="col-md-4">
                                     <label for="file" class="form-label mg-b-0">Image</label> 
