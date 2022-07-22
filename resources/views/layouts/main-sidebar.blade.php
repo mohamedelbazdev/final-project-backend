@@ -51,7 +51,7 @@
 
             <li class="side-item side-item-category">Provider</li>
             <li class="slide">
-                <a class="side-menu__item" href="{{ url('/' . ($page = 'icons')) }}"><svg
+                <a class="side-menu__item" href="{{ route('provider.create') }}"><svg
                         xmlns="http://www.w3.org/2000/svg" class="side-menu__icon" viewBox="0 0 24 24">
                         <path d="M0 0h24v24H0V0z" fill="none" />
                         <path
@@ -66,7 +66,7 @@
             </li>
 
             <li class="slide">
-                <a class="side-menu__item" data-toggle="slide" href="{{ url('/' . ($page = '#')) }}"><svg
+                <a class="side-menu__item" data-toggle="slide" href="{{ route('provider.index') }}"><svg
                         xmlns="http://www.w3.org/2000/svg" class="side-menu__icon" viewBox="0 0 24 24">
                         <path d="M0 0h24v24H0V0z" fill="none" />
                         <path

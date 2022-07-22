@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Dashboard\UserController;
 use App\Http\Controllers\Dashboard\CategoryController;
+use App\Http\Controllers\Dashboard\ProviderController;
 
 /*
 |--------------------------------------------------------------------------
@@ -23,3 +24,4 @@ Route::get('/dashboard', function () {
 
 Route::get('/users/add', [UserController::class ,'addUser' ])->name('add.user');
 Route::resource('category', CategoryController::class);
+Route::resource('provider', ProviderController::class);
