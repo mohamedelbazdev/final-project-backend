@@ -1,5 +1,7 @@
 <?php
 
+use App\Http\Controllers\Api\Admin\AuthController;
+use App\Http\Controllers\Api\Admin\CategroyController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -17,3 +19,8 @@ use Illuminate\Support\Facades\Route;
 Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
+
+// login admin
+Route::post('login', [AuthController::class, 'login']);
+
+Route::apiResource('categories', CategroyController::class);
