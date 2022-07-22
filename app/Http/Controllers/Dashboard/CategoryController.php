@@ -4,6 +4,8 @@ namespace App\Http\Controllers\Dashboard;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use App\Models\Category;
+use Illuminate\Support\Facades\DB;
 
 class CategoryController extends Controller
 {
@@ -15,7 +17,8 @@ class CategoryController extends Controller
     public function index()
     {
         //
-        return view( 'categories.index' );
+        $categories = Category::all();
+        return view( 'categories.index', compact( 'categories' ) );
     }
 
     /**
@@ -37,6 +40,11 @@ class CategoryController extends Controller
     public function store(Request $request)
     {
         //
+        $category = new Category();
+        $category->name = $request->input( 'name' );
+        $category->save();
+        return redirect( route( 'category.index' ) )->with( 'msg', 'Category Added Successfully' );
+       
     }
 
     /**
@@ -59,6 +67,8 @@ class CategoryController extends Controller
     public function edit($id)
     {
         //
+        $category = Category::findOrFail($id);
+        return view( 'categories.edit', compact( 'category' ) );
     }
 
     /**
@@ -71,6 +81,10 @@ class CategoryController extends Controller
     public function update(Request $request, $id)
     {
         //
+        $category = Category::find( $id );
+        $category->name = $request->name;
+        $category->update();
+        return redirect( route( 'category.index' ) )->with( 'msg', 'Category Updated Successfully' );
     }
 
     /**
@@ -82,5 +96,7 @@ class CategoryController extends Controller
     public function destroy($id)
     {
         //
+        DB :: table( 'categories' )->where( 'id', $id )->delete();
+        return redirect( route( 'category.index' ) )->with( 'rmv', 'Category Deleted Successfully' );
     }
 }
