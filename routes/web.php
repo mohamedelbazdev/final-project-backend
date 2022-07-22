@@ -1,7 +1,8 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\Dashborad\UserController;
+use App\Http\Controllers\Dashboard\UserController;
+use App\Http\Controllers\Dashboard\CategoryController;
 
 /*
 |--------------------------------------------------------------------------
@@ -21,3 +22,4 @@ Route::get('/dashboard', function () {
 });
 
 Route::get('/users/add', [UserController::class ,'addUser' ])->name('add.user');
+Route::resource('category', CategoryController::class);
