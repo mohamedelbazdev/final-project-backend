@@ -1,5 +1,5 @@
 @extends('layouts.master')
-
+@section('content')
 <div class="card-body">
         <div class="box-header with-border">
             <div class="box-title">
@@ -26,5 +26,5 @@
             </table>
         </div>
     </div>
-@section('content')
+
 @endsection
