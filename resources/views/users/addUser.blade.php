@@ -36,7 +36,40 @@
     <!-- /breadcrumb -->
 @endsection
 @section('content')
-    <h1>Add User</h1>
+    <div class="card-body">
+        <div class="main-content-label mg-b-5">
+            Left Label Alignment
+        </div>
+        <p class="mg-b-20">It is Very Easy to Customize and it uses in your website apllication.</p>
+        <div class="pd-30 pd-sm-40 bg-gray-200">
+            <div class="row row-xs align-items-center mg-b-20">
+                <div class="col-md-4">
+                    <label class="form-label mg-b-0">Firstname</label>
+                </div>
+                <div class="col-md-8 mg-t-5 mg-md-t-0">
+                    <input class="form-control" placeholder="Enter your firstname" type="text">
+                </div>
+            </div>
+            <div class="row row-xs align-items-center mg-b-20">
+                <div class="col-md-4">
+                    <label class="form-label mg-b-0">Lastname</label>
+                </div>
+                <div class="col-md-8 mg-t-5 mg-md-t-0">
+                    <input class="form-control" placeholder="Enter your lastname" type="text">
+                </div>
+            </div>
+            <div class="row row-xs align-items-center mg-b-20">
+                <div class="col-md-4">
+                    <label class="form-label mg-b-0">Email</label>
+                </div>
+                <div class="col-md-8 mg-t-5 mg-md-t-0">
+                    <input class="form-control" placeholder="Enter your email" type="email">
+                </div>
+            </div>
+            <button class="btn btn-main-primary pd-x-30 mg-r-5 mg-t-5">Register</button>
+            <button class="btn btn-dark pd-x-30 mg-t-5">Cancel</button>
+        </div>
+    </div>
 @endsection
 @section('js')
     <!--Internal  Chart.bundle js -->

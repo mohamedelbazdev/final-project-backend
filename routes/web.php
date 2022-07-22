@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\Dashborad\UserController;
 
 /*
 |--------------------------------------------------------------------------
@@ -18,3 +19,5 @@ return view('welcome');
 Route::get('/dashboard', function () {
     return view('index');
 });
+
+Route::get('/users/add', [UserController::class ,'addUser' ])->name('add.user');
