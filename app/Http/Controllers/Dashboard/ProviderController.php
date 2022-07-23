@@ -119,4 +119,26 @@ class ProviderController extends Controller
         DB :: table( 'providers' )->where( 'id', $id )->delete();
         return redirect( route( 'provider.index' ) )->with( 'rmv', 'Provider Deleted Successfully' );
     }
+
+
+
+    public function Inactive($id)
+    {
+        Provider::find($id)->update(['status' => 0]);
+        return redirect()->back()->with( 'rmv', 'User has been Inactive' );
+    }
+    public function Active($id)
+    {
+        Provider::find($id)->update(['status' => 1]);
+        return redirect()->back()->with( 'msg', 'User has been Active' );
+    }
+
+
+    public function changeProviderStatus(Request $request)
+    {
+        $providers = Provider::find($request->provider_id);
+        $providers->status = $request->status;
+        $providers->save();
+        return redirect( route( 'providers.index' ) )->with( 'msg', 'Provider Status Updated Successfully' );
+    }
 }

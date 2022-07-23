@@ -17,6 +17,7 @@ class Provider extends Model
         'image',
         'price',
         'description',
+        'status',
         'category_id'
     ];
 

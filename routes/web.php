@@ -25,3 +25,5 @@ Route::get('/dashboard', function () {
 Route::resource('user', UserController::class);
 Route::resource('category', CategoryController::class);
 Route::resource('provider', ProviderController::class);
+Route::get('/providers/inactive/{id}', [ProviderController::class,"Inactive"])->name('Inactive');
+Route::get('/providers/active/{id}', [ProviderController::class,"Active"])->name('Active');
