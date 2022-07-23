@@ -1,0 +1,241 @@
+{
+	"info": {
+		"_postman_id": "5fe7a501-8797-4000-b0e2-4ae1285c0431",
+		"name": "Final ITI Back-end",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "9727640"
+	},
+	"item": [
+		{
+			"name": "Auth",
+			"item": [
+				{
+					"name": "Login",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.environment.set(\"token\", pm.response.json().token)"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "email",
+									"value": "user@user.com",
+									"type": "text"
+								},
+								{
+									"key": "password",
+									"value": "123456789",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{url}}/auth/login",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"auth",
+								"login"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Chat",
+			"item": [
+				{
+					"name": "Create_Room",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "user_1",
+									"value": "2",
+									"type": "text"
+								},
+								{
+									"key": "user_2",
+									"value": "1",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{url}}/chats/create_room",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"chats",
+								"create_room"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "My_Rooms",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{url}}/chats/my_rooms",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"chats",
+								"my_rooms"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Send_Message",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "body",
+									"value": "test message",
+									"type": "text"
+								},
+								{
+									"key": "room_id",
+									"value": "1",
+									"type": "text"
+								},
+								{
+									"key": "sender_id",
+									"value": "1",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{url}}/chats/send_message",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"chats",
+								"send_message"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Mark_As_Read",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"url": {
+							"raw": "{{url}}/chats/mark_as_read/1",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"chats",
+								"mark_as_read",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Specific Room",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{url}}/chats/specific_room/1",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"chats",
+								"specific_room",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "User Rooms",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{url}}/chats/user/rooms/1",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"chats",
+								"user",
+								"rooms",
+								"1"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	],
+	"auth": {
+		"type": "bearer",
+		"bearer": [
+			{
+				"key": "token",
+				"value": "{{token}}",
+				"type": "string"
+			}
+		]
+	},
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	]
+}

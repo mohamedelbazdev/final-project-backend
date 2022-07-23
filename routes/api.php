@@ -33,9 +33,23 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 
 
 // login admin
-Route::post('login', [AuthController::class, 'login']);
+Route::post('auth/login', [AuthController::class, 'login']);
 
 Route::apiResource('categories', CategroyController::class);
+
+
+/** Chat Section */
+Route::group(['middleware'=>['auth:sanctum'], 'prefix' => 'chats'], function(){
+    Route::post('create_room', [ChatController::class, 'createRoom']);
+    Route::get('my_rooms', [ChatController::class, 'myRooms']);
+    Route::get('user/rooms/{userId}', [ChatController::class, 'userRooms']);
+    Route::get('specific_room/{room_id}', [ChatController::class, 'specific_room']);
+    Route::post('send_message', [ChatController::class, 'sendMessage']);
+    Route::put('mark_as_read/{id}' , [ChatController::class, 'mark_as_read']);
+    Route::get('delete_msg/{id}' , [ChatController::class, 'delete_msg']);
+});
+
+
 
 
 

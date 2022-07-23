@@ -15,13 +15,13 @@ class CreateChatRoomsTable extends Migration
     {
         Schema::create('chat_rooms', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('sender_id')
+            $table->foreignId('user_1')
                 ->constrained('users')
                 ->onDelete('cascade')
                 ->onUpdate('cascade');
 
-            $table->foreignId('user_id')
-                ->constrained()
+            $table->foreignId('user_2')
+                ->constrained('users')
                 ->onDelete('cascade')
                 ->onUpdate('cascade');
             $table->timestamps();
