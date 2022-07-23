@@ -4,7 +4,7 @@
         $pull = "float-left";
         ?>
     <ol class="breadcrumb">
-        <li class="breadcrumb-item {{$pull}}"><a href="{{URL::to('/')}}"> Home</a></li>
+        <li class="breadcrumb-item {{$pull}}"><a href="{{URL::to('/dashboard')}}"> Home</a></li>
         <li class="breadcrumb-item {{$pull}}"><a href="{{URL::to('/provider')}}"> Providers</a></li>
         <li class="breadcrumb-item active {{$pull}}">Create Provider</li> 
     </ol>
@@ -56,9 +56,7 @@
 
 
                         <button class="btn btn-primary mr-2 pd-x-30 mg-r-5 mg-t-5">Add Provider</button>
-                                    <button class="btn btn-dark pd-x-30 mg-t-5">Cancel</button>
-                            
-
+                                   
                     {!! Form::close() !!}
                 </div>
             </div>

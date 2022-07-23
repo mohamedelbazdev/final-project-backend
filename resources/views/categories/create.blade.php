@@ -4,11 +4,11 @@
          $pull = "float-left";
         ?>
     <ol class="breadcrumb">
-        <li class="breadcrumb-item {{$pull}}"><a href="{{URL::to('/')}}"> Home</a></li>
+        <li class="breadcrumb-item {{$pull}}"><a href="{{URL::to('/dashboard')}}"> Home</a></li>
         <li class="breadcrumb-item {{$pull}}"><a href="{{URL::to('/category')}}"> categories</a></li>
         <li class="breadcrumb-item active {{$pull}}">Create category</li> 
     </ol>
-    <div class="content-wrapper">
+    <!-- <div class="content-wrapper"> -->
        <div class="col-md-12 grid-margin stretch-card">
             <div class="card">
                 <div class="card-body">
@@ -31,15 +31,13 @@
                              <label for="file" class="col-sm-3 col-form-label">image</label> 
                              <input type="file" name="image" class="form-control">
                             </div>
-
+                            <div class="form-group ">
                                     <button class="btn btn-primary mr-2 pd-x-30 mg-r-5 mg-t-5">Add Category</button>
-                                    <button class="btn btn-dark pd-x-30 mg-t-5">Cancel</button>
-                            
-
+                            </div>   
                     {!! Form::close() !!}
                 </div>
             </div>
         </div>
-    </div>
+    <!-- </div> -->
  @endsection
 
