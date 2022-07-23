@@ -26,7 +26,7 @@ class ProviderController extends Controller
     {
         //
         $providers = Provider::all();
-        return view( 'providers.index', compact( 'categories' ) );
+        return view( 'providers.index', compact( 'providers' ) );
     }
 
     /**
@@ -52,7 +52,7 @@ class ProviderController extends Controller
         //
         $provider = new Provider();
         $provider->name = $request['name'];
-        $provider->desc = $request['desc'];
+        $provider->description = $request['description'];
         $provider->price = $request['price'];
         $provider->category_id = $request['category_id'];
         $provider->save();
