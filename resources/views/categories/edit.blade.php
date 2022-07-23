@@ -1,6 +1,6 @@
-@extends('layouts.master')
+@extends('admin.admin_master')
 
-@section('content')
+@section('admin')
 
 <h1>Edit : {{$category['name']}}</h1>
     <div class="contaner" style="margin-left: 50px;margin-top:20px;">
