@@ -42,6 +42,9 @@
                         <div class="form-group">
                             <label for="exampleFormControlSelect2">Price</label>
                             <input name="price" class="form-control" placeholder="Enter Provider Price" type="textarea">
+                            @if($errors->has('price'))
+                                 <span class="text-danger">{{$errors->first('price')}}</span>
+                             @endif
                         </div>
 
 
