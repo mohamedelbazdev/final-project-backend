@@ -4,6 +4,11 @@ namespace App\Http\Controllers\Dashboard;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use App\Models\Provider;
+use App\Models\Category;
+use App\Http\Requests\StoreProvider;
+use App\Http\Requests\UpdateProvider;
+use Illuminate\Support\Facades\DB;
 
 class ProviderController extends Controller
 {
@@ -12,10 +17,16 @@ class ProviderController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+
+    public function __construct(Provider $providers, Category $categories){
+        $this->categories = $categories;
+        $this->providers = $providers;
+    }
     public function index()
     {
         //
-        return view( 'providers.index' );
+        $providers = Provider::all();
+        return view( 'providers.index', compact( 'categories' ) );
     }
 
     /**
@@ -26,7 +37,8 @@ class ProviderController extends Controller
     public function create()
     {
         //
-        return view( 'providers.create' );
+        $categories = $this->categories->getList();
+        return view( 'providers.create', compact('categories') );
     }
 
     /**
@@ -38,6 +50,13 @@ class ProviderController extends Controller
     public function store(Request $request)
     {
         //
+        $provider = new Provider();
+        $provider->name = $request['name'];
+        $provider->desc = $request['desc'];
+        $provider->price = $request['price'];
+        $provider->category_id = $request['category_id'];
+        $provider->save();
+        return redirect( route( 'provider.index' ) )->with( 'msg', 'Provider Added Successfully' );
     }
 
     /**

@@ -24,7 +24,7 @@
                              <input type="file" name="image" class="form-control">
                             </div>
 
-                                    <button class="btn btn-main-primary pd-x-30 mg-r-5 mg-t-5">Add Category</button>
+                                    <button class="btn btn-primary mr-2 pd-x-30 mg-r-5 mg-t-5">Add Category</button>
                                     <button class="btn btn-dark pd-x-30 mg-t-5">Cancel</button>
                             
 

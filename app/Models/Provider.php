@@ -16,7 +16,8 @@ class Provider extends Model
         'name',
         'image',
         'price',
-        'description'
+        'description',
+        'category_id'
     ];
 
     public function categories(){
