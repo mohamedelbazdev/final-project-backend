@@ -79,6 +79,9 @@ class ProviderController extends Controller
     public function edit($id)
     {
         //
+        $provider = Provider::findOrFail($id);
+        $categories = $this->categories->getList();
+        return view( 'providers.edit', compact( 'provider','categories' ) );
     }
 
     /**
@@ -91,6 +94,17 @@ class ProviderController extends Controller
     public function update(Request $request, $id)
     {
         //
+        DB::beginTransaction();
+        $provider = Provider::find($id);
+        $provider->name = $request->name;
+        $provider->description = $request->description;
+        $provider->category_id =$request->category_id;
+        $provider->price = $request->price;
+        $provider->save();
+        DB::commit();
+        // dd($provider);
+        $message = ('provider updated successfully');
+        return redirect(route( 'provider.index' ) )->with( 'msg', 'provider Updated Successfully' );
     }
 
     /**
@@ -102,5 +116,7 @@ class ProviderController extends Controller
     public function destroy($id)
     {
         //
+        DB :: table( 'providers' )->where( 'id', $id )->delete();
+        return redirect( route( 'provider.index' ) )->with( 'rmv', 'Provider Deleted Successfully' );
     }
 }
