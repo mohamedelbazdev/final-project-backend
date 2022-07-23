@@ -1,8 +1,10 @@
 @extends('admin.admin_master')
 @section('admin')
-    <div class="content-wrapper">
+                <div class="box-header">
+                    <a href="{{URL::to('/category/create')}}" class="btn btn-info m-4">Add category</a>
+                </div> 
+    
       
-
         <div class="card-body">
             <table class="table table-bordered">
                 <thead>
@@ -13,8 +15,8 @@
                         <th style="width: 40px">Action</th>
                     </tr>
                 </thead>
+
                 <tbody>
-                        
                 @foreach ($categories as $key => $category)
                         <tr>
                             <td style="width: 25%">{{ $loop->iteration }}</td>

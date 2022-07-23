@@ -1,5 +1,13 @@
 @extends('admin.admin_master')
 @section('admin')
+        <?php
+         $pull = "float-left";
+        ?>
+    <ol class="breadcrumb">
+        <li class="breadcrumb-item {{$pull}}"><a href="{{URL::to('/')}}"> Home</a></li>
+        <li class="breadcrumb-item {{$pull}}"><a href="{{URL::to('/category')}}"> categories</a></li>
+        <li class="breadcrumb-item active {{$pull}}">Create category</li> 
+    </ol>
     <div class="content-wrapper">
        <div class="col-md-12 grid-margin stretch-card">
             <div class="card">
