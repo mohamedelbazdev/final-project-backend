@@ -36,43 +36,51 @@
                     <form class="forms-sample" method="POST" action="{{ route('user.store') }}"
                         enctype="multipart/form-data">
                         @csrf
+
                         <div class="form-group">
                             <label class="form-label mg-b-0">Name</label>
                             <input class="form-control" name="name" type="text" placeholder="Enter your firstname"
-                                type="text">
+                                type="text" value="{{ $user->name }}">
 
 
                         </div>
-                        <div class="form-group">
-                            <label class="form-label mg-b-0">Password</label>
-                            <input class="form-control" name="name" type="password" placeholder="Enter your password">
 
 
-                        </div>
+
 
                         <div class="form-group">
                             <select class="form-select" aria-label="Default select example" name="roles">
-                                <option selected>Open this select User Role</option>
+                                <option value="{{ $user->role_id }}" selected>Open this select User Role</option>
                                 <option value="1">admin</option>
-                                <option value="2">Provider</option>
-                                <option value="3">User</option>
+                                <option value="2">User</option>
+                                <option value="3">Provider</option>
                             </select>
 
 
                         </div>
+
+
+
                         <div class="form-group">
                             <label class="form-label mg-b-0">Email</label>
                             <input class="form-control" name="email" type="text" placeholder="Enter your email"
-                                type="text">
+                                type="text" value="{{ $user->email }}">
 
                         </div>
                         <div class="form-group">
                             <label class="form-label mg-b-0">Image</label>
+                            <div class="form-group col-md-6">
+                                <label for="exampleInputName1">Old Image</label>
+                                <img src="{{ URL::to($user->image) }}" style="width: 70px; height: 50px;">
+                                <input type="hidden" name="oldimage" value="{{ $user->image }}">
+                            </div>
                             <input class="form-control" type="file" name="image">
 
                         </div>
+
                         <div id="map" style="width:100%;height:400px;"></div>
                         <input type="hidden" id="text-map" name="map" value="">
+
 
                         <button type="submit" class="btn btn-primary mr-2">Submit</button>
 
@@ -80,9 +88,45 @@
                 </div>
             </div>
         </div>
+
+        {{-- <script>
+            function myMap() {
+                var mapProp = {
+                    center: new google.maps.LatLng(51.508742, -0.120850),
+                    zoom: 5,
+                };
+                var map = new google.maps.Map(document.getElementById("googleMap"), mapProp);
+            }
+        </script> --}}
+
+        {{-- <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBeiDt8Y-GYYRyUvMauJE3fP-tzm8pWwEM&callback=myMap">
+        </script> --}}
+
+        {{-- <script type="text/javascript">
+            function initMap() {
+                const myLatLng = {
+                    lat: 22.2734719,
+                    lng: 70.7512559
+                };
+                const map = new google.maps.Map(document.getElementById("map"), {
+                    zoom: 5,
+                    center: myLatLng,
+                });
+
+                new google.maps.Marker({
+                    position: myLatLng,
+                    map,
+                    title: "Hello Rajkot!",
+                });
+            }
+
+            window.initMap = initMap;
+        </script> --}}
         <script>
             function initMap() {
-                var latlng = new google.maps.LatLng(51.4975941, -0.0803232);
+                let lat = {{ $user->lat }}
+                let lng = {{ $user->lng }}
+                var latlng = new google.maps.LatLng(lat, lng);
 
                 var map = new google.maps.Map(document.getElementById('map'), {
                     center: latlng,
