@@ -49,6 +49,14 @@ Route::group(['middleware'=>['auth:sanctum'], 'prefix' => 'chats'], function(){
     Route::get('delete_msg/{id}' , [ChatController::class, 'delete_msg']);
 });
 
+/** Chat Section */
+Route::group(['middleware'=>['auth:sanctum'], 'prefix' => 'users'], function(){
+    Route::get('profile', [AuthController::class, 'profile']);
+    Route::post('profile/edit', [AuthController::class, 'updateProfile']);
+    Route::get('categories', [CategroyController::class, 'index']);
+    Route::get('providers', [UserController::class, 'providers']);
+});
+
 
 
 

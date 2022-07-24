@@ -44,4 +44,31 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+
+    /**
+     * @param $query
+     * @return void
+     */
+    public function scopeAdmin($query)
+    {
+        $query->where('role_id', 1);
+    }
+
+    /**
+     * @param $query
+     * @return void
+     */
+    public function scopeProvider($query)
+    {
+        $query->where('role_id', 2);
+    }
+    /**
+     * @param $query
+     * @return void
+     */
+    public function scopeUser($query)
+    {
+        $query->where('role_id', 3);
+    }
+
 }
