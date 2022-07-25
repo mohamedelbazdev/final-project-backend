@@ -27,7 +27,11 @@
         </div>
 
 
-
+        @php
+            $category = DB::table('categories')->get();
+            $user = DB::table('users')->get();
+            $provider = DB::table('providers')->get();
+        @endphp
 
 
 
@@ -38,7 +42,7 @@
                         <div class="row">
                             <div class="col-9">
                                 <div class="d-flex align-items-center align-self-start">
-                                    <h3 class="mb-0"></h3>
+                                    <h3 class="mb-0">{{ count($category) }}</h3>
                                     <p class="text-success ml-2 mb-0 font-weight-medium">Category</p>
                                 </div>
                             </div>
@@ -58,8 +62,8 @@
                         <div class="row">
                             <div class="col-9">
                                 <div class="d-flex align-items-center align-self-start">
-                                    <h3 class="mb-0"></h3>
-                                    <p class="text-success ml-2 mb-0 font-weight-medium">SubCategory</p>
+                                    <h3 class="mb-0">{{ count($user) }}</h3>
+                                    <p class="text-success ml-2 mb-0 font-weight-medium">Users</p>
                                 </div>
                             </div>
                             <div class="col-3">
@@ -68,7 +72,7 @@
                                 </div>
                             </div>
                         </div>
-                        <h6 class="text-muted font-weight-normal">SubCategory</h6>
+                        <h6 class="text-muted font-weight-normal">Users</h6>
                     </div>
                 </div>
             </div>
@@ -78,8 +82,8 @@
                         <div class="row">
                             <div class="col-9">
                                 <div class="d-flex align-items-center align-self-start">
-                                    <h3 class="mb-0"></h3>
-                                    <p class="text-danger ml-2 mb-0 font-weight-medium">Posts</p>
+                                    <h3 class="mb-0">{{ count($provider) }}</h3>
+                                    <p class="text-danger ml-2 mb-0 font-weight-medium">Providers</p>
                                 </div>
                             </div>
                             <div class="col-3">
@@ -88,7 +92,7 @@
                                 </div>
                             </div>
                         </div>
-                        <h6 class="text-muted font-weight-normal">Posts</h6>
+                        <h6 class="text-muted font-weight-normal">Providers</h6>
                     </div>
                 </div>
             </div>
@@ -99,7 +103,7 @@
                             <div class="col-9">
                                 <div class="d-flex align-items-center align-self-start">
                                     <h3 class="mb-0"></h3>
-                                    <p class="text-success ml-2 mb-0 font-weight-medium">Advertsment</p>
+                                    <p class="text-success ml-2 mb-0 font-weight-medium">Orders</p>
                                 </div>
                             </div>
                             <div class="col-3">
@@ -108,7 +112,7 @@
                                 </div>
                             </div>
                         </div>
-                        <h6 class="text-muted font-weight-normal">Advertsment</h6>
+                        <h6 class="text-muted font-weight-normal">Orders</h6>
                     </div>
                 </div>
             </div>

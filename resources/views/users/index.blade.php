@@ -2,7 +2,7 @@
 
 @section('admin')
     <div class="box-header">
-        <a href="{{ URL::to('/provider/create') }}" class="btn btn-info m-4">Add User</a>
+        <a href="{{ URL::to('/user/create') }}" class="btn btn-info m-4">Add User</a>
     </div>
     <div class="card-body">
         <div class="box-header with-border">
@@ -41,11 +41,11 @@
                             <td style="width: 50%">{{ $user->lng }}</td>
                             <td style="width: 50%">
                                 @if ($user->role_id == 1)
-                                    <span class="badge badge-success">Admin</span>
+                                    <button type="button" class="btn btn-outline-success btn-fw">Admin</button>
                                 @elseif($user->role_id == 2)
-                                    <span class="badge badge-primary">Provider</span>
+                                    <button type="button" class="btn btn-outline-danger btn-fw">Provider</button>
                                 @else
-                                    <span class="badge badge-warning">User</span>
+                                    <button type="button" class="btn btn-outline-warning btn-fw">User</button>
                                 @endif
                             </td>
                             <td style="width: 50%">

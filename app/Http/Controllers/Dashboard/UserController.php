@@ -17,8 +17,10 @@ class UserController extends Controller {
     */
 
     public function index() {
+
         //
-        return view( 'users.index' );
+        $users = User::all();
+        return view( 'users.index', compact( 'users' ) );
     }
 
     /**
@@ -54,8 +56,8 @@ class UserController extends Controller {
         $image = $request->image;
         if ( $image ) {
             $image_one = uniqid() . '.' . $image->getClientOriginalExtension();
-            Image::make( $image )->resize( 500, 300 )->save( 'image/postimg/' . $image_one );
-            $data[ 'image' ] = 'image/postimg/' . $image_one;
+            Image::make( $image )->resize( 500, 300 )->save( 'images/Usrimg/' . $image_one );
+            $data[ 'image' ] = 'images/Usrimg/' . $image_one;
             // image/postimg/343434.png
             DB::table( 'users' )->insert( $data );
 
@@ -95,6 +97,8 @@ class UserController extends Controller {
 
     public function edit( $id ) {
         //
+        $user = DB::table( 'users' )->where( 'id', $id )->first();
+        return view( 'users.edit', compact( 'user' ) );
     }
 
     /**
@@ -107,6 +111,42 @@ class UserController extends Controller {
 
     public function update( Request $request, $id ) {
         //
+        $data[ 'name' ] = $request->name;
+        $data[ 'email' ] =  $request->email;
+        $data[ 'password' ] = Hash::make( $request->password );
+        $data[ 'role_id' ] = $request->roles;
+        $position = $request->map;
+        $mycoords = explode( ',', $position );
+        $data[ 'lat' ] = $mycoords[ 0 ];
+        $data[ 'lng' ] = $mycoords[ 1 ];
+        $oldimage = $request->oldimage;
+        $image = $request->image;
+        if ( $image ) {
+            $image_one = uniqid() . '.' . $image->getClientOriginalExtension();
+            Image::make( $image )->resize( 500, 300 )->save( 'images/Usrimg/' . $image_one );
+            $data[ 'image' ] = 'images/Usrimg/' . $image_one;
+            // image/postimg/343434.png
+            DB::table( 'users' )->where( 'id', $id )->update( $data );
+            unlink( $oldimage );
+
+            $notification = array(
+                'message' => 'Users Data  Updated Successfully',
+                'alert-type' => 'success'
+            );
+
+            return Redirect()->route( 'user.index' )->with( $notification );
+        } else {
+            $data[ 'image' ] = $oldimage;
+            DB::table( 'users' )->where( 'id', $id )->update( $data );
+
+            $notification = array(
+                'message' => 'Users Data Updated Successfully',
+                'alert-type' => 'success'
+            );
+            return Redirect()->route( 'user.index' )->with( $notification );
+        }
+        // End Condition
+
     }
 
     /**
@@ -118,5 +158,16 @@ class UserController extends Controller {
 
     public function destroy( $id ) {
         //
+        $User = DB::table( 'users' )->where( 'id', $id )->first();
+        unlink( $User->image );
+
+        DB::table( 'users' )->where( 'id', $id )->delete();
+
+        $notification = array(
+            'message' => 'User Deleted Successfully',
+            'alert-type' => 'success'
+        );
+
+        return Redirect()->route( 'user.index' )->with( $notification );
     }
 }
