@@ -1,77 +1,120 @@
 @extends('admin.admin_master')
+
 @section('admin')
-    <div class="content-wrapper">
-        <div class="row">
-            <div class="col-12 grid-margin stretch-card">
-                <div class="card corona-gradient-card">
-                    <div class="card-body py-0 px-0 px-sm-3">
-                        <div class="row align-items-center">
-                            <div class="col-4 col-sm-3 col-xl-2">
-                                <img src="{{ asset('backend/assets/images/dashboard/Group126@2x.png') }}"
-                                    class="gradient-corona-img img-fluid" alt="">
-                            </div>
-                            <div class="col-5 col-sm-7 col-xl-8 p-0">
-                                <h4 class="mb-1 mb-sm-0">Welcome to Easy News </h4>
-
-                            </div>
-                            <div class="col-3 col-sm-2 col-xl-2 pl-0 text-center">
-                                <span>
-                                    <a href=" {{ url('/') }} " target="_blank"
-                                        class="btn btn-outline-light btn-rounded get-started-btn">Vist Fontend ? </a>
-                                </span>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+    <div class="box-header">
+        <a href="{{ URL::to('/provider/create') }}" class="btn btn-info m-4">Add User</a>
+    </div>
+    <div class="card-body">
+        <div class="box-header with-border">
+            <div class="box-title">
+                <h2>Users</h2>
             </div>
+
         </div>
+        <div class="table-responsive">
+            <table class="table table-bordered">
+                <thead>
+                    <tr>
+                        <th>NO</th>
+                        <th>Name</th>
+                        <th>Email</th>
+                        <th>Image</th>
+                        <th>Lat</th>
+                        <th>Lng</th>
+                        <th>Role</th>
+                        <th>Action</th>
+                    </tr>
+                </thead>
+                <tbody>
 
 
 
+                    @foreach ($users as $key => $user)
+                        <tr>
+                            <td style="width: 25%">{{ $loop->iteration }}</td>
+                            <td style="width: 50%">{{ $user->name }}</td>
+                            <td style="width: 50%">
+                                {{ $user->email }}
+                            </td>
+                            <td style="width: 50%"><img src="{{ $user->image }}" alt=""></td>
+                            <td style="width: 50%">{{ $user->lat }}</td>
+                            <td style="width: 50%">{{ $user->lng }}</td>
+                            <td style="width: 50%">
+                                @if ($user->role_id == 1)
+                                    <span class="badge badge-success">Admin</span>
+                                @elseif($user->role_id == 2)
+                                    <span class="badge badge-primary">Provider</span>
+                                @else
+                                    <span class="badge badge-warning">User</span>
+                                @endif
+                            </td>
+                            <td style="width: 50%">
+                                <a href="{{ route('user.edit', $user->id) }}" class="btn btn-info">Edit</a>
+                                <a href='' data-toggle="modal" data-target="#modal_single_del{{ $key }}"
+                                    class='btn btn-danger m-r-1em'>Delete </a>
 
+                            </td>
+                        </tr>
+                    @endforeach
 
-        <div class="col-lg-12 grid-margin stretch-card">
-            <div class="card">
-                <div class="card-body">
-                    <h4 class="card-title">Category Page </h4>
+                    @if (isset($key))
+                        <div class="modal" id="modal_single_del{{ $key }}" tabindex="-1" role="dialog">
+                            <div class="modal-dialog" role="document">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <h5 class="modal-title">delete confirmation</h5>
+                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                            <span aria-hidden="true">&times;</span>
+                                        </button>
+                                    </div>
 
+                                    <div class="modal-body">
+                                        Remove {{ $user->name }} !!!!
+                                    </div>
+                                    <div class="modal-footer">
+                                        <form action="{{ url('/user/' . $user->id) }}" method="post">
+                                            @csrf
+                                            @method('delete')
 
-                    <div class="template-demo">
-                        <a href=""><button type="button" class="btn btn-primary btn-fw" style="float: right;">Add
-                                Category</button></a>
-                    </div>
+                                            <div class="not-empty-record">
+                                                <button type="submit" class="btn btn-primary">Delete</button>
+                                                <button type="button" class="btn btn-secondary"
+                                                    data-dismiss="modal">close</button>
+                                            </div>
+                                        </form>
 
-
-                    <div class="table-responsive">
-                        <table class="table table-bordered">
-                            <thead>
-                                <tr>
-                                    <th> # </th>
-                                    <th>Category English </th>
-                                    <th> Category Arabic </th>
-                                    <th> Action </th>
-
-                                </tr>
-                            </thead>
-                            <tbody>
-
-                                <tr>
-                                    <td> </td>
-                                    <td> </td>
-
-                                    <td> </td>
-                                    <td>
-                                        <a href=""" class="btn btn-info">Edit</a>
-                                        <a href="" onclick="return confirm('Are you sure to delete')"
-                                            class="btn btn-danger">Delete</a>
-
-                                    </td>
-                                </tr>
-
-                            </tbody>
-                        </table>
-                    </div>
-                </div>
-            </div>
+                                    </div>
+                                </div>
+                            </div>
+                </tbody>
+                @endif
+            </table>
         </div>
-    @endsection
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.6.0.js" integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk="
+        crossorigin="anonymous"></script>
+    <script>
+        $(document).ready(function() {
+            // $("#provider_table").dataTable()
+        });
+        $(function() {
+            $(".toggle-class").change(function() {
+                var status = $(this).prop('checked') == true ? 1 : 0;
+                var provider_id = $(this).data('id');
+                $.ajax({
+                    type: "GET",
+                    dataType: "json",
+                    url: "/providerStatus",
+                    data: {
+                        'status': status,
+                        'provider_id': provider_id
+                    },
+                    success: function(data) {
+                        console.log(data.success);
+                    }
+                });
+            });
+        });
+    </script>
+@endsection
