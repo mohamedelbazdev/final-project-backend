@@ -11,23 +11,14 @@
                     'method' => 'PUT',
                     'enctype' => 'multipart/form-data',
                 ]) !!}
-                    <div class="form-group">
-                        <label for="name">provider</label>
-                        {{ Form::text('name', $provider['name'], ['class'=>'form-control','id'=>'name']) }}
-                        @if($errors->has('name'))
-                              <div class="alert alert-danger">{{$errors->first('name')}}
-                         @endif 
-                    </div>
+                   
 
                     <div class="form-group">
                     <label for="category_id">Category</label>
                     {{ Form::select('category_id',$categories, $provider['category_id'], ['class'=>'form-control select2','id'=>'category_id']) }}
                     </div>
                             
-                    <div class="form-group">
-                        <label for="image">image</label>
-                       {{ Form::file('image',['class'=>'form-control']) }}
-                    </div>
+                   
                     <div class="form-group">
                         <label for="description">provider</label>
                         {{ Form::text('description', $provider['description'], ['class'=>'form-control','id'=>'description']) }}

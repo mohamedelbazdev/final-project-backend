@@ -32,7 +32,7 @@
                 @foreach ($providers as $key => $provider)
                         <tr>
                             <td style="width: 25%">{{ $loop->iteration }}</td>
-                            <td style="width: 50%">{{ $provider->name }}</td>
+                            <td style="width: 50%">{{optional($provider->users)->name}}</td>
                             <td style="width: 50%">
                               {{optional($provider->categories)->name}}
                             </td>

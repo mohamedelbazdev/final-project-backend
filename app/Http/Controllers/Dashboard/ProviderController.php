@@ -51,7 +51,8 @@ class ProviderController extends Controller
     {
         //
         $provider = new Provider();
-        $provider->name = $request['name'];
+        // $provider->name = $request['name'];
+        $provider->user_id = $request['user_id'];
         $provider->description = $request['description'];
         $provider->price = $request['price'];
         $provider->category_id = $request['category_id'];
@@ -96,7 +97,8 @@ class ProviderController extends Controller
         //
         DB::beginTransaction();
         $provider = Provider::find($id);
-        $provider->name = $request->name;
+        // $provider->name = $request->name;
+        $provider->user_id =$request->user_id;
         $provider->description = $request->description;
         $provider->category_id =$request->category_id;
         $provider->price = $request->price;

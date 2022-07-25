@@ -15,14 +15,7 @@
 
                     {!! Form::open(['route' => 'provider.store', 'method' => 'POST', 'enctype' => 'multipart/form-data']) !!}
                             @csrf
-                        <div class="form-group">
-                            <label for="exampleInputUsername1">Name</label>
-                            <input class="form-control" placeholder="Enter Provider Name" type="text" name="name">
-
-                            @if($errors->has('name'))
-                                 <span class="text-danger">{{$errors->first('name')}}</span>
-                              @endif
-                        </div>
+                      
 
                         <div class="form-group">
                                 <label for="categories"> Category</label>
@@ -32,11 +25,7 @@
                              @endif
                         </div>
 
-                        <div class="form-group">
-                            <label for="exampleFormControlSelect2">Image</label>
-                            <input type="file" name="image" class="form-control">
-
-                        </div>
+                       
 
                         <div class="form-group">
                             <label for="exampleFormControlSelect2">Description</label>

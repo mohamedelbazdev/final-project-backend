@@ -71,4 +71,8 @@ class User extends Authenticatable {
         $query->where('role_id', 3);
     }
 
+    public function providers(){
+        return $this->hasMany(Provider::class, 'user_id');
+     }
+
 }
