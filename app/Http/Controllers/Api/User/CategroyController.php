@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers\Api\Admin;
+namespace App\Http\Controllers\Api\User;
 
 use App\Http\Controllers\Controller;
 use App\Http\Traits\ApiResponseTrait;
@@ -17,7 +17,6 @@ class CategroyController extends Controller
      * @var Category
      */
     protected $categoryModel;
-
 
     /**
      * @param Category $category
