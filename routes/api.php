@@ -1,17 +1,17 @@
 <?php
 
-use App\Http\Controllers\Api\Admin\AuthController;
-use App\Http\Controllers\Api\Admin\CategroyController;
+use App\Http\Controllers\Api\User\AuthController;
+use App\Http\Controllers\Api\User\CategroyController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\Api\Admin\OrderController;
-use App\Http\Controllers\Api\Admin\ChatController;
-use App\Http\Controllers\Api\Admin\FeedbackController;
-use App\Http\Controllers\Api\Admin\PaymentController;
-use App\Http\Controllers\Api\Admin\RateController;
-use App\Http\Controllers\Api\Admin\RateProviderController;
-use App\Http\Controllers\Api\Admin\RateUserController;
-use App\Http\Controllers\Api\Admin\UserController;
+use App\Http\Controllers\Api\User\OrderController;
+use App\Http\Controllers\Api\User\ChatController;
+use App\Http\Controllers\Api\User\FeedbackController;
+use App\Http\Controllers\Api\User\PaymentController;
+use App\Http\Controllers\Api\User\RateController;
+use App\Http\Controllers\Api\User\RateProviderController;
+use App\Http\Controllers\Api\User\RateUserController;
+use App\Http\Controllers\Api\User\UserController;
 
 
 
@@ -54,6 +54,7 @@ Route::group(['middleware'=>['auth:sanctum'], 'prefix' => 'users'], function(){
     Route::post('profile/edit', [AuthController::class, 'updateProfile']);
     Route::get('categories', [CategroyController::class, 'index']);
     Route::get('providers', [UserController::class, 'providers']);
+    Route::get('orders/create', [OrderController::class, 'store']);
 });
 
 

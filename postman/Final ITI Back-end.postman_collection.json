@@ -313,6 +313,75 @@
 					"response": []
 				}
 			]
+		},
+		{
+			"name": "Orders",
+			"item": [
+				{
+					"name": "Create",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "provider_id",
+									"value": "",
+									"type": "text"
+								},
+								{
+									"key": "sender_id",
+									"value": "",
+									"type": "text"
+								},
+								{
+									"key": "received_id",
+									"value": "",
+									"type": "text"
+								},
+								{
+									"key": "description",
+									"value": "",
+									"type": "text"
+								},
+								{
+									"key": "amount",
+									"value": "",
+									"type": "text"
+								},
+								{
+									"key": "lat",
+									"value": "",
+									"type": "text"
+								},
+								{
+									"key": "lng",
+									"value": "",
+									"type": "text"
+								},
+								{
+									"key": "executed_at",
+									"value": "",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{url}}/users/orders/create",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"users",
+								"orders",
+								"create"
+							]
+						}
+					},
+					"response": []
+				}
+			]
 		}
 	],
 	"auth": {

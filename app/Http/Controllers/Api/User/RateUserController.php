@@ -1,40 +1,12 @@
 <?php
 
-namespace App\Http\Controllers\Api\Admin;
+namespace App\Http\Controllers\Api\User;
 
 use App\Http\Controllers\Controller;
-use App\Http\Traits\ApiResponseTrait;
-use App\Models\Category;
-use App\Models\User;
 use Illuminate\Http\Request;
 
-class UserController extends Controller
+class RateUserController extends Controller
 {
-    use ApiResponseTrait;
-
-    /**
-     * @var Category
-     */
-    protected $userModel;
-
-    /**
-     * @param User $user
-     */
-    public function __construct(User $user)
-    {
-        $this->userModel = $user;
-    }
-
-    /**
-     * @return \Illuminate\Http\JsonResponse
-     */
-    public function providers(): \Illuminate\Http\JsonResponse
-    {
-        $providers = $this->userModel->provider()->get();
-
-        return $this->apiResponse('successfully', $providers);
-    }
-
     /**
      * Display a listing of the resource.
      *
