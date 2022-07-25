@@ -158,7 +158,7 @@
                 <ul class="nav flex-column sub-menu">
                     <li class="nav-item"> <a class="nav-link" href=""> Add Payment
                         </a></li>
-                    <li class="nav-item"> <a class="nav-link" href=""> All PAyemts
+                    <li class="nav-item"> <a class="nav-link" href="{{ route('payment.index') }}"> All Payemts
 
 
                 </ul>

@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Route;
 use  App\Http\Controllers\Dashboard\UserController;
 use App\Http\Controllers\Dashboard\CategoryController;
 use App\Http\Controllers\Dashboard\ProviderController;
-use App\Http\Controllers\Dashboard\StatisticsController;
+use App\Http\Controllers\Dashboard\PaymentsController;
 
 /*
 |--------------------------------------------------------------------------
@@ -26,5 +26,6 @@ Route::get('/dashboard', function () {
 Route::resource('user', UserController::class);
 Route::resource('category', CategoryController::class);
 Route::resource('provider', ProviderController::class);
+Route::resource('payment', PaymentsController::class);
 Route::get('/providers/inactive/{id}', [ProviderController::class,"Inactive"])->name('Inactive');
 Route::get('/providers/active/{id}', [ProviderController::class,"Active"])->name('Active');
