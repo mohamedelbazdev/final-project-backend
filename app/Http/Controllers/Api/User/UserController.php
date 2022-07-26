@@ -7,6 +7,8 @@ use App\Http\Traits\ApiResponseTrait;
 use App\Models\Category;
 use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Validator;
 
 class UserController extends Controller
 {
@@ -49,11 +51,40 @@ class UserController extends Controller
      * Store a newly created resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Http\JsonResponse
      */
     public function store(Request $request)
     {
-        //
+        $validator = validator::make($request->all(), [
+            'name' => 'required|string',
+            'email' => 'required|string',
+            'password' => 'required|string',
+            'map' => 'required|string',
+        ]);
+
+        if ($validator->fails()) {
+            return $this->apiResponseValidation($validator);
+        }
+
+        $coords = explode( ',', $request->post('map') );
+
+        $lat = $coords[ 0 ];
+        $lng = $coords[ 1 ];
+
+        $user = $this->userModel->create([
+            'name' => $request->post('name'),
+            'email' => $request->post('email'),
+            'password' => Hash::make($request->post('password')),
+            'lat' => $lat,
+            'lng' => $lng,
+            'role_id' => 3
+        ]);
+
+//        if($request->hasFile('avatar') && $request->file('avatar')->isValid()){
+//            $category->addMediaFromRequest('avatar')->toMediaCollection('avatar');
+//        }
+
+        return $this->apiResponse('successfully', $user);
     }
 
     /**
