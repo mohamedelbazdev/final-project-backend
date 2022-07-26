@@ -19,9 +19,9 @@
                         <th>Name</th>
                         <th>Category</th>
                         <th>Image</th>
-                        <!-- <th>Description</th> -->
+                        <th>Description</th>
                         <th>Price</th>
-                        <th>Status</th>
+                        <!-- <th>Status</th> -->
                         <th >Action</th>
                     </tr>
                 </thead>
@@ -32,30 +32,30 @@
                 @foreach ($providers as $key => $provider)
                         <tr>
                             <td style="width: 25%">{{ $loop->iteration }}</td>
-                            <td style="width: 50%">{{ $provider->name }}</td>
+                            <td style="width: 50%">{{$provider->users->name}}</td>
                             <td style="width: 50%">
                               {{optional($provider->categories)->name}}
                             </td>
-                            <td style="width: 50%">image</td>
-                            <!-- <td style="width: 50%">{{ $provider->description }}</td> -->
+                            <td style="width: 50%"><img src="{{$provider->users->image}}" alt=""></td>
+                            <td style="width: 50%">{{ $provider->description }}</td>
                             <td style="width: 50%">{{ $provider->price }}</td>
-                            <td style="width: 50%">
+                            <!-- <td style="width: 50%">
                                 @if ($provider->status==1)
                                 <span class="badge badge-success">Active</span>
                                 @else
                                 <span class="badge badge-danger">Inactive</span>
 
                                 @endif
-                            </td>
+                            </td> -->
                             <td style="width: 50%">
                                 <a href="{{ route('provider.edit', $provider->id) }}" class="btn btn-info">Edit</a>
                                 <a href='' data-toggle="modal" data-target="#modal_single_del{{ $key }}"
                                     class='btn btn-danger m-r-1em'>Delete </a>
-                                    @if ($provider->status==1)
+                                    <!-- @if ($provider->status==1)
                                     <a href="{{ url('providers/inactive/'. $provider->id) }}" class="btn btn-danger">Inactive</a>
                                     @else
                                     <a href="{{ url('providers/active/'. $provider->id) }}" class="btn btn-success">Active</a>
-                                    @endif
+                                    @endif -->
                             </td>
                         </tr>
                  @endforeach
@@ -72,7 +72,7 @@
                                 </div>
 
                                 <div class="modal-body">
-                                    Remove {{ $provider->name }} !!!!
+                                    Remove {{ $provider->users->name }} !!!!
                                 </div>
                                 <div class="modal-footer">
                                     <form action="{{ url('/provider/' . $provider->id) }}" method="post">

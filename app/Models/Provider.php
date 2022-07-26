@@ -13,8 +13,7 @@ class Provider extends Model
      * @var string[]
      */
     protected $fillable = [
-        'name',
-        'image',
+        'user_id',
         'price',
         'description',
         'status',
@@ -24,9 +23,12 @@ class Provider extends Model
     public function categories(){
         return $this->belongsTo(Category::class, 'category_id');
     }
-
-    public function getList()
-    {
-        return $this->pluck( 'name', 'id')->toArray();
+    public function users(){
+        return $this->belongsTo(User::class, 'user_id');
     }
+
+    // public function getList()
+    // {
+    //     return $this->pluck( 'name', 'id')->where('role_id',2)->toArray();
+    // }
 }

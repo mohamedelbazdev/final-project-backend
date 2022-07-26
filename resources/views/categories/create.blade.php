@@ -27,10 +27,11 @@
                            </div>
 
                                     
-                           <div class="form-group ">
-                             <label for="file" class="col-sm-3 col-form-label">image</label> 
-                             <input type="file" name="image" class="form-control">
-                            </div>
+                           <div class="form-group">
+                            <label class="form-label mg-b-0">Image</label>
+                            <input class="form-control" type="file" name="image">
+                           </div>
+
                             <div class="form-group ">
                                     <button class="btn btn-primary mr-2 pd-x-30 mg-r-5 mg-t-5">Add Category</button>
                             </div>   

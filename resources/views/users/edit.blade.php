@@ -33,56 +33,62 @@
                 <div class="card-body">
                     <h4 class="card-title">Add User</h4>
 
-                    <form class="forms-sample" method="POST" action="{{ route('user.store') }}"
-                        enctype="multipart/form-data">
-                        @csrf
+                    {!! Form::open([
+                        'route' => ['user.update', $user->id],
+                        'method' => 'PUT',
+                        'enctype' => 'multipart/form-data',
+                    ]) !!}
+                    @csrf
 
-                        <div class="form-group">
-                            <label class="form-label mg-b-0">Name</label>
-                            <input class="form-control" name="name" type="text" placeholder="Enter your firstname"
-                                type="text" value="{{ $user->name }}">
+                    <div class="form-group">
+                        <label class="form-label mg-b-0">Name</label>
+                        <input class="form-control" name="name" type="text" placeholder="Enter your firstname"
+                            type="text" value="{{ $user->name }}">
 
 
+                    </div>
+
+
+
+
+                    <div class="form-group">
+                        <select class="form-select" aria-label="Default select example" name="roles">
+                            <option>Open this select User Role</option>
+                            <option value="1" @if ($user->role_id == '1') {{ 'selected' }} @endif>admin
+                            </option>
+                            <option value="2" @if ($user->role_id == '2') {{ 'selected' }} @endif>Provider
+                            </option>
+                            <option value="3" @if ($user->role_id == '3') {{ 'selected' }} @endif>User
+                            </option>
+                        </select>
+
+
+                    </div>
+
+
+
+                    <div class="form-group">
+                        <label class="form-label mg-b-0">Email</label>
+                        <input class="form-control" name="email" type="text" placeholder="Enter your email"
+                            type="text" value="{{ $user->email }}">
+
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label mg-b-0">Image</label>
+                        <div class="form-group col-md-6">
+                            <label for="exampleInputName1">Old Image</label>
+                            <img src="{{ URL::to($user->image) }}" style="width: 70px; height: 50px;">
+                            <input type="hidden" name="oldimage" value="{{ $user->image }}">
                         </div>
+                        <input class="form-control" type="file" name="image">
+
+                    </div>
+
+                    <div id="map" style="width:100%;height:400px;"></div>
+                    <input type="hidden" id="text-map" name="map" value="">
 
 
-
-
-                        <div class="form-group">
-                            <select class="form-select" aria-label="Default select example" name="roles">
-                                <option value="{{ $user->role_id }}" selected>Open this select User Role</option>
-                                <option value="1">admin</option>
-                                <option value="2">User</option>
-                                <option value="3">Provider</option>
-                            </select>
-
-
-                        </div>
-
-
-
-                        <div class="form-group">
-                            <label class="form-label mg-b-0">Email</label>
-                            <input class="form-control" name="email" type="text" placeholder="Enter your email"
-                                type="text" value="{{ $user->email }}">
-
-                        </div>
-                        <div class="form-group">
-                            <label class="form-label mg-b-0">Image</label>
-                            <div class="form-group col-md-6">
-                                <label for="exampleInputName1">Old Image</label>
-                                <img src="{{ URL::to($user->image) }}" style="width: 70px; height: 50px;">
-                                <input type="hidden" name="oldimage" value="{{ $user->image }}">
-                            </div>
-                            <input class="form-control" type="file" name="image">
-
-                        </div>
-
-                        <div id="map" style="width:100%;height:400px;"></div>
-                        <input type="hidden" id="text-map" name="map" value="">
-
-
-                        <button type="submit" class="btn btn-primary mr-2">Submit</button>
+                    <button type="submit" class="btn btn-primary mr-2">Submit</button>
 
                     </form>
                 </div>

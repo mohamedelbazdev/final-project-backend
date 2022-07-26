@@ -8,6 +8,7 @@ use App\Models\Category;
 use App\Http\Requests\StoreCategory;
 use App\Http\Requests\UpdateCategory;
 use Illuminate\Support\Facades\DB;
+use Intervention\Image\Facades\Image as Image;
 
 class CategoryController extends Controller
 {
@@ -44,8 +45,17 @@ class CategoryController extends Controller
         //
         $category = new Category();
         $category->name = $request->input( 'name' );
+        $image = $request->image;
+        if ( $image ) {
+            $image_one = uniqid() . '.' . $image->getClientOriginalExtension();
+            Image::make( $image )->resize( 500, 300 )->save( 'images/Catimg/' . $image_one );
+            $category[ 'image' ] = 'images/Catimg/' . $image_one;}
+            $notification = array(
+                'message' => 'Category Data Inserted Successfully',
+                'alert-type' => 'success'
+            );
         $category->save();
-        return redirect( route( 'category.index' ) )->with( 'msg', 'Category Added Successfully' );
+        return redirect( route( 'category.index' ) )->with( $notification );
        
     }
 
@@ -85,8 +95,17 @@ class CategoryController extends Controller
         //
         $category = Category::find( $id );
         $category->name = $request->name;
+        $image = $request->image;
+        if ( $image ) {
+            $image_one = uniqid() . '.' . $image->getClientOriginalExtension();
+            Image::make( $image )->resize( 500, 300 )->save( 'images/Catimg/' . $image_one );
+            $category[ 'image' ] = 'images/Catimg/' . $image_one;}
         $category->update();
-        return redirect( route( 'category.index' ) )->with( 'msg', 'Category Updated Successfully' );
+        $notification = array(
+            'message' => 'Category Data  Updated Successfully',
+            'alert-type' => 'success'
+        );
+        return redirect( route( 'category.index' ) )->with( $notification);
     }
 
     /**
@@ -99,6 +118,10 @@ class CategoryController extends Controller
     {
         //
         DB :: table( 'categories' )->where( 'id', $id )->delete();
-        return redirect( route( 'category.index' ) )->with( 'rmv', 'Category Deleted Successfully' );
+        $notification = array(
+            'message' => 'category Deleted Successfully',
+            'alert-type' => 'success'
+        );
+        return redirect( route( 'category.index' ) )->with( $notification );
     }
 }
