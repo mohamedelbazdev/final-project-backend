@@ -1,8 +1,6 @@
 <!-- partial:partials/_sidebar.html -->
-@php
-           
-            $users = DB::table('users')->where('role_id',1)->get();
-          
+        @php   
+        $users = DB::table('users')->where('role_id',1)->get();     
         @endphp
 <nav class="sidebar sidebar-offcanvas" id="sidebar">
     <div class="sidebar-brand-wrapper d-none d-lg-flex align-items-center justify-content-center fixed-top">
