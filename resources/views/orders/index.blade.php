@@ -21,10 +21,10 @@
                             <th>User</th>
                             <th>Provider</th>
                             <th>Order</th>
-                            <th>Paymnet Status</th>
+                            <th>Order Status</th>
                             <th>Total Amount</th>
                             <th>PaymentDate</th>
-                            <th>Serial Number</th>
+                            <th>Stripe Code</th>
 
 
                         </tr>

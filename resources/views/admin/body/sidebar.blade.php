@@ -1,5 +1,10 @@
+@php
+$editData = DB::table('users')
+    ->where('id', Auth::user()->id)
+    ->first();
+@endphp
+
 <!-- partial:partials/_sidebar.html -->
-       
 <nav class="sidebar sidebar-offcanvas" id="sidebar">
     <div class="sidebar-brand-wrapper d-none d-lg-flex align-items-center justify-content-center fixed-top">
         <a class="sidebar-brand brand-logo" href="index.html"><img src="{{ asset('backend/assets/images/logo.svg') }}"
@@ -7,29 +12,23 @@
         <a class="sidebar-brand brand-logo-mini" href="index.html"><img
                 src="{{ asset('backend/assets/images/logo-mini.svg') }}" alt="logo" /></a>
     </div>
-    
     <ul class="nav">
         <li class="nav-item profile">
-           
             <div class="profile-desc">
-            
                 <div class="profile-pic">
                     <div class="count-indicator">
-                        <img class="img-xs rounded-circle " src=""
-                            alt="">
+                        <img class="img-xs rounded-circle " src="{{ URL::to($editData->image) }}" alt="">
                         <span class="count bg-success"></span>
                     </div>
-                   
                     <div class="profile-name">
-                        <h5 class="mb-0 font-weight-normal"></h5>
-                        <span>admin</span>
+                        <h5 class="mb-0 font-weight-normal">{{ Auth::user()->name }}</h5>
+                        <span>Gold Member</span>
                     </div>
-                  
                 </div>
                 <a href="#" id="profile-dropdown" data-toggle="dropdown"><i class="mdi mdi-dots-vertical"></i></a>
                 <div class="dropdown-menu dropdown-menu-right sidebar-dropdown preview-list"
                     aria-labelledby="profile-dropdown">
-                    <a href="" class="dropdown-item preview-item">
+                    <a href="{{ route('account.setting') }}" class="dropdown-item preview-item">
                         <div class="preview-thumbnail">
                             <div class="preview-icon bg-dark rounded-circle">
                                 <i class="mdi mdi-settings text-primary"></i>
@@ -40,7 +39,7 @@
                         </div>
                     </a>
                     <div class="dropdown-divider"></div>
-                    <a href="" class="dropdown-item preview-item">
+                    <a href="{{ route('show.password') }}" class="dropdown-item preview-item">
                         <div class="preview-thumbnail">
                             <div class="preview-icon bg-dark rounded-circle">
                                 <i class="mdi mdi-onepassword  text-info"></i>
@@ -78,7 +77,7 @@
         <li class="nav-item menu-items">
             <a class="nav-link" data-toggle="collapse" href="#ui-basic" aria-expanded="false" aria-controls="ui-basic">
                 <span class="menu-icon">
-                    <i class="mdi mdi-laptop"></i>
+                    <i class="mdi mdi-border-all"></i>
                 </span>
                 <span class="menu-title">Categories</span>
                 <i class="menu-arrow"></i>
@@ -96,7 +95,7 @@
         <li class="nav-item menu-items">
             <a class="nav-link" data-toggle="collapse" href="#district" aria-expanded="false" aria-controls="district">
                 <span class="menu-icon">
-                    <i class="mdi mdi-security"></i>
+                    <i class="mdi mdi-account-multiple"></i>
                 </span>
                 <span class="menu-title">Provider</span>
                 <i class="menu-arrow"></i>
@@ -125,7 +124,8 @@
             <div class="collapse" id="post">
                 <ul class="nav flex-column sub-menu">
                     <li class="nav-item"> <a class="nav-link" href=""> Add order </a></li>
-                    <li class="nav-item"> <a class="nav-link" href=""> All orders </a></li>
+                    <li class="nav-item"> <a class="nav-link" href="{{ route('orders.index') }}"> All orders </a>
+                    </li>
 
                 </ul>
             </div>
@@ -134,8 +134,7 @@
         <li class="nav-item menu-items">
             <a class="nav-link" data-toggle="collapse" href="#setting" aria-expanded="false" aria-controls="post">
                 <span class="menu-icon">
-                    <i class="mdi mdi-playlist-play"></i>
-                </span>
+                    <i class="mdi mdi-account-box"></i> </span>
                 <span class="menu-title">User</span>
                 <i class="menu-arrow"></i>
             </a>
