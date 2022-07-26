@@ -75,4 +75,9 @@ class User extends Authenticatable {
         return $this->hasMany(Provider::class, 'user_id');
      }
 
+     public function getList()
+     {
+         return $this->where('role_id', 2)->pluck( 'name', 'id')->toArray();
+     }
+
 }

@@ -15,7 +15,13 @@
 
                     {!! Form::open(['route' => 'provider.store', 'method' => 'POST', 'enctype' => 'multipart/form-data']) !!}
                             @csrf
-                      
+                            <div class="form-group">
+                                <label for="users"> Name</label>
+                            {{ Form::select('user_id'->where(role_id==2),$users, null, ['class'=>'form-control select2','id'=>'user_id']) }}
+                            @if($errors->has('user_id'))
+                                 <span class="text-danger">{{$errors->first('user_id')}}</span>
+                             @endif
+                        </div>
 
                         <div class="form-group">
                                 <label for="categories"> Category</label>

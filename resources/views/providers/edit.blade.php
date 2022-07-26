@@ -13,37 +13,23 @@
 
                 @csrf
               
+                <div class="form-group">
+                    <label for="user_id">Name</label>
 
+                    {{ Form::select('user_id',$users, $provider['user_id'], ['class'=>'form-control select2','id'=>'user_id']) }}
+                </div>
+                        
 
                 <div class="form-group">
                     <label for="category_id">Category</label>
 
                     {{ Form::select('category_id',$categories, $provider['category_id'], ['class'=>'form-control select2','id'=>'category_id']) }}
-                    </div>
+                </div>
                             
                    
-                    <div class="form-group">
-                        <label for="description">provider</label>
-                        {{ Form::text('description', $provider['description'], ['class'=>'form-control','id'=>'description']) }}
-                        @if($errors->has('description'))
-                              <div class="alert alert-danger">{{$errors->first('description')}}
-                         @endif 
-                    </div>
-                    <div class="form-group">
-                        <label for="price">provider</label>
-                        {{ Form::text('price', $provider['price'], ['class'=>'form-control','id'=>'price']) }}
-                        @if($errors->has('price'))
-                              <div class="alert alert-danger">{{$errors->first('price')}}
-                         @endif 
-                    </div>
+                
 
-                    {{ Form::select('category_id', $categories, $provider['category_id'], ['class' => 'form-control select2', 'id' => 'category_id']) }}
-                </div>
-
-                <div class="form-group">
-                    <label for="image">image</label>
-                    {{ Form::file('image', ['class' => 'form-control']) }}
-                </div>
+              
                 <div class="form-group">
                     <label for="description">provider</label>
                     {{ Form::text('description', $provider['description'], ['class' => 'form-control', 'id' => 'description']) }}

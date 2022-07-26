@@ -6,9 +6,11 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Provider;
 use App\Models\Category;
+use App\Models\User;
 use App\Http\Requests\StoreProvider;
 use App\Http\Requests\UpdateProvider;
 use Illuminate\Support\Facades\DB;
+use Intervention\Image\Facades\Image as Image;
 
 class ProviderController extends Controller
 {
@@ -18,9 +20,10 @@ class ProviderController extends Controller
      * @return \Illuminate\Http\Response
      */
 
-    public function __construct(Provider $providers, Category $categories){
+    public function __construct(Provider $providers, Category $categories , User $users){
         $this->categories = $categories;
         $this->providers = $providers;
+        $this->users = $users;
     }
     public function index()
     {
@@ -38,7 +41,8 @@ class ProviderController extends Controller
     {
         //
         $categories = $this->categories->getList();
-        return view( 'providers.create', compact('categories') );
+        $users = $this->users->getList();
+        return view( 'providers.create', compact('categories','users') );
     }
 
     /**
@@ -51,13 +55,19 @@ class ProviderController extends Controller
     {
         //
         $provider = new Provider();
-        // $provider->name = $request['name'];
+        
         $provider->user_id = $request['user_id'];
+        // $provider->user_id = 2;
         $provider->description = $request['description'];
         $provider->price = $request['price'];
         $provider->category_id = $request['category_id'];
+
+        $notification = array(
+            'message' => 'providers Data Inserted Successfully',
+            'alert-type' => 'success'
+        );
         $provider->save();
-        return redirect( route( 'provider.index' ) )->with( 'msg', 'Provider Added Successfully' );
+        return redirect( route( 'provider.index' ) )->with( $notification );
     }
 
     /**
@@ -82,7 +92,8 @@ class ProviderController extends Controller
         //
         $provider = Provider::findOrFail($id);
         $categories = $this->categories->getList();
-        return view( 'providers.edit', compact( 'provider','categories' ) );
+        $users = $this->users->getList();
+        return view( 'providers.edit', compact( 'provider','categories','users' ) );
     }
 
     /**
@@ -97,16 +108,20 @@ class ProviderController extends Controller
         //
         DB::beginTransaction();
         $provider = Provider::find($id);
-        // $provider->name = $request->name;
         $provider->user_id =$request->user_id;
+        // $provider->user_id=2;
         $provider->description = $request->description;
         $provider->category_id =$request->category_id;
         $provider->price = $request->price;
         $provider->save();
         DB::commit();
         // dd($provider);
-        $message = ('provider updated successfully');
-        return redirect(route( 'provider.index' ) )->with( 'msg', 'provider Updated Successfully' );
+        $notification = array(
+            'message' => 'Provider Data Updated Successfully',
+            'alert-type' => 'success'
+        );
+        
+        return redirect(route( 'provider.index' ) )->with($notification);
     }
 
     /**
@@ -119,7 +134,11 @@ class ProviderController extends Controller
     {
         //
         DB :: table( 'providers' )->where( 'id', $id )->delete();
-        return redirect( route( 'provider.index' ) )->with( 'rmv', 'Provider Deleted Successfully' );
+        $notification = array(
+            'message' => 'provider Deleted Successfully',
+            'alert-type' => 'success'
+        );
+        return redirect( route( 'provider.index' ) )->with(  $notification );
     }
 
 
@@ -141,6 +160,10 @@ class ProviderController extends Controller
         $providers = Provider::find($request->provider_id);
         $providers->status = $request->status;
         $providers->save();
-        return redirect( route( 'providers.index' ) )->with( 'msg', 'Provider Status Updated Successfully' );
+        $notification = array(
+            'message' => 'provider Deleted Successfully',
+            'alert-type' => 'success'
+        );
+        return redirect( route( 'providers.index' ) )->with($notification );
     }
 }

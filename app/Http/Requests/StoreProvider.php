@@ -25,7 +25,7 @@ class StoreProvider extends FormRequest
     {
         return [
             //
-            'name'     => 'required',
+            // 'name'     => 'required',
             'description'     => 'required',
             'price'     => 'required',
             'category_id'     => 'required'
