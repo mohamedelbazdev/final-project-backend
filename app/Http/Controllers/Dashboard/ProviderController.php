@@ -42,7 +42,6 @@ class ProviderController extends Controller
         //
         $categories = $this->categories->getList();
         $users = $this->users->getList();
-        
         return view( 'providers.create', compact('categories','users') );
     }
 
