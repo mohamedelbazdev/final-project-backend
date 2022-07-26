@@ -1,7 +1,4 @@
 
-        @php   
-        $users = DB::table('users')->where('role_id',1)->get();     
-        @endphp
 <!-- partial -->
       <div class="container-fluid page-body-wrapper">
         <!-- partial:partials/_navbar.html -->
@@ -157,13 +154,13 @@
               </li>
               <li class="nav-item dropdown">
                 <a class="nav-link" id="profileDropdown" href="#" data-toggle="dropdown">
-                @foreach ($users as $key => $user)
+                
                   <div class="navbar-profile">
-                    <img class="img-xs rounded-circle" src="{{ $user->image }}" alt="">
-           <p class="mb-0 d-none d-sm-block navbar-profile-name">{{ $user->name }}</p>
+                    <img class="img-xs rounded-circle" src="" alt="">
+           <p class="mb-0 d-none d-sm-block navbar-profile-name">name</p>
                     <i class="mdi mdi-menu-down d-none d-sm-block"></i>
                   </div>
-                  @endforeach
+                
                 </a>
                 <div class="dropdown-menu dropdown-menu-right navbar-dropdown preview-list" aria-labelledby="profileDropdown">
                   <h6 class="p-3 mb-0">Profile</h6>
