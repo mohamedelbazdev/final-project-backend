@@ -1,4 +1,9 @@
 <!-- partial:partials/_sidebar.html -->
+@php
+           
+            $users = DB::table('users')->where('role_id',1)->get();
+          
+        @endphp
 <nav class="sidebar sidebar-offcanvas" id="sidebar">
     <div class="sidebar-brand-wrapper d-none d-lg-flex align-items-center justify-content-center fixed-top">
         <a class="sidebar-brand brand-logo" href="index.html"><img src="{{ asset('backend/assets/images/logo.svg') }}"
@@ -6,19 +11,24 @@
         <a class="sidebar-brand brand-logo-mini" href="index.html"><img
                 src="{{ asset('backend/assets/images/logo-mini.svg') }}" alt="logo" /></a>
     </div>
+    
     <ul class="nav">
         <li class="nav-item profile">
+           
             <div class="profile-desc">
+            @foreach ($users as $key => $user)
                 <div class="profile-pic">
                     <div class="count-indicator">
-                        <img class="img-xs rounded-circle " src="{{ asset('backend/assets/images/faces/face15.jpg') }}"
+                        <img class="img-xs rounded-circle " src="{{ $user->image }}"
                             alt="">
                         <span class="count bg-success"></span>
                     </div>
+                   
                     <div class="profile-name">
                         <h5 class="mb-0 font-weight-normal"></h5>
-                        <span>Gold Member</span>
+                        <span>{{ $user->name }}</span>
                     </div>
+                    @endforeach
                 </div>
                 <a href="#" id="profile-dropdown" data-toggle="dropdown"><i class="mdi mdi-dots-vertical"></i></a>
                 <div class="dropdown-menu dropdown-menu-right sidebar-dropdown preview-list"
