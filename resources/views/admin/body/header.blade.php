@@ -1,8 +1,4 @@
-@php
-$editData = DB::table('users')
-    ->where('id', Auth::user()->id)
-    ->first();
-@endphp
+
 <!-- partial -->
 <div class="container-fluid page-body-wrapper">
     <!-- partial:partials/_navbar.html -->
@@ -15,15 +11,15 @@ $editData = DB::table('users')
             <button class="navbar-toggler navbar-toggler align-self-center" type="button" data-toggle="minimize">
                 <span class="mdi mdi-menu"></span>
             </button>
-            <ul class="navbar-nav w-100">
+            <!-- <ul class="navbar-nav w-100">
                 <li class="nav-item w-100">
                     <form class="nav-link mt-2 mt-md-0 d-none d-lg-flex search">
                         <input type="text" class="form-control" placeholder="Search products">
                     </form>
                 </li>
-            </ul>
-            <ul class="navbar-nav navbar-nav-right">
-                <li class="nav-item dropdown d-none d-lg-block">
+            </ul> -->
+            <ul class="navbar-nav navbar-nav-right ">
+                <!-- <li class="nav-item dropdown d-none d-lg-block">
                     <a class="nav-link btn btn-success create-new-button" id="createbuttonDropdown"
                         data-toggle="dropdown" aria-expanded="false" href="#">+ Create New Project</a>
                     <div class="dropdown-menu dropdown-menu-right navbar-dropdown preview-list"
@@ -65,13 +61,13 @@ $editData = DB::table('users')
                         <div class="dropdown-divider"></div>
                         <p class="p-3 mb-0 text-center">See all projects</p>
                     </div>
-                </li>
-                <li class="nav-item nav-settings d-none d-lg-block">
+                </li> -->
+                <!-- <li class="nav-item nav-settings d-none d-lg-block">
                     <a class="nav-link" href="#">
                         <i class="mdi mdi-view-grid"></i>
                     </a>
-                </li>
-                <li class="nav-item dropdown border-left">
+                </li> -->
+                <!-- <li class="nav-item dropdown border-left">
                     <a class="nav-link count-indicator dropdown-toggle" id="messageDropdown" href="#"
                         data-toggle="dropdown" aria-expanded="false">
                         <i class="mdi mdi-email"></i>
@@ -116,8 +112,8 @@ $editData = DB::table('users')
                         <div class="dropdown-divider"></div>
                         <p class="p-3 mb-0 text-center">4 new messages</p>
                     </div>
-                </li>
-                <li class="nav-item dropdown border-left">
+                </li> -->
+                <!-- <li class="nav-item dropdown border-left">
                     <a class="nav-link count-indicator dropdown-toggle" id="notificationDropdown" href="#"
                         data-toggle="dropdown">
                         <i class="mdi mdi-bell"></i>
@@ -165,12 +161,12 @@ $editData = DB::table('users')
                         <div class="dropdown-divider"></div>
                         <p class="p-3 mb-0 text-center">See all notifications</p>
                     </div>
-                </li>
+                </li> -->
                 <li class="nav-item dropdown">
                     <a class="nav-link" id="profileDropdown" href="#" data-toggle="dropdown">
                         <div class="navbar-profile">
-                            <img class="img-xs rounded-circle" src="{{ URL::to($editData->image) }}" alt="">
-                            {{-- <p class="mb-0 d-none d-sm-block navbar-profile-name">{{ Auth::user()->name }}</p> --}}
+                            <img class="img-xs rounded-circle" src="{{ URL::to(\Auth::user()->image) }}" alt="">
+                            {{-- <p class="mb-0 d-none d-sm-block navbar-profile-name">{{ \Auth::user()->name }}</p> --}}
                             <i class="mdi mdi-menu-down d-none d-sm-block"></i>
                         </div>
                     </a>
