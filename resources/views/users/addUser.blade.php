@@ -1,7 +1,7 @@
 @extends('admin.admin_master')
 @section('admin')
     <div class="content-wrapper">
-        <div class="row">
+        <!-- <div class="row">
             <div class="col-12 grid-margin stretch-card">
                 <div class="card corona-gradient-card">
                     <div class="card-body py-0 px-0 px-sm-3">
@@ -24,7 +24,7 @@
                     </div>
                 </div>
             </div>
-        </div>
+        </div> -->
 
 
 
@@ -43,6 +43,7 @@
 
 
                         </div>
+
                         <div class="form-group">
                             <label class="form-label mg-b-0">Password</label>
                             <input class="form-control" name="password" type="password" placeholder="Enter your password">
@@ -108,4 +109,5 @@
 
         <script type="text/javascript"
             src="https://maps.google.com/maps/api/js?key={{ env('GOOGLE_MAP_KEY') }}&callback=initMap"></script>
-    @endsection
+   
+            @endsection
