@@ -54,74 +54,44 @@
                                 value="{{ $editData->email }}">
                         </div>
 
-
-                        <div class="form-group">
-                            <label for="exampleInputName1">User Mobile </label>
-                            <input type="text" class="form-control" id="exampleInputName1" name="mobile"
-                                value="{{ $editData->mobile }}">
-                        </div>
-
-
-
-
-
-
-                        <div class="form-group">
-                            <label for="exampleInputName1">User position </label>
-                            <input type="text" class="form-control" id="exampleInputName1" name="position"
-                                value="{{ $editData->position }}">
-                        </div>
-
-
-
-
-
-
-
                         <div class="row">
                             <div class="col-sm-6">
-
                                 <div class="form-group">
-                                    <label for="exampleFormControlFile1">Image Upload </label>
-                                    <input type="file" name="image" class="form-control-file" id="image">
+                                    <label class="form-label mg-b-0">Image</label>
+                                    <div class="form-group col-md-6">
+                                        <label for="exampleInputName1">Old Image</label>
+                                        <img src="{{ URL::to($editData->image) }}" style="width: 70px; height: 50px;">
+                                        <input type="hidden" name="oldimage" value="{{ $editData->image }}">
+                                    </div>
+                                    <input class="form-control" type="file" name="image">
+
                                 </div>
 
-
-                            </div>
-
-                            <div class="col-sm-6">
-
-                                <div class="form-group">
-                                    <label for="exampleFormControlFile1">Old Image </label>
-
-                                    <img id="showImage"
-                                        src="{{ !empty($editData->image) ? url('upload/user_images/' . $editData->image) : url('upload/no_image.jpg') }}"
-                                        style="width: 100px;height: 100px; border: 1px solid #000000">
-
-                                </div>
 
                             </div>
 
                         </div>
 
-
-
-                        <button type="submit" class="btn btn-primary mr-2">Submit</button>
-
-                    </form>
                 </div>
+
+
+
+                <button type="submit" class="btn btn-primary mr-2">Submit</button>
+
+                </form>
             </div>
         </div>
+    </div>
 
-        <script type="text/javascript">
-            $(document).ready(function() {
-                $('#image').change(function(e) {
-                    var reader = new FileReader();
-                    reader.onload = function(e) {
-                        $('#showImage').attr('src', e.target.result);
-                    }
-                    reader.readAsDataURL(e.target.files['0']);
-                });
+    <script type="text/javascript">
+        $(document).ready(function() {
+            $('#image').change(function(e) {
+                var reader = new FileReader();
+                reader.onload = function(e) {
+                    $('#showImage').attr('src', e.target.result);
+                }
+                reader.readAsDataURL(e.target.files['0']);
             });
-        </script>
-    @endsection
+        });
+    </script>
+@endsection

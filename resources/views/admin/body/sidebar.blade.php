@@ -22,7 +22,15 @@ $editData = DB::table('users')
                     </div>
                     <div class="profile-name">
                         <h5 class="mb-0 font-weight-normal">{{ Auth::user()->name }}</h5>
-                        <span>Gold Member</span>
+                        <span>
+                            @if ($editData->role_id == 1)
+                                Admin
+                            @elseif($editData->role_id == 2)
+                                Provider
+                            @else
+                                User
+                            @endif
+                        </span>
                     </div>
                 </div>
                 <a href="#" id="profile-dropdown" data-toggle="dropdown"><i class="mdi mdi-dots-vertical"></i></a>
@@ -116,7 +124,7 @@ $editData = DB::table('users')
         <li class="nav-item menu-items">
             <a class="nav-link" data-toggle="collapse" href="#post" aria-expanded="false" aria-controls="post">
                 <span class="menu-icon">
-                    <i class="mdi mdi-security"></i>
+                    <i class="mdi mdi-calendar-multiple"></i>
                 </span>
                 <span class="menu-title">orders</span>
                 <i class="menu-arrow"></i>

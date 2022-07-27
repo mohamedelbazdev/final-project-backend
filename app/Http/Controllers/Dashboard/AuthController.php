@@ -8,6 +8,9 @@ use Illuminate\Support\Facades\Auth;
 use App\Models\User;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Session;
+use Illuminate\Support\Facades\DB;
+use Intervention\Image\Facades\Image as Image;
+use Illuminate\Support\Facades\File;
 
 class AuthController extends Controller {
     //
@@ -30,22 +33,26 @@ class AuthController extends Controller {
 
     public function ProfileStore( Request $request ) {
 
-        $data = User::find( Auth::user()->id );
-        $data->name = $request->name;
-        $data->email = $request->email;
-        $data->mobile = $request->mobile;
-        $data->position = $request->position;
+        $id = Auth::user()->id;
+        $data[ 'name' ] = $request->name;
+        $data[ 'email' ] = $request->email;
+        $oldimage = $request->oldimage;
+        // dd( $oldimage );
+        $image = $request->image;
 
         if ( $request->file( 'image' ) ) {
-            $file = $request->file( 'image' );
-            @unlink( public_path( 'upload/user_images/' . $data->image ) );
-            $filename = date( 'YmdHi' ) . $file->getClientOriginalName();
-            $file_path =  public_path( 'upload/user_images' );
-            $file->move( $file_path, $filename );
-            $data[ 'image' ] = $filename;
+            $image_one = uniqid() . '.' . $image->getClientOriginalExtension();
+            Image::make( $image )->resize( 500, 300 )->save( 'images/Usrimg/' . $image_one );
+            $data[ 'image' ] = 'images/Usrimg/' . $image_one;
+
+            if ( File::exists( $oldimage ) ) {
+                File::delete( $oldimage );
+                // unlink( $oldimage );
+
+            }
+
         }
-        $data->profile_photo_path = $file_path;
-        $data->save();
+        DB::table( 'users' )->where( 'id', $id )->update( $data );
         $notification = array(
             'message' => 'User Profile Updated Successfully',
             'alert-type' => 'success'
@@ -76,7 +83,7 @@ class AuthController extends Controller {
                 'message' => 'Password Change Successfully',
                 'alert-type' => 'success'
             );
-            return Redirect()->route( 'login' )->with( $notification );
+            return Redirect()->route( 'auth.login' )->with( $notification );
         } else {
             return Redirect()->back();
         }
