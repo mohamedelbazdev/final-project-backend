@@ -1,7 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-use  App\Http\Controllers\Dashboard\AdminController;
+use  App\Http\Controllers\Dashboard\AdminsController;
 use  App\Http\Controllers\Dashboard\UserController;
 use App\Http\Controllers\Dashboard\CategoryController;
 use App\Http\Controllers\Dashboard\ProviderController;
@@ -27,7 +27,7 @@ Route::get('/dashboard', function () {
 })->name('dashboard')->middleware('auth.admin');
 
 Route::resource('user', UserController::class);
-Route::resource('admin', AdminController::class);
+Route::resource('admins', AdminsController::class);
 Route::resource('category', CategoryController::class);
 Route::resource('provider', ProviderController::class);
 Route::resource('payment', PaymentsController::class);

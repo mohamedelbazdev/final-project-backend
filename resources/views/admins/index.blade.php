@@ -2,7 +2,7 @@
 
 @section('admin')
     <div class="box-header">
-        <a href="{{ URL::to('/admin/create') }}" class="btn btn-info m-4">Add Admin</a>
+        <a href="{{ URL::to('/admins/create') }}" class="btn btn-info m-4">Add Admin</a>
     </div>
     <div class="card-body">
         <div class="box-header with-border">
@@ -49,7 +49,7 @@
                                 @endif
                             </td>
                             <td style="width: 50%">
-                                <a href="{{ route('admin.edit', $user->id) }}" class="btn btn-info">Edit</a>
+                                <a href="{{ route('admins.edit', $user->id) }}" class="btn btn-info">Edit</a>
                                 <a href='' data-toggle="modal" data-target="#modal_single_del{{ $key }}"
                                     class='btn btn-danger m-r-1em'>Delete </a>
 

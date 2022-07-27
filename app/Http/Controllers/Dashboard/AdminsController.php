@@ -9,7 +9,7 @@ use Illuminate\Support\Facades\DB;
 use Intervention\Image\Facades\Image as Image;
 use App\Models\User;
 
-class AdminController extends Controller
+class AdminsController extends Controller
 {
     //
     
@@ -52,7 +52,7 @@ class AdminController extends Controller
                 'alert-type' => 'success'
             );
 
-            return Redirect()->route( 'admin.index' )->with( $notification );
+            return Redirect()->route( 'admins.index' )->with( $notification );
         } else {
             return Redirect()->back();
         }
@@ -97,7 +97,7 @@ class AdminController extends Controller
                 'alert-type' => 'success'
             );
 
-            return Redirect()->route( 'admin.index' )->with( $notification );
+            return Redirect()->route( 'admins.index' )->with( $notification );
         } else {
             $data[ 'image' ] = $oldimage;
             DB::table( 'users' )->where( 'id', $id )->update( $data );
@@ -106,7 +106,7 @@ class AdminController extends Controller
                 'message' => 'Users Data Updated Successfully',
                 'alert-type' => 'success'
             );
-            return Redirect()->route( 'admin.index' )->with( $notification );
+            return Redirect()->route( 'admins.index' )->with( $notification );
         }
         // End Condition
 
@@ -125,6 +125,6 @@ class AdminController extends Controller
             'alert-type' => 'success'
         );
 
-        return Redirect()->route( 'admin.index' )->with( $notification );
+        return Redirect()->route( 'admins.index' )->with( $notification );
     }
 }
