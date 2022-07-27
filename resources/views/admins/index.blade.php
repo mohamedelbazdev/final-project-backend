@@ -19,8 +19,6 @@
                         <th>Name</th>
                         <th>Email</th>
                         <th>Image</th>
-                        <th>Lat</th>
-                        <th>Lng</th>
                         <th>Role</th>
                         <th>Action</th>
                     </tr>
@@ -36,9 +34,9 @@
                             <td style="width: 50%">
                                 {{ $user->email }}
                             </td>
+                            
                             <td style="width: 50%"><img src="{{ $user->image }}" alt=""></td>
-                            <td style="width: 50%">{{ $user->lat }}</td>
-                            <td style="width: 50%">{{ $user->lng }}</td>
+    
                             <td style="width: 50%">
                                 @if ($user->role_id == 1)
                                     <button type="button" class="btn btn-outline-success btn-fw">Admin</button>
