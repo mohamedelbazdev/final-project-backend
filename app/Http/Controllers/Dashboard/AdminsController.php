@@ -16,7 +16,7 @@ class AdminsController extends Controller
     public function index() {
 
         //
-        $users = User::where('role_id', 1)->latest()->get();
+        $users = User::Admin()->latest()->get();
         return view( 'admins.index', compact( 'users' ) );
     }
 
