@@ -157,6 +157,24 @@ $editData = DB::table('users')
         </li>
 
 
+        <li class="nav-item menu-items">
+            <a class="nav-link" data-toggle="collapse" href="#setting" aria-expanded="false" aria-controls="post">
+                <span class="menu-icon">
+                    <i class="mdi mdi-account-box"></i> </span>
+                <span class="menu-title">Admin</span>
+                <i class="menu-arrow"></i>
+            </a>
+            <div class="collapse" id="setting">
+                <ul class="nav flex-column sub-menu">
+                    <li class="nav-item"> <a class="nav-link" href="{{ route('admin.create') }}"> add admin </a></li>
+                    <li class="nav-item"> <a class="nav-link" href="{{ route('admin.index') }}">admin List </a></li>
+
+
+                </ul>
+            </div>
+        </li>
+
+
 
 
         <li class="nav-item menu-items">
