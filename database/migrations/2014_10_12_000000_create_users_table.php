@@ -26,7 +26,7 @@ class CreateUsersTable extends Migration
             $table->double('lng')->nullable();
             $table->integer('status')->default(1);
 
-            $table->foreignId('role_id')->nullable();
+            $table->foreignId('role_id')->nullable()
                 ->constrained()
                 ->onDelete('cascade')
                 ->onUpdate('cascade');
