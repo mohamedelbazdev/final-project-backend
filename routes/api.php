@@ -58,6 +58,11 @@ Route::group(['middleware'=>['auth:sanctum'], 'prefix' => 'users'], function(){
     Route::get('orders/create', [OrderController::class, 'store']);
 });
 
+/** Chat Section */
+Route::group(['middleware'=>['auth:sanctum'], 'prefix' => 'providers'], function(){
+    Route::post('create', [AuthController::class, 'storeUser']);
+});
+
 
 
 
