@@ -174,13 +174,21 @@ class UserController extends Controller {
     }
 
     public function Inactive( $id ) {
-        Provider::find( $id )->update( [ 'status' => 0 ] );
-        return redirect()->back()->with( 'rmv', 'User has been Inactive' );
+        DB::table( 'users' )->where( 'id', $id )->update( [ 'status'=>0 ] );
+        $notification = array(
+            'messege'=>'User Successfully inactive',
+            'alert-type'=>'success'
+        );
+        return Redirect()->back()->with( $notification );
     }
 
     public function Active( $id ) {
-        Provider::find( $id )->update( [ 'status' => 1 ] );
-        return redirect()->back()->with( 'msg', 'User has been Active' );
+        DB::table( 'users' )->where( 'id', $id )->update( [ 'status'=>1 ] );
+        $notification = array(
+            'messege'=>'Product Successfully Active',
+            'alert-type'=>'success'
+        );
+        return Redirect()->back()->with( $notification );
     }
 
 }

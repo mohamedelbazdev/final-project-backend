@@ -44,11 +44,8 @@
                                 @else
                                     <span class="badge badge-danger">Inactive</span>
                                 @endif
-                                @if ($user->status == 1)
-                                    <a href="{{ url('user/inactive/' . $user->id) }}" class="btn btn-danger">Inactive</a>
-                                @else
-                                    <a href="{{ url('user/active/' . $user->id) }}" class="btn btn-success">Active</a>
-                                @endif
+
+                            </td>
                             <td>
                                 @if ($user->role_id == 1)
                                     <button type="button" class="btn btn-outline-success btn-fw">Admin</button>
@@ -63,8 +60,14 @@
                                 <a href="{{ route('user.edit', $user->id) }}" class="btn btn-info">Edit</a>
                                 <a href='' data-toggle="modal" data-target="#modal_single_del{{ $key }}"
                                     class='btn btn-danger m-r-1em'>Delete </a>
+                                @if ($user->status == 1)
+                                    <a href="{{ url('/user/inactive/' . $user->id) }}" class="btn btn-warning">Inactive</a>
+                                @else
+                                    <a href="{{ url('/user/active/' . $user->id) }}" class="btn btn-success">Active</a>
+                                @endif
 
                             </td>
+
                         </tr>
 
                         @if (isset($key))
