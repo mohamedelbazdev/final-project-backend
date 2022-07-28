@@ -32,7 +32,6 @@ class UserController extends Controller {
     public function create() {
         //
         return view( 'users.addUser' );
-      
 
     }
 
@@ -47,6 +46,7 @@ class UserController extends Controller {
         //
         $data[ 'name' ] = $request->name;
         $data[ 'email' ] =  $request->email;
+        $data[ 'mobile' ] =  $request->mobile;
         $data[ 'password' ] = Hash::make( $request->password );
         $data[ 'role_id' ] = $request->roles;
         $position = $request->map;
@@ -114,6 +114,7 @@ class UserController extends Controller {
         //
         $data[ 'name' ] = $request->name;
         $data[ 'email' ] =  $request->email;
+        $data[ 'mobile' ] =  $request->mobile;
         $data[ 'password' ] = Hash::make( $request->password );
         $data[ 'role_id' ] = $request->roles;
         $position = $request->map;
@@ -171,4 +172,15 @@ class UserController extends Controller {
 
         return Redirect()->route( 'user.index' )->with( $notification );
     }
+
+    public function Inactive( $id ) {
+        Provider::find( $id )->update( [ 'status' => 0 ] );
+        return redirect()->back()->with( 'rmv', 'User has been Inactive' );
+    }
+
+    public function Active( $id ) {
+        Provider::find( $id )->update( [ 'status' => 1 ] );
+        return redirect()->back()->with( 'msg', 'User has been Active' );
+    }
+
 }

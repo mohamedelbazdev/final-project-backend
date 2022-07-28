@@ -35,6 +35,8 @@ Route::group(['middleware' =>['auth','auth.admin'] ], function () {
         Route::resource('orders', OrdersController::class);
         Route::get('/providers/inactive/{id}', [ProviderController::class,"Inactive"])->name('Inactive');
         Route::get('/providers/active/{id}', [ProviderController::class,"Active"])->name('Active');
+        Route::get('/user/inactive/{id}', [UserController::class,"Inactive"])->name('Inactive');
+        Route::get('/user/active/{id}', [UserController::class,"Active"])->name('Active');
 });
 
 // Account Setting Routes
