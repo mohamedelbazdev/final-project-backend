@@ -1,7 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-use  App\Http\Controllers\Dashboard\AdminController;
+use  App\Http\Controllers\Dashboard\AdminsController;
 use  App\Http\Controllers\Dashboard\UserController;
 use App\Http\Controllers\Dashboard\CategoryController;
 use App\Http\Controllers\Dashboard\ProviderController;
@@ -22,19 +22,20 @@ use App\Http\Controllers\Dashboard\OrdersController;
 Route::get('/',function(){
 return view('welcome');
 });
-Route::get('/dashboard', function () {
-    return view('admin.index');
-})->name('dashboard')->middleware('auth.admin');
 
-Route::resource('user', UserController::class);
-Route::resource('admin', AdminController::class);
-Route::resource('category', CategoryController::class);
-Route::resource('provider', ProviderController::class);
-Route::resource('payment', PaymentsController::class);
-Route::resource('orders', OrdersController::class);
-Route::get('/providers/inactive/{id}', [ProviderController::class,"Inactive"])->name('Inactive');
-Route::get('/providers/active/{id}', [ProviderController::class,"Active"])->name('Active');
-
+Route::group(['middleware' =>['auth','auth.admin'] ], function () {
+        Route::get('/dashboard', function () {
+                return view('admin.index');
+        })->name('dashboard');
+        Route::resource('user', UserController::class);
+        Route::resource('admins', AdminsController::class);
+        Route::resource('category', CategoryController::class);
+        Route::resource('provider', ProviderController::class);
+        Route::resource('payment', PaymentsController::class);
+        Route::resource('orders', OrdersController::class);
+        Route::get('/providers/inactive/{id}', [ProviderController::class,"Inactive"])->name('Inactive');
+        Route::get('/providers/active/{id}', [ProviderController::class,"Active"])->name('Active');
+});
 
 // Account Setting Routes
 Route::get('/account/setting', [AuthController::class, 'AccountSetting'])->name('account.setting');

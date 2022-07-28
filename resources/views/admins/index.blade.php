@@ -2,7 +2,7 @@
 
 @section('admin')
     <div class="box-header">
-        <a href="{{ URL::to('/admin/create') }}" class="btn btn-info m-4">Add Admin</a>
+        <a href="{{ URL::to('/admins/create') }}" class="btn btn-info m-4">Add Admin</a>
     </div>
     <div class="card-body">
         <div class="box-header with-border">
@@ -19,8 +19,6 @@
                         <th>Name</th>
                         <th>Email</th>
                         <th>Image</th>
-                        <th>Lat</th>
-                        <th>Lng</th>
                         <th>Role</th>
                         <th>Action</th>
                     </tr>
@@ -36,9 +34,9 @@
                             <td style="width: 50%">
                                 {{ $user->email }}
                             </td>
+                            
                             <td style="width: 50%"><img src="{{ $user->image }}" alt=""></td>
-                            <td style="width: 50%">{{ $user->lat }}</td>
-                            <td style="width: 50%">{{ $user->lng }}</td>
+    
                             <td style="width: 50%">
                                 @if ($user->role_id == 1)
                                     <button type="button" class="btn btn-outline-success btn-fw">Admin</button>
@@ -49,7 +47,7 @@
                                 @endif
                             </td>
                             <td style="width: 50%">
-                                <a href="{{ route('admin.edit', $user->id) }}" class="btn btn-info">Edit</a>
+                                <a href="{{ route('admins.edit', $user->id) }}" class="btn btn-info">Edit</a>
                                 <a href='' data-toggle="modal" data-target="#modal_single_del{{ $key }}"
                                     class='btn btn-danger m-r-1em'>Delete </a>
 

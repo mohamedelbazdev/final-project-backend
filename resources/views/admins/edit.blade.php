@@ -8,7 +8,7 @@
                     <h4 class="card-title">Edit Admin</h4>
 
                     {!! Form::open([
-                        'route' => ['admin.update', $user->id],
+                        'route' => ['admins.update', $user->id],
                         'method' => 'PUT',
                         'enctype' => 'multipart/form-data',
                     ]) !!}

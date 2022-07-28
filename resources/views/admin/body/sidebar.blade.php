@@ -131,7 +131,7 @@ $editData = DB::table('users')
             </a>
             <div class="collapse" id="post">
                 <ul class="nav flex-column sub-menu">
-                    <li class="nav-item"> <a class="nav-link" href=""> Add order </a></li>
+                    <!-- <li class="nav-item"> <a class="nav-link" href=""> Add order </a></li> -->
                     <li class="nav-item"> <a class="nav-link" href="{{ route('orders.index') }}"> All orders </a>
                     </li>
 
@@ -166,9 +166,10 @@ $editData = DB::table('users')
             </a>
             <div class="collapse" id="setting">
                 <ul class="nav flex-column sub-menu">
-                    <li class="nav-item"> <a class="nav-link" href="{{ route('admin.create') }}"> add admin </a>
+                    <li class="nav-item"> <a class="nav-link" href="{{ route('admins.create') }}"> add admin </a>
                     </li>
-                    <li class="nav-item"> <a class="nav-link" href="{{ route('admin.index') }}">admin List </a></li>
+                    <li class="nav-item"> <a class="nav-link" href="{{ route('admins.index') }}">admin List </a>
+                    </li>
 
 
                 </ul>
@@ -178,7 +179,7 @@ $editData = DB::table('users')
 
 
 
-        <li class="nav-item menu-items">
+        <!-- <li class="nav-item menu-items">
             <a class="nav-link" data-toggle="collapse" href="#website" aria-expanded="false" aria-controls="post">
                 <span class="menu-icon">
                     <i class="mdi mdi-playlist-play"></i>
@@ -195,7 +196,7 @@ $editData = DB::table('users')
 
                 </ul>
             </div>
-        </li>
+        </li> -->
 
         <li class="nav-item menu-items">
             <a class="nav-link" data-toggle="collapse" href="#photo" aria-expanded="false" aria-controls="post">
@@ -216,8 +217,26 @@ $editData = DB::table('users')
                 </ul>
             </div>
         </li>
-
         <li class="nav-item menu-items">
+            <a class="nav-link" data-toggle="collapse" href="#website" aria-expanded="false" aria-controls="post">
+                <span class="menu-icon">
+                    <i class="mdi mdi-playlist-play"></i>
+                </span>
+                <span class="menu-title">Payments</span>
+                <i class="menu-arrow"></i>
+            </a>
+            <div class="collapse" id="website">
+                <ul class="nav flex-column sub-menu">
+                    <!-- <li class="nav-item"> <a class="nav-link" href=""> Add Payment
+                        </a></li> -->
+                    <li class="nav-item"> <a class="nav-link" href="{{ route('payment.index') }}"> All Payemts
+
+
+                </ul>
+            </div>
+        </li>
+
+        <!-- <li class="nav-item menu-items">
             <a class="nav-link" data-toggle="collapse" href="#photo" aria-expanded="false" aria-controls="post">
                 <span class="menu-icon">
                     <i class="mdi mdi-playlist-play"></i>
@@ -233,19 +252,19 @@ $editData = DB::table('users')
 
                 </ul>
             </div>
-        </li>
+        </li> -->
 
-        <li class="nav-item menu-items">
+        <!-- <li class="nav-item menu-items">
             <a class="nav-link" href="">
                 <span class="menu-icon">
                     <i class="mdi mdi-playlist-play"></i>
                 </span>
                 <span class="menu-title">Form Elements</span>
             </a>
-        </li>
+        </li> -->
 
 
-        <li class="nav-item menu-items">
+        <!-- <li class="nav-item menu-items">
             <a class="nav-link" href="">
                 <span class="menu-icon">
                     <i class="mdi mdi-table-large"></i>
@@ -268,9 +287,9 @@ $editData = DB::table('users')
                 </span>
                 <span class="menu-title">Icons</span>
             </a>
-        </li>
+        </li> -->
 
-        <li class="nav-item menu-items">
+        <!-- <li class="nav-item menu-items">
             <a class="nav-link" data-toggle="collapse" href="#auth" aria-expanded="false" aria-controls="auth">
                 <span class="menu-icon">
                     <i class="mdi mdi-security"></i>
@@ -287,9 +306,9 @@ $editData = DB::table('users')
 
                 </ul>
             </div>
-        </li>
+        </li> -->
 
-        <li class="nav-item menu-items">
+        <!-- <li class="nav-item menu-items">
             <a class="nav-link"
                 href="http://www.bootstrapdash.com/demo/corona-free/jquery/documentation/documentation.html">
                 <span class="menu-icon">
@@ -297,6 +316,6 @@ $editData = DB::table('users')
                 </span>
                 <span class="menu-title">Documentation</span>
             </a>
-        </li>
+        </li> -->
     </ul>
 </nav>

@@ -6,7 +6,7 @@
         ?>
     <ol class="breadcrumb">
         <li class="breadcrumb-item {{$pull}}"><a href="{{URL::to('/dashboard')}}"> Home</a></li>
-        <li class="breadcrumb-item {{$pull}}"><a href="{{URL::to('/admin')}}"> Admins</a></li>
+        <li class="breadcrumb-item {{$pull}}"><a href="{{URL::to('/admins')}}"> Admins</a></li>
         <li class="breadcrumb-item active {{$pull}}">Create Admin</li> 
     </ol>
     <div class="content-wrapper">
@@ -16,7 +16,7 @@
                 <div class="card-body">
                     <h4 class="card-title">Add Admin</h4>
 
-                    <form class="forms-sample" method="POST" action="{{ route('admin.store') }}"
+                    <form class="forms-sample" method="POST" action="{{ route('admins.store') }}"
                         enctype="multipart/form-data">
                         @csrf
                         <div class="form-group">
