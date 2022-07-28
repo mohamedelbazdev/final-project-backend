@@ -166,7 +166,8 @@ $editData = DB::table('users')
             </a>
             <div class="collapse" id="setting">
                 <ul class="nav flex-column sub-menu">
-                    <li class="nav-item"> <a class="nav-link" href="{{ route('admin.create') }}"> add admin </a></li>
+                    <li class="nav-item"> <a class="nav-link" href="{{ route('admin.create') }}"> add admin </a>
+                    </li>
                     <li class="nav-item"> <a class="nav-link" href="{{ route('admin.index') }}">admin List </a></li>
 
 
