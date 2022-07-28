@@ -77,6 +77,36 @@ class AuthController extends Controller
      * @param Request $request
      * @return JsonResponse
      */
+    public function storeUser(Request $request): JsonResponse
+    {
+
+        $validator = validator::make($request->all(), [
+            'email' => 'required|string',
+            'password' => 'required|string',
+            'name' => 'required|string',
+            'lat' => 'required',
+            'lng' => 'required'
+        ]);
+
+        if ($validator->fails()) {
+            return $this->apiResponseValidation($validator);
+        }
+
+        $user = $this->userModel->update([
+            'email' => $request->post('email'),
+            'password' => $request->post('password'),
+            'name' => $request->post('name'),
+            'lat' => $request->post('lat'),
+            'lng' => $request->post('lng'),
+        ]);
+
+        return $this->apiResponse('successfully', $user);
+    }
+
+    /**
+     * @param Request $request
+     * @return JsonResponse
+     */
     public function updateProfile(Request $request): JsonResponse
     {
         $validator = validator::make($request->all(), [

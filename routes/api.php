@@ -52,6 +52,7 @@ Route::group(['middleware'=>['auth:sanctum'], 'prefix' => 'chats'], function(){
 Route::group(['middleware'=>['auth:sanctum'], 'prefix' => 'users'], function(){
     Route::get('profile', [AuthController::class, 'profile']);
     Route::post('profile/edit', [AuthController::class, 'updateProfile']);
+    Route::post('create', [AuthController::class, 'storeUser']);
     Route::get('categories', [CategroyController::class, 'index']);
     Route::get('providers', [UserController::class, 'providers']);
     Route::get('orders/create', [OrderController::class, 'store']);
