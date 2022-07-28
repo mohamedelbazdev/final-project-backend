@@ -46,6 +46,7 @@ class UserController extends Controller {
         //
         $data[ 'name' ] = $request->name;
         $data[ 'email' ] =  $request->email;
+        $data[ 'mobile' ] =  $request->mobile;
         $data[ 'password' ] = Hash::make( $request->password );
         $data[ 'role_id' ] = $request->roles;
         $position = $request->map;
@@ -113,6 +114,7 @@ class UserController extends Controller {
         //
         $data[ 'name' ] = $request->name;
         $data[ 'email' ] =  $request->email;
+        $data[ 'mobile' ] =  $request->mobile;
         $data[ 'password' ] = Hash::make( $request->password );
         $data[ 'role_id' ] = $request->roles;
         $position = $request->map;
@@ -170,4 +172,23 @@ class UserController extends Controller {
 
         return Redirect()->route( 'user.index' )->with( $notification );
     }
+
+    public function Inactive( $id ) {
+        DB::table( 'users' )->where( 'id', $id )->update( [ 'status'=>0 ] );
+        $notification = array(
+            'messege'=>'User Successfully inactive',
+            'alert-type'=>'success'
+        );
+        return Redirect()->back()->with( $notification );
+    }
+
+    public function Active( $id ) {
+        DB::table( 'users' )->where( 'id', $id )->update( [ 'status'=>1 ] );
+        $notification = array(
+            'messege'=>'Product Successfully Active',
+            'alert-type'=>'success'
+        );
+        return Redirect()->back()->with( $notification );
+    }
+
 }

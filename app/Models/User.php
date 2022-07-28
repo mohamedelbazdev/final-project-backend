@@ -23,7 +23,9 @@ class User extends Authenticatable {
         'lat',
         'lng',
         'role_id',
-        'image'
+        'image',
+        'mobile',
+        'status'
     ];
 
     /**
@@ -46,38 +48,38 @@ class User extends Authenticatable {
     ];
 
     /**
-     * @param $query
-     * @return void
-     */
-    public function scopeAdmin($query)
-    {
-        $query->where('role_id', 1);
+    * @param $query
+    * @return void
+    */
+
+    public function scopeAdmin( $query ) {
+        $query->where( 'role_id', 1 );
     }
 
     /**
-     * @param $query
-     * @return void
-     */
-    public function scopeProvider($query)
-    {
-        $query->where('role_id', 2);
+    * @param $query
+    * @return void
+    */
+
+    public function scopeProvider( $query ) {
+        $query->where( 'role_id', 2 );
     }
     /**
-     * @param $query
-     * @return void
-     */
-    public function scopeUser($query)
-    {
-        $query->where('role_id', 3);
+    * @param $query
+    * @return void
+    */
+
+    public function scopeUser( $query ) {
+        $query->where( 'role_id', 3 );
     }
 
-    public function providers(){
-        return $this->hasMany(Provider::class, 'user_id');
-     }
+    public function providers() {
+        return $this->hasMany( Provider::class, 'user_id' );
+    }
 
-     public function getList()
-     {
-         return $this->where('role_id', 2)->pluck( 'name', 'id')->toArray();
-     }
+    //  public function getList()
+    // {
+    //      return $this->where( 'role_id', 2 )->pluck( 'name', 'id' )->toArray();
+    //  }
 
 }

@@ -41,8 +41,7 @@ class ProviderController extends Controller
     {
         //
         $categories = $this->categories->getList();
-        $users = $this->users->getList();
-        return view( 'providers.create', compact('categories','users') );
+        return view( 'providers.create', compact('categories') );
     }
 
     /**
@@ -54,10 +53,25 @@ class ProviderController extends Controller
     public function store(StoreProvider $request)
     {
         //
+        $data[ 'name' ] = $request->name;
+        $data[ 'email' ] =  $request->email;
+        $data[ 'password' ] = \Hash::make( $request->password );
+        $data[ 'role_id' ] = 2;
+        $position = $request->map;
+        $mycoords = explode( ',', $position );
+        $data[ 'lat' ] = $mycoords[ 0 ];
+        $data[ 'lng' ] = $mycoords[ 1 ];
+
+        $image = $request->image;
+        if ( $image ) {
+            $image_one = uniqid() . '.' . $image->getClientOriginalExtension();
+            Image::make( $image )->resize( 500, 300 )->save( 'images/Usrimg/' . $image_one );
+            $data[ 'image' ] = 'images/Usrimg/' . $image_one;
+                      }
+          
+        $user=User::create($data);
         $provider = new Provider();
-        
-        $provider->user_id = $request['user_id'];
-        // $provider->user_id = 2;
+        $provider->user_id = $user->id;
         $provider->description = $request['description'];
         $provider->price = $request['price'];
         $provider->category_id = $request['category_id'];
@@ -91,9 +105,10 @@ class ProviderController extends Controller
     {
         //
         $provider = Provider::findOrFail($id);
+        $user_id =Provider::findOrFail($id)->user_id;
+        $user = DB::table( 'users' )->where( 'id', $user_id )->first();
         $categories = $this->categories->getList();
-        $users = $this->users->getList();
-        return view( 'providers.edit', compact( 'provider','categories','users' ) );
+        return view( 'providers.edit', compact( 'provider','categories','user' ) );
     }
 
     /**
@@ -107,9 +122,33 @@ class ProviderController extends Controller
     {
         //
         DB::beginTransaction();
+        $user_id =Provider::findOrFail($id)->user_id;
+        $data[ 'name' ] = $request->name;
+        $data[ 'email' ] =  $request->email;
+        $data[ 'password' ] = \Hash::make( $request->password );
+        $data[ 'role_id' ] = 2;
+        $position = $request->map;
+        $mycoords = explode( ',', $position );
+        $data[ 'lat' ] = $mycoords[ 0 ];
+        $data[ 'lng' ] = $mycoords[ 1 ];
+        $oldimage = $request->oldimage;
+        $image = $request->image;
+        if ( $image ) {
+            $image_one = uniqid() . '.' . $image->getClientOriginalExtension();
+            Image::make( $image )->resize( 500, 300 )->save( 'images/Usrimg/' . $image_one );
+            $data[ 'image' ] = 'images/Usrimg/' . $image_one;
+            // image/postimg/343434.png
+            
+          $user=User::where( 'id', $user_id )->update( $data );
+            unlink( $oldimage );
+        }
+            else {
+                $data[ 'image' ] = $oldimage;
+              $user= User::where( 'id', $user_id )->update( $data );
+            }
+        $user = User::find($id) ; 
         $provider = Provider::find($id);
-        $provider->user_id =$request->user_id;
-        // $provider->user_id=2;
+        $provider->user_id = $user->id;
         $provider->description = $request->description;
         $provider->category_id =$request->category_id;
         $provider->price = $request->price;

@@ -27,8 +27,5 @@ class Provider extends Model
         return $this->belongsTo(User::class, 'user_id');
     }
 
-    // public function getList()
-    // {
-    //     return $this->pluck( 'name', 'id')->where('role_id',2)->toArray();
-    // }
+    
 }
