@@ -36,7 +36,7 @@ class NewOrderNotification extends Notification
     }
 
     /**
-     * Get the mail representation of the notification.
+     * Get the array representation of the notification.
      *
      * @param  mixed  $notifiable
      * @return array
@@ -46,19 +46,6 @@ class NewOrderNotification extends Notification
         return [
             'user' => $this->order->user,
             'provider' => $this->order->provider,
-        ];
-    }
-
-    /**
-     * Get the array representation of the notification.
-     *
-     * @param  mixed  $notifiable
-     * @return array
-     */
-    public function toArray($notifiable)
-    {
-        return [
-            //
         ];
     }
 }
