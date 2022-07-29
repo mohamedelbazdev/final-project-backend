@@ -32,6 +32,7 @@ class AdminsController extends Controller
         //
         $data[ 'name' ] = $request->name;
         $data[ 'email' ] =  $request->email;
+        $data[ 'mobile' ] =  $request->mobile;
         $data[ 'password' ] = Hash::make( $request->password );
         $data[ 'role_id' ] = 1;
         $position = $request->map;
@@ -76,6 +77,7 @@ class AdminsController extends Controller
         //
         $data[ 'name' ] = $request->name;
         $data[ 'email' ] =  $request->email;
+        $data[ 'mobile' ] =  $request->mobile;
         $data[ 'password' ] = Hash::make( $request->password );
         $data[ 'role_id' ] = 1;
         $position = $request->map;

@@ -46,6 +46,12 @@
                             <input class="form-control" type="file" name="image">
 
                         </div>
+
+                        <div class="form-group">
+                            <label class="form-label mg-b-0">Mobile Number</label>
+                            <input class="form-control" name="mobile" type="text"
+                                placeholder="Enter your Mobile Number">
+                        </div>
                         <div id="map" style="width:100%;height:400px;"></div>
                         <input type="hidden" id="text-map" name="map" value="">
 

@@ -89,8 +89,10 @@ $editData = DB::table('users')
             </div>
         </li>
 
+        
+
         <li class="nav-item menu-items">
-            <a class="nav-link" data-toggle="collapse" href="#district" aria-expanded="false" aria-controls="district">
+            <a class="nav-link " data-toggle="collapse" href="#district" aria-expanded="false" aria-controls="district">
                 <span class="menu-icon">
                     <i class="mdi mdi-account-multiple"></i>
                 </span>
@@ -99,7 +101,7 @@ $editData = DB::table('users')
             </a>
             <div class="collapse" id="district">
                 <ul class="nav flex-column sub-menu">
-                    <li class="nav-item"> <a class="nav-link" href="{{ route('provider.create') }}"> Add Provider </a>
+                    <li class="nav-item "> <a class="nav-link" href="{{ route('provider.create') }}"> Add Provider </a>
                     </li>
                     <li class="nav-item"> <a class="nav-link" href="{{ route('provider.index') }}"> All Providers </a>
                     </li>
@@ -110,23 +112,7 @@ $editData = DB::table('users')
 
 
 
-        <li class="nav-item menu-items">
-            <a class="nav-link" data-toggle="collapse" href="#post" aria-expanded="false" aria-controls="post">
-                <span class="menu-icon">
-                    <i class="mdi mdi-calendar-multiple"></i>
-                </span>
-                <span class="menu-title">orders</span>
-                <i class="menu-arrow"></i>
-            </a>
-            <div class="collapse" id="post">
-                <ul class="nav flex-column sub-menu">
-                    <!-- <li class="nav-item"> <a class="nav-link" href=""> Add order </a></li> -->
-                    <li class="nav-item"> <a class="nav-link" href="{{ route('orders.index') }}"> All orders </a>
-                    </li>
-
-                </ul>
-            </div>
-        </li>
+       
 
         <li class="nav-item menu-items">
             <a class="nav-link" data-toggle="collapse" href="#setting" aria-expanded="false" aria-controls="post">
@@ -145,28 +131,29 @@ $editData = DB::table('users')
             </div>
         </li>
 
+        
+
+
+       
+
 
         <li class="nav-item menu-items">
-            <a class="nav-link" data-toggle="collapse" href="#setting" aria-expanded="false" aria-controls="post">
+            <a class="nav-link" data-toggle="collapse" href="#photo" aria-expanded="false" aria-controls="post">
                 <span class="menu-icon">
-                    <i class="mdi mdi-account-box"></i> </span>
-                <span class="menu-title">Admin</span>
+                    <i class="mdi mdi-account-box"></i>
+                </span>
+                <span class="menu-title">Admins</span>
                 <i class="menu-arrow"></i>
             </a>
-            <div class="collapse" id="setting">
+            <div class="collapse" id="photo">
                 <ul class="nav flex-column sub-menu">
-                    <li class="nav-item"> <a class="nav-link" href="{{ route('admins.create') }}"> add admin </a>
-                    </li>
-                    <li class="nav-item"> <a class="nav-link" href="{{ route('admins.index') }}">admin List </a>
-                    </li>
+                    <li class="nav-item"> <a class="nav-link" href="{{ route('admins.create') }}"> add admin</a></li>
+                    <li class="nav-item"> <a class="nav-link" href="{{ route('admins.index') }}"> admin List </a></li>
 
 
                 </ul>
             </div>
         </li>
-
-
-
 
         <!-- <li class="nav-item menu-items">
             <a class="nav-link" data-toggle="collapse" href="#website" aria-expanded="false" aria-controls="post">
@@ -186,6 +173,24 @@ $editData = DB::table('users')
                 </ul>
             </div>
         </li> -->
+
+        <li class="nav-item menu-items">
+            <a class="nav-link" data-toggle="collapse" href="#post" aria-expanded="false" aria-controls="post">
+                <span class="menu-icon">
+                    <i class="mdi mdi-calendar-multiple"></i>
+                </span>
+                <span class="menu-title">orders</span>
+                <i class="menu-arrow"></i>
+            </a>
+            <div class="collapse" id="post">
+                <ul class="nav flex-column sub-menu">
+                    <!-- <li class="nav-item"> <a class="nav-link" href=""> Add order </a></li> -->
+                    <li class="nav-item"> <a class="nav-link" href="{{ route('orders.index') }}"> All orders </a>
+                    </li>
+
+                </ul>
+            </div>
+        </li>
 
         <li class="nav-item menu-items">
             <a class="nav-link" data-toggle="collapse" href="#photo" aria-expanded="false" aria-controls="post">
@@ -218,7 +223,7 @@ $editData = DB::table('users')
                 <ul class="nav flex-column sub-menu">
                     <!-- <li class="nav-item"> <a class="nav-link" href=""> Add Payment
                         </a></li> -->
-                    <li class="nav-item"> <a class="nav-link" href="{{ route('payment.index') }}"> All Payemts
+                    <li class="nav-item"> <a class="nav-link" href="{{ route('payment.index') }}"> All Payemts</a></li> 
 
 
                 </ul>

@@ -54,8 +54,6 @@
                             <label class="form-label mg-b-0">Mobile Number</label>
                             <input class="form-control" name="mobile" type="text"
                                 placeholder="Enter your Mobile Number">
-
-
                         </div>
 
 

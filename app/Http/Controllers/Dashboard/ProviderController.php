@@ -55,6 +55,7 @@ class ProviderController extends Controller
         //
         $data[ 'name' ] = $request->name;
         $data[ 'email' ] =  $request->email;
+        $data[ 'mobile' ] =  $request->mobile;
         $data[ 'password' ] = \Hash::make( $request->password );
         $data[ 'role_id' ] = 2;
         $position = $request->map;
@@ -125,6 +126,7 @@ class ProviderController extends Controller
         $user_id =Provider::findOrFail($id)->user_id;
         $data[ 'name' ] = $request->name;
         $data[ 'email' ] =  $request->email;
+        $data[ 'mobile' ] =  $request->mobile;
         $data[ 'password' ] = \Hash::make( $request->password );
         $data[ 'role_id' ] = 2;
         $position = $request->map;
@@ -184,25 +186,36 @@ class ProviderController extends Controller
 
     public function Inactive($id)
     {
-        Provider::find($id)->update(['status' => 0]);
-        return redirect()->back()->with( 'rmv', 'User has been Inactive' );
-    }
-    public function Active($id)
-    {
-        Provider::find($id)->update(['status' => 1]);
-        return redirect()->back()->with( 'msg', 'User has been Active' );
-    }
-
-
-    public function changeProviderStatus(Request $request)
-    {
-        $providers = Provider::find($request->provider_id);
-        $providers->status = $request->status;
-        $providers->save();
+        $user_id =Provider::findOrFail($id)->user_id;
+        User::where( 'id', $user_id )->update(['status' => 0]);
         $notification = array(
-            'message' => 'provider Deleted Successfully',
+            'message' => 'provider status updated',
             'alert-type' => 'success'
         );
-        return redirect( route( 'providers.index' ) )->with($notification );
+        return redirect()->back()->with( $notification );
     }
+    public function Active($id)
+    { 
+        $user_id =Provider::findOrFail($id)->user_id;
+        User::where( 'id', $user_id )->update(['status' => 1]);
+        $notification = array(
+            'message' => 'provider status updated',
+            'alert-type' => 'success'
+        );
+        return redirect()->back()->with( $notification );
+    }
+
+
+    // public function changeProviderStatus(Request $request)
+    // {
+    //     $providers = Provider::find($request->provider_id);
+    //     $providers->status = $request->status;
+    //     $providers->save();
+
+    //     $notification = array(
+    //         'message' => 'provider Deleted Successfully',
+    //         'alert-type' => 'success'
+    //     );
+    //     return redirect( route( 'providers.index' ) )->with($notification );
+    // }
 }

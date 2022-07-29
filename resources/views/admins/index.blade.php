@@ -19,6 +19,7 @@
                         <th>Name</th>
                         <th>Email</th>
                         <th>Image</th>
+                        <th>Mobile Number</th>
                         <th>Role</th>
                         <th>Action</th>
                     </tr>
@@ -36,6 +37,7 @@
                             </td>
                             
                             <td style="width: 50%"><img src="{{ $user->image }}" alt=""></td>
+                            <td style="width: 50%">{{ $user->mobile }}</td>
     
                             <td style="width: 50%">
                                 @if ($user->role_id == 1)
@@ -53,7 +55,7 @@
 
                             </td>
                         </tr>
-                    @endforeach
+                    
 
                     @if (isset($key))
                         <div class="modal" id="modal_single_del{{ $key }}" tabindex="-1" role="dialog">
@@ -70,7 +72,7 @@
                                         Remove {{ $user->name }} !!!!
                                     </div>
                                     <div class="modal-footer">
-                                        <form action="{{ url('/user/' . $user->id) }}" method="post">
+                                        <form action="{{ url('/admins/' . $user->id) }}" method="post">
                                             @csrf
                                             @method('delete')
 
@@ -86,6 +88,7 @@
                             </div>
                 </tbody>
                 @endif
+                @endforeach
             </table>
         </div>
     </div>
