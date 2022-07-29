@@ -56,18 +56,7 @@ $editData = DB::table('users')
                         <div class="preview-item-content">
                             <p class="preview-subject ellipsis mb-1 text-small">Change Password</p>
                         </div>
-                    </a>
-                    <div class="dropdown-divider"></div>
-                    <a href="#" class="dropdown-item preview-item">
-                        <div class="preview-thumbnail">
-                            <div class="preview-icon bg-dark rounded-circle">
-                                <i class="mdi mdi-calendar-today text-success"></i>
-                            </div>
-                        </div>
-                        <div class="preview-item-content">
-                            <p class="preview-subject ellipsis mb-1 text-small">To-do list</p>
-                        </div>
-                    </a>
+
                 </div>
             </div>
         </li>
@@ -191,7 +180,7 @@ $editData = DB::table('users')
                 <ul class="nav flex-column sub-menu">
                     <li class="nav-item"> <a class="nav-link" href=""> Add Payment
                         </a></li>
-                    <li class="nav-item"> <a class="nav-link" href="{{ route('payment.index') }}"> All Payemts
+                    <li class="nav-item" ><a class="nav-link" href="{{ route('payment.index') }}"> All Payemts
 
 
                 </ul>

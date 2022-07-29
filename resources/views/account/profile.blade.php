@@ -14,13 +14,13 @@
                                     class="gradient-corona-img img-fluid" alt="">
                             </div>
                             <div class="col-5 col-sm-7 col-xl-8 p-0">
-                                <h4 class="mb-1 mb-sm-0">Welcome to Easy News </h4>
+                                <h4 class="mb-1 mb-sm-0">Welcome to Sanaya3y Application </h4>
 
                             </div>
                             <div class="col-3 col-sm-2 col-xl-2 pl-0 text-center">
                                 <span>
                                     <a href=" {{ url('/') }} " target="_blank"
-                                        class="btn btn-outline-light btn-rounded get-started-btn">Vist Fontend ? </a>
+                                        class="btn btn-outline-light btn-rounded get-started-btn">Visit Fontend ? </a>
                                 </span>
                             </div>
                         </div>

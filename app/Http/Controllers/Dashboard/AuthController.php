@@ -83,7 +83,7 @@ class AuthController extends Controller {
                 'message' => 'Password Change Successfully',
                 'alert-type' => 'success'
             );
-            return Redirect()->route( 'auth.login' )->with( $notification );
+            return Redirect()->route( 'admin.login' )->with( $notification );
         } else {
             return Redirect()->back();
         }
@@ -106,7 +106,13 @@ class AuthController extends Controller {
             'email' => 'required',
             'password' => 'required',
         ] );
+        $user = User::where( 'email', '=', $request->email )
+        ->first();
+        if ( $user && $user->role_id != 1 ) {
 
+            return 'Not Allowed Login By this User';
+
+        }
         $credentials = $request->only( 'email', 'password' );
         if ( Auth::attempt( $credentials ) ) {
             return redirect( 'admin/home' )
