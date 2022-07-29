@@ -59,8 +59,8 @@ Route::group(['middleware'=>['auth:sanctum'], 'prefix' => 'users'], function(){
 });
 
 /** Chat Section */
-Route::group(['middleware'=>['auth:sanctum'], 'prefix' => 'providers'], function(){
-    Route::post('create', [AuthController::class, 'storeUser']);
+Route::group([ 'prefix' => 'providers'], function(){
+    Route::post('register', [AuthController::class, 'storeUser']);
 });
 
 
