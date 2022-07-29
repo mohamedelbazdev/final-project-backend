@@ -40,7 +40,7 @@
                             <td style="width: 50%"><img src="{{$provider->users->image}}" alt=""></td>
                             <td style="width: 50%">{{ $provider->description }}</td>
                             <td style="width: 50%">{{ $provider->price }}</td>
-                            <td style="width: 50%">{{ $provider->mobile }}</td>
+                            <td style="width: 50%">{{ $provider->users->mobile }}</td>
                             <td style="width: 50%">
                                 @if ($provider->users->status==1)
                                 <span class="badge badge-success">Active</span>
