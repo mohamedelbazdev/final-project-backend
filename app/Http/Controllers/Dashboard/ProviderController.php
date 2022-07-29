@@ -206,16 +206,16 @@ class ProviderController extends Controller
     }
 
 
-    public function changeProviderStatus(Request $request)
-    {
-        $providers = Provider::find($request->provider_id);
-        $providers->status = $request->status;
-        $providers->save();
+    // public function changeProviderStatus(Request $request)
+    // {
+    //     $providers = Provider::find($request->provider_id);
+    //     $providers->status = $request->status;
+    //     $providers->save();
 
-        $notification = array(
-            'message' => 'provider Deleted Successfully',
-            'alert-type' => 'success'
-        );
-        return redirect( route( 'providers.index' ) )->with($notification );
-    }
+    //     $notification = array(
+    //         'message' => 'provider Deleted Successfully',
+    //         'alert-type' => 'success'
+    //     );
+    //     return redirect( route( 'providers.index' ) )->with($notification );
+    // }
 }
