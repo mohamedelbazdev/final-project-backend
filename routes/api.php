@@ -56,12 +56,13 @@ Route::group(['middleware'=>['auth:sanctum'], 'prefix' => 'users'], function(){
     Route::post('profile/edit', [AuthController::class, 'updateProfile']);
     Route::post('create', [AuthController::class, 'storeUser']);
     Route::get('orders/create', [OrderController::class, 'store']);
+    Route::apiResource('rateprovider',RateProviderController::class);
 });
 
 /** Chat Section */
 Route::group( ['prefix' => 'users'], function(){
     Route::get('categories', [CategroyController::class, 'index']);
-    Route::apiResource('rateprovider',RateProviderController::class);
+   
     Route::get('providers', [UserController::class, 'providers']);
 });
 

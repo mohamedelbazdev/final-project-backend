@@ -34,11 +34,11 @@ class RateProviderController extends Controller
     public function store(Request $request)
     {
         //
-        $rataProvider = RateProvider::where('user_id', 3)->where('provider_id',$request->provider_id)->first();
+        $rataProvider = RateProvider::where('user_id', auth()->id())->where('provider_id',$request->provider_id)->first();
         if (!$rataProvider) {
             $data = RateProvider::create([
-                // 'user_id' =>auth()->id(),
-                'user_id' => 3,
+                'user_id' =>auth()->id(),
+                // 'user_id' => 3,
                 'provider_id' => $request->provider_id,
                 'rate' => $request->rate,
             ]);
@@ -54,7 +54,7 @@ class RateProviderController extends Controller
             return new RateProviderResource($data);
 
         } else {
-            return response('The User Rating book already', 400);
+            return response('The User Rating provider already', 400);
         }
     }
 
