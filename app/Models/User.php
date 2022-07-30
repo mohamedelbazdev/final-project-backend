@@ -76,7 +76,7 @@ class User extends Authenticatable {
     }
 
     public function providers() {
-        return $this->hasMany( Provider::class, 'user_id' );
+        return $this->hasMany( Provider::class, 'user_id');
     }
 
     /**
@@ -96,5 +96,4 @@ class User extends Authenticatable {
     // {
     //      return $this->where( 'role_id', 2 )->pluck( 'name', 'id' )->toArray();
     //  }
-
 }

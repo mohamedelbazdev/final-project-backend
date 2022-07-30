@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\Api\User\AuthController;
 use App\Http\Controllers\Api\User\CategroyController;
+use App\Http\Controllers\Api\User\FavoriteController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Api\User\OrderController;
@@ -47,7 +48,7 @@ Route::group(['middleware'=>['auth:sanctum'], 'prefix' => 'chats'], function(){
     Route::post('send_message', [ChatController::class, 'sendMessage']);
     Route::put('mark_as_read/{id}' , [ChatController::class, 'mark_as_read']);
     Route::get('delete_msg/{id}' , [ChatController::class, 'delete_msg']);
-    
+
 });
 
 /** Chat Section */
@@ -57,12 +58,17 @@ Route::group(['middleware'=>['auth:sanctum'], 'prefix' => 'users'], function(){
     Route::post('create', [AuthController::class, 'storeUser']);
     Route::get('orders/create', [OrderController::class, 'store']);
     Route::apiResource('rateprovider',RateProviderController::class);
+
+    Route::get('favorites', [FavoriteController::class, 'index']);
+    Route::post('favorites/create', [FavoriteController::class, 'store']);
+    Route::post('favorites/destroy', [FavoriteController::class, 'destroy']);
+
 });
 
 /** Chat Section */
 Route::group( ['prefix' => 'users'], function(){
     Route::get('categories', [CategroyController::class, 'index']);
-   
+
     Route::get('providers', [UserController::class, 'providers']);
 });
 
