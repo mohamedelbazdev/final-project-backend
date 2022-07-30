@@ -34,7 +34,7 @@
                 @foreach ($providers as $key => $provider)
                         <tr>
                             <td style="width: 25%">{{ $loop->iteration }}</td>
-                            <td style="width: 50%">{{$provider->users['name']}}</td>
+                            <td style="width: 50%">{{$provider->users->name}}</td>
                             <td style="width: 50%">
                               {{optional($provider->categories)->name}}
                             </td>
@@ -42,7 +42,7 @@
                             <td style="width: 50%">{{ $provider->description }}</td>
                             <td style="width: 50%">{{ $provider->price }}</td>
                             <td style="width: 50%">{{ $provider->rate }}</td>
-                            
+  
                             <td style="width: 50%">{{ $provider->users->mobile }}</td>
                             <td style="width: 50%">
                                 @if ($provider->users->status==1)

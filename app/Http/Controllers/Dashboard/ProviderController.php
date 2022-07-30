@@ -29,7 +29,9 @@ class ProviderController extends Controller
     {
         //
         $providers = Provider::latest()->get();
-        // $providers = User::Provider()->latest()->get();
+        // $providers = User::provider()->with(['providers'=>function($q){
+        //     $q->with('categories');
+        // }])->latest()->get();
         return view( 'providers.index', compact( 'providers' ) );
     }
 
