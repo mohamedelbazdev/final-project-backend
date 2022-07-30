@@ -138,14 +138,14 @@ $editData = DB::table('users')
 
 
         <li class="nav-item menu-items">
-            <a class="nav-link" data-toggle="collapse" href="#photo" aria-expanded="false" aria-controls="post">
+            <a class="nav-link" data-toggle="collapse" href="#admin" aria-expanded="false" aria-controls="post">
                 <span class="menu-icon">
                     <i class="mdi mdi-account-box"></i>
                 </span>
                 <span class="menu-title">Admins</span>
                 <i class="menu-arrow"></i>
             </a>
-            <div class="collapse" id="photo">
+            <div class="collapse" id="admin">
                 <ul class="nav flex-column sub-menu">
                     <li class="nav-item"> <a class="nav-link" href="{{ route('admins.create') }}"> add admin</a></li>
                     <li class="nav-item"> <a class="nav-link" href="{{ route('admins.index') }}"> admin List </a></li>

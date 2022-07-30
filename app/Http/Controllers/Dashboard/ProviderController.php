@@ -28,7 +28,8 @@ class ProviderController extends Controller
     public function index()
     {
         //
-        $providers = Provider::all();
+        $providers = Provider::latest()->get();
+        // $providers = User::Provider()->latest()->get();
         return view( 'providers.index', compact( 'providers' ) );
     }
 

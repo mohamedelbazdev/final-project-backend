@@ -16,7 +16,7 @@ class AddRateToProvidersTable extends Migration
         //
         Schema::table('providers', function (Blueprint $table) {
             //
-            $table->float('rate')->default('0');
+            $table->float('rate')->default(0);
         });
     }
 
