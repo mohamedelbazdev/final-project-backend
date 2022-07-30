@@ -34,10 +34,10 @@ class RateProviderController extends Controller
     public function store(Request $request)
     {
         //
-        $rataProvider = RateProvider::where('user_id', auth()->id())->where('provider_id',$request->provider_id)->first();
+        $rataProvider = RateProvider::where('user_id', 3)->where('provider_id',$request->provider_id)->first();
         if (!$rataProvider) {
             $data = RateProvider::create([
-                'user_id' => auth()->id(),
+                'user_id' => 3,
                 'provider_id' => $request->provider_id,
                 'rate' => $request->rate,
             ]);
@@ -79,6 +79,13 @@ class RateProviderController extends Controller
     public function update(Request $request, $id)
     {
         //
+        $data = RateProvider::findorfail($id);
+        $data->update([
+            'user_id' => auth()->id(),
+            'provider_id' => $request->book_id,
+            'rate' => $request->rate,
+        ]);
+        return new RateProviderResource($data);
     }
 
     /**
@@ -90,5 +97,8 @@ class RateProviderController extends Controller
     public function destroy($id)
     {
         //
+        $data = RateProvider::findorfail($id);
+        $data->delete();
+        return response('Data Deleted Successfully', 200);
     }
 }
