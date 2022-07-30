@@ -277,13 +277,13 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "{{url}}/users/categories",
+							"raw": "{{url}}/users/providers",
 							"host": [
 								"{{url}}"
 							],
 							"path": [
 								"users",
-								"categories"
+								"providers"
 							]
 						}
 					},
@@ -376,6 +376,110 @@
 								"users",
 								"orders",
 								"create"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Favorit",
+			"item": [
+				{
+					"name": "Create Favorit",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "provider_id",
+									"value": "1",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{url}}/users/favorites/create",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"users",
+								"favorites",
+								"create"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Remove Favorite",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "provider_id",
+									"value": "2",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{url}}/users/favorites/destroy",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"users",
+								"favorites",
+								"destroy"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Favorites",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{url}}/users/favorites",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"users",
+								"favorites"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Payment",
+			"item": [
+				{
+					"name": "New Request",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"url": {
+							"raw": "{{url}}/users/payment",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"users",
+								"payment"
 							]
 						}
 					},
