@@ -37,6 +37,7 @@ class RateProviderController extends Controller
         $rataProvider = RateProvider::where('user_id', 3)->where('provider_id',$request->provider_id)->first();
         if (!$rataProvider) {
             $data = RateProvider::create([
+                // 'user_id' =>auth()->id(),
                 'user_id' => 3,
                 'provider_id' => $request->provider_id,
                 'rate' => $request->rate,
