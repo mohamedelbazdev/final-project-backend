@@ -9,6 +9,7 @@ use Illuminate\Notifications\Notifiable;
 use Laravel\Sanctum\HasApiTokens;
 
 class User extends Authenticatable {
+
     use HasApiTokens, HasFactory, Notifiable;
 
     /**
@@ -64,6 +65,7 @@ class User extends Authenticatable {
     public function scopeProvider( $query ) {
         $query->where( 'role_id', 2 );
     }
+
     /**
     * @param $query
     * @return void
@@ -75,6 +77,19 @@ class User extends Authenticatable {
 
     public function providers() {
         return $this->hasMany( Provider::class, 'user_id' );
+    }
+
+    /**
+     * Get the user's full path url.
+     *
+     * @param  $value
+     * @return
+     */
+    public function getImageAttribute($value)
+    {
+        if($value) return url($value);
+
+        return $value;
     }
 
     //  public function getList()
