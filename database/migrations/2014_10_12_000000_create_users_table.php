@@ -18,14 +18,13 @@ class CreateUsersTable extends Migration
             $table->string('name');
             $table->string('image')->nullable();
             $table->string('email')->unique();
-            $table->integer('mobile')->unique();
+            $table->string('mobile')->unique();
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password');
             $table->rememberToken();
             $table->double('lat')->nullable();
             $table->double('lng')->nullable();
             $table->integer('status')->default(1);
-
             $table->foreignId('role_id')->nullable()
                 ->constrained()
                 ->onDelete('cascade')

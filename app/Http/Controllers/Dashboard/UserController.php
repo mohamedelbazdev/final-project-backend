@@ -48,7 +48,7 @@ class UserController extends Controller {
         $data[ 'email' ] =  $request->email;
         $data[ 'mobile' ] =  $request->mobile;
         $data[ 'password' ] = Hash::make( $request->password );
-        $data[ 'role_id' ] = $request->roles;
+        $data[ 'role_id' ] = 3;
         $position = $request->map;
         $mycoords = explode( ',', $position );
         $data[ 'lat' ] = $mycoords[ 0 ];
@@ -116,7 +116,6 @@ class UserController extends Controller {
         $data[ 'email' ] =  $request->email;
         $data[ 'mobile' ] =  $request->mobile;
         $data[ 'password' ] = Hash::make( $request->password );
-        $data[ 'role_id' ] = $request->roles;
         $position = $request->map;
         $mycoords = explode( ',', $position );
         $data[ 'lat' ] = $mycoords[ 0 ];
