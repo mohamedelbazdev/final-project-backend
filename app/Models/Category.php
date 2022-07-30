@@ -14,9 +14,21 @@ class Category extends Model
      */
     protected $fillable = [
         'name',
-        // 'image'
+        'image'
     ];
 
+    /**
+     * Get the user's full path url.
+     *
+     * @param  $value
+     * @return
+     */
+    public function getImageAttribute($value)
+    {
+        if($value) return url($value);
+
+        return $value;
+    }
 
     public function providers(){
        return $this->hasMany(Provider::class, 'category_id');

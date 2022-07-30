@@ -52,6 +52,67 @@
 						}
 					},
 					"response": []
+				},
+				{
+					"name": "My-Profile",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{url}}/users/profile",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"users",
+								"profile"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update Profile",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "name",
+									"value": "ahmed",
+									"type": "text"
+								},
+								{
+									"key": "email",
+									"value": "ahmed@email.com",
+									"type": "text"
+								},
+								{
+									"key": "lat",
+									"value": "1.255",
+									"type": "text"
+								},
+								{
+									"key": "lng",
+									"value": "1.366",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{url}}/users/profile",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"users",
+								"profile"
+							]
+						}
+					},
+					"response": []
 				}
 			]
 		},
@@ -200,6 +261,121 @@
 								"user",
 								"rooms",
 								"1"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Providers",
+			"item": [
+				{
+					"name": "index",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{url}}/users/categories",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"users",
+								"categories"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Categroies",
+			"item": [
+				{
+					"name": "index",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{url}}/users/categories",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"users",
+								"categories"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Orders",
+			"item": [
+				{
+					"name": "Create",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "provider_id",
+									"value": "",
+									"type": "text"
+								},
+								{
+									"key": "sender_id",
+									"value": "",
+									"type": "text"
+								},
+								{
+									"key": "received_id",
+									"value": "",
+									"type": "text"
+								},
+								{
+									"key": "description",
+									"value": "",
+									"type": "text"
+								},
+								{
+									"key": "amount",
+									"value": "",
+									"type": "text"
+								},
+								{
+									"key": "lat",
+									"value": "",
+									"type": "text"
+								},
+								{
+									"key": "lng",
+									"value": "",
+									"type": "text"
+								},
+								{
+									"key": "executed_at",
+									"value": "",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{url}}/users/orders/create",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"users",
+								"orders",
+								"create"
 							]
 						}
 					},

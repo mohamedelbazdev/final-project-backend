@@ -21,14 +21,14 @@
                         <tr>
                             <td style="width: 25%">{{ $loop->iteration }}</td>
                             <td style="width: 50%">{{ $category->name }}</td>
-                            <td style="width: 50%">image</td>
+                            <td style="width: 50%"><img src="{{ $category->image }}" alt=""></td>
                             <td>
                                 <a href="{{ route('category.edit', $category->id) }}" class="btn btn-info">Edit</a>
                                 <a href='' data-toggle="modal" data-target="#modal_single_del{{ $key }}"
                                     class='btn btn-danger m-r-1em'>Delete </a>
                             </td>
                         </tr>
-                 @endforeach
+                
 
                  @if(isset($key))
                       <div class="modal" id="modal_single_del{{ $key }}" tabindex="-1" role="dialog">
@@ -61,6 +61,7 @@
                         </div>
                 </tbody>
                     @endif
+                    @endforeach
               </table>
 
 

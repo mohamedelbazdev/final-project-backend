@@ -6,9 +6,11 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Provider;
 use App\Models\Category;
+use App\Models\User;
 use App\Http\Requests\StoreProvider;
 use App\Http\Requests\UpdateProvider;
 use Illuminate\Support\Facades\DB;
+use Intervention\Image\Facades\Image as Image;
 
 class ProviderController extends Controller
 {
@@ -18,9 +20,10 @@ class ProviderController extends Controller
      * @return \Illuminate\Http\Response
      */
 
-    public function __construct(Provider $providers, Category $categories){
+    public function __construct(Provider $providers, Category $categories , User $users){
         $this->categories = $categories;
         $this->providers = $providers;
+        $this->users = $users;
     }
     public function index()
     {
@@ -50,13 +53,36 @@ class ProviderController extends Controller
     public function store(StoreProvider $request)
     {
         //
+        $data[ 'name' ] = $request->name;
+        $data[ 'email' ] =  $request->email;
+        $data[ 'mobile' ] =  $request->mobile;
+        $data[ 'password' ] = \Hash::make( $request->password );
+        $data[ 'role_id' ] = 2;
+        $position = $request->map;
+        $mycoords = explode( ',', $position );
+        $data[ 'lat' ] = $mycoords[ 0 ];
+        $data[ 'lng' ] = $mycoords[ 1 ];
+
+        $image = $request->image;
+        if ( $image ) {
+            $image_one = uniqid() . '.' . $image->getClientOriginalExtension();
+            Image::make( $image )->resize( 500, 300 )->save( 'images/Usrimg/' . $image_one );
+            $data[ 'image' ] = 'images/Usrimg/' . $image_one;
+                      }
+          
+        $user=User::create($data);
         $provider = new Provider();
-        $provider->name = $request['name'];
+        $provider->user_id = $user->id;
         $provider->description = $request['description'];
         $provider->price = $request['price'];
         $provider->category_id = $request['category_id'];
+
+        $notification = array(
+            'message' => 'providers Data Inserted Successfully',
+            'alert-type' => 'success'
+        );
         $provider->save();
-        return redirect( route( 'provider.index' ) )->with( 'msg', 'Provider Added Successfully' );
+        return redirect( route( 'provider.index' ) )->with( $notification );
     }
 
     /**
@@ -80,8 +106,10 @@ class ProviderController extends Controller
     {
         //
         $provider = Provider::findOrFail($id);
+        $user_id =Provider::findOrFail($id)->user_id;
+        $user = DB::table( 'users' )->where( 'id', $user_id )->first();
         $categories = $this->categories->getList();
-        return view( 'providers.edit', compact( 'provider','categories' ) );
+        return view( 'providers.edit', compact( 'provider','categories','user' ) );
     }
 
     /**
@@ -95,16 +123,46 @@ class ProviderController extends Controller
     {
         //
         DB::beginTransaction();
+        $user_id =Provider::findOrFail($id)->user_id;
+        $data[ 'name' ] = $request->name;
+        $data[ 'email' ] =  $request->email;
+        $data[ 'mobile' ] =  $request->mobile;
+        $data[ 'password' ] = \Hash::make( $request->password );
+        $data[ 'role_id' ] = 2;
+        $position = $request->map;
+        $mycoords = explode( ',', $position );
+        $data[ 'lat' ] = $mycoords[ 0 ];
+        $data[ 'lng' ] = $mycoords[ 1 ];
+        $oldimage = $request->oldimage;
+        $image = $request->image;
+        if ( $image ) {
+            $image_one = uniqid() . '.' . $image->getClientOriginalExtension();
+            Image::make( $image )->resize( 500, 300 )->save( 'images/Usrimg/' . $image_one );
+            $data[ 'image' ] = 'images/Usrimg/' . $image_one;
+            // image/postimg/343434.png
+            
+          $user=User::where( 'id', $user_id )->update( $data );
+            unlink( $oldimage );
+        }
+            else {
+                $data[ 'image' ] = $oldimage;
+              $user= User::where( 'id', $user_id )->update( $data );
+            }
+        $user = User::find($id) ; 
         $provider = Provider::find($id);
-        $provider->name = $request->name;
+        $provider->user_id = $user->id;
         $provider->description = $request->description;
         $provider->category_id =$request->category_id;
         $provider->price = $request->price;
         $provider->save();
         DB::commit();
         // dd($provider);
-        $message = ('provider updated successfully');
-        return redirect(route( 'provider.index' ) )->with( 'msg', 'provider Updated Successfully' );
+        $notification = array(
+            'message' => 'Provider Data Updated Successfully',
+            'alert-type' => 'success'
+        );
+        
+        return redirect(route( 'provider.index' ) )->with($notification);
     }
 
     /**
@@ -117,28 +175,47 @@ class ProviderController extends Controller
     {
         //
         DB :: table( 'providers' )->where( 'id', $id )->delete();
-        return redirect( route( 'provider.index' ) )->with( 'rmv', 'Provider Deleted Successfully' );
+        $notification = array(
+            'message' => 'provider Deleted Successfully',
+            'alert-type' => 'success'
+        );
+        return redirect( route( 'provider.index' ) )->with(  $notification );
     }
 
 
 
     public function Inactive($id)
     {
-        Provider::find($id)->update(['status' => 0]);
-        return redirect()->back()->with( 'rmv', 'User has been Inactive' );
+        $user_id =Provider::findOrFail($id)->user_id;
+        User::where( 'id', $user_id )->update(['status' => 0]);
+        $notification = array(
+            'message' => 'provider status updated',
+            'alert-type' => 'success'
+        );
+        return redirect()->back()->with( $notification );
     }
     public function Active($id)
-    {
-        Provider::find($id)->update(['status' => 1]);
-        return redirect()->back()->with( 'msg', 'User has been Active' );
+    { 
+        $user_id =Provider::findOrFail($id)->user_id;
+        User::where( 'id', $user_id )->update(['status' => 1]);
+        $notification = array(
+            'message' => 'provider status updated',
+            'alert-type' => 'success'
+        );
+        return redirect()->back()->with( $notification );
     }
 
 
-    public function changeProviderStatus(Request $request)
-    {
-        $providers = Provider::find($request->provider_id);
-        $providers->status = $request->status;
-        $providers->save();
-        return redirect( route( 'providers.index' ) )->with( 'msg', 'Provider Status Updated Successfully' );
-    }
+    // public function changeProviderStatus(Request $request)
+    // {
+    //     $providers = Provider::find($request->provider_id);
+    //     $providers->status = $request->status;
+    //     $providers->save();
+
+    //     $notification = array(
+    //         'message' => 'provider Deleted Successfully',
+    //         'alert-type' => 'success'
+    //     );
+    //     return redirect( route( 'providers.index' ) )->with($notification );
+    // }
 }

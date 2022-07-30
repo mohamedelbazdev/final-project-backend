@@ -13,9 +13,15 @@ class Order extends Model
      * @var string[]
      */
     protected $fillable = [
+        'user_id',
+        'provider_id',
+        'sender_id',
+        'received_id',
+        'description',
         'amount',
         'lat',
         'lng',
-        'status'
+        'status',
+        'executed_at'
     ];
 }
