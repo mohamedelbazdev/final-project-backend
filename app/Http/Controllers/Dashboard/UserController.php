@@ -14,7 +14,6 @@ class UserController extends Controller {
 
     public function index() {
         //
-        return view( 'users.index' );
     }
 
     /**
@@ -25,8 +24,7 @@ class UserController extends Controller {
 
     public function create() {
         //
-        return view( 'users.addUser' );
-
+        return view( 'user.create' );
     }
 
     /**
