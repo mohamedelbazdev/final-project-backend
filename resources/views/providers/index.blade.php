@@ -21,6 +21,7 @@
                         <th>Image</th>
                         <th>Description</th>
                         <th>Price</th>
+                        <th>Rate</th>
                         <th>Mobile Number</th>
                         <!-- <th>Status</th> -->
                         <th >Action</th>
@@ -40,6 +41,7 @@
                             <td style="width: 50%"><img src="{{$provider->users->image}}" alt=""></td>
                             <td style="width: 50%">{{ $provider->description }}</td>
                             <td style="width: 50%">{{ $provider->price }}</td>
+                            <td style="width: 50%">{{ $provider->rate }}</td>
                             <td style="width: 50%">{{ $provider->users->mobile }}</td>
                             <td style="width: 50%">
                                 @if ($provider->users->status==1)
@@ -60,7 +62,7 @@
                                     @endif
                             </td>
                         </tr>
-                 @endforeach
+                 
 
                  @if(isset($key))
                       <div class="modal" id="modal_single_del{{ $key }}" tabindex="-1" role="dialog">
@@ -93,6 +95,7 @@
                         </div>
                 </tbody>
                     @endif
+                    @endforeach
             </table>
         </div>
     </div>

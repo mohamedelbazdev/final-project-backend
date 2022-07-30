@@ -48,9 +48,8 @@
                                     <button type="submit" class="btn btn-primary btn-block enter-btn">Login</button>
                                 </div>
 
-                                <p class="sign-up">Don't have an Account?<a href="{{ route('admin.login') }}"> Sign
-                                        Up</a>
-                                </p>
+
+
                             </form>
                         </div>
                     </div>

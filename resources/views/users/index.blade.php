@@ -115,37 +115,14 @@
         $(function() {
             $(".toggle-class").change(function() {
                 var status = $(this).prop('checked') == true ? 1 : 0;
-                var provider_id = $(this).data('id');
+                var user_id = $(this).data('id');
                 $.ajax({
                     type: "GET",
                     dataType: "json",
-                    url: "/providerStatus",
+                    url: "/userStatus",
                     data: {
                         'status': status,
-                        'provider_id': provider_id
-                    },
-                    success: function(data) {
-                        console.log(data.success);
-                    }
-                });
-            });
-        });
-    </script>
-    <script>
-        $(document).ready(function() {
-            // $("#provider_table").dataTable()
-        });
-        $(function() {
-            $(".toggle-class").change(function() {
-                var status = $(this).prop('checked') == true ? 1 : 0;
-                var provider_id = $(this).data('id');
-                $.ajax({
-                    type: "GET",
-                    dataType: "json",
-                    url: "/providerStatus",
-                    data: {
-                        'status': status,
-                        'provider_id': provider_id
+                        'user_id': user_id
                     },
                     success: function(data) {
                         console.log(data.success);

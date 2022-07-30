@@ -15,6 +15,7 @@ use App\Http\Controllers\Api\User\UserController;
 
 
 
+
 /*
 |--------------------------------------------------------------------------
 | API Routes
@@ -46,6 +47,7 @@ Route::group(['middleware'=>['auth:sanctum'], 'prefix' => 'chats'], function(){
     Route::post('send_message', [ChatController::class, 'sendMessage']);
     Route::put('mark_as_read/{id}' , [ChatController::class, 'mark_as_read']);
     Route::get('delete_msg/{id}' , [ChatController::class, 'delete_msg']);
+    
 });
 
 /** Chat Section */
@@ -53,9 +55,15 @@ Route::group(['middleware'=>['auth:sanctum'], 'prefix' => 'users'], function(){
     Route::get('profile', [AuthController::class, 'profile']);
     Route::post('profile/edit', [AuthController::class, 'updateProfile']);
     Route::post('create', [AuthController::class, 'storeUser']);
-    Route::get('categories', [CategroyController::class, 'index']);
-    Route::get('providers', [UserController::class, 'providers']);
     Route::get('orders/create', [OrderController::class, 'store']);
+    Route::apiResource('rateprovider',RateProviderController::class);
+});
+
+/** Chat Section */
+Route::group( ['prefix' => 'users'], function(){
+    Route::get('categories', [CategroyController::class, 'index']);
+   
+    Route::get('providers', [UserController::class, 'providers']);
 });
 
 /** Chat Section */
