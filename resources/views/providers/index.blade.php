@@ -42,6 +42,7 @@
                             <td style="width: 50%">{{ $provider->description }}</td>
                             <td style="width: 50%">{{ $provider->price }}</td>
                             <td style="width: 50%">{{ $provider->rate }}</td>
+  
                             <td style="width: 50%">{{ $provider->users->mobile }}</td>
                             <td style="width: 50%">
                                 @if ($provider->users->status==1)
