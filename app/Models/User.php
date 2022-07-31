@@ -92,8 +92,8 @@ class User extends Authenticatable {
         return $value;
     }
 
-    //  public function getList()
-    // {
-    //      return $this->where( 'role_id', 2 )->pluck( 'name', 'id' )->toArray();
-    //  }
+    public function rateprovider()
+    {
+        return $this->hasMany(RateProvider::class, 'user_id');
+    }
 }
