@@ -12,7 +12,7 @@ class PaymentController extends Controller
 
    public function pay(Request $request){
        $validator = validator::make($request->all(), [
-           'category_id' => 'required|exists:categories,id',
+           'order_id' => 'required|exists:orders,id',
            'card_number' => 'required|string',
            'card_exp_month' => 'required|string',
            'card_exp_year' => 'required|string',
