@@ -1,9 +1,9 @@
 {
 	"info": {
-		"_postman_id": "5fe7a501-8797-4000-b0e2-4ae1285c0431",
+		"_postman_id": "349d2376-ab35-467b-8918-1f2f9bb82219",
 		"name": "Final ITI Back-end",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
-		"_exporter_id": "9727640"
+		"_exporter_id": "14573581"
 	},
 	"item": [
 		{
@@ -480,6 +480,104 @@
 							"path": [
 								"users",
 								"payment"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Rate",
+			"item": [
+				{
+					"name": "rate_provider",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "9|t53QfEF3keDwfhIg8s9VpQA18Brhn5OSzcskxIr5",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \r\n    \"provider_id\":9,\r\n    \"rate\":2.5\r\n    \r\n\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{url}}/users/rateprovider",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"users",
+								"rateprovider"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "get_rates",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{url}}/users/rateprovider",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"users",
+								"rateprovider"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "get_rate_by_id",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{url}}/users/rateprovider/3",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"users",
+								"rateprovider",
+								"3"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "delete_rate",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{url}}/users/rateprovider/3",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"users",
+								"rateprovider",
+								"3"
 							]
 						}
 					},
