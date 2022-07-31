@@ -44,10 +44,17 @@ class UserController extends Controller {
 
     public function store( Request $request ) {
         //
-        $data[ 'name' ] = $request->name;
-        $data[ 'email' ] =  $request->email;
-        $data[ 'mobile' ] =  $request->mobile;
+        $data =  $this->validate( $request, [
+            'name'     => 'required|min:3',
+            'email'    => 'required|email',
+            'password' => 'required|min:6|max:10',
+            'mobile' => 'required|min:11|numeric',
+            'image'   => 'required|image|mimes:png,jpg,gif'
+        ] );
+
+        # Hash Password
         $data[ 'password' ] = Hash::make( $request->password );
+
         $data[ 'role_id' ] = 3;
         $position = $request->map;
         $mycoords = explode( ',', $position );
@@ -112,10 +119,18 @@ class UserController extends Controller {
 
     public function update( Request $request, $id ) {
         //
-        $data[ 'name' ] = $request->name;
-        $data[ 'email' ] =  $request->email;
-        $data[ 'mobile' ] =  $request->mobile;
+        $data =  $this->validate( $request, [
+            'name'     => 'required|min:3',
+            'email'    => 'required|email',
+            'password' => 'required|min:6|max:10',
+            'mobile' => 'required|min:11|numeric',
+            'image'   => 'required|image|mimes:png,jpg,gif'
+        ] );
+
+        # Hash Password
         $data[ 'password' ] = Hash::make( $request->password );
+        $data[ 'role_id' ] = 3;
+
         $position = $request->map;
         $mycoords = explode( ',', $position );
         $data[ 'lat' ] = $mycoords[ 0 ];
@@ -126,9 +141,13 @@ class UserController extends Controller {
             $image_one = uniqid() . '.' . $image->getClientOriginalExtension();
             Image::make( $image )->resize( 500, 300 )->save( 'images/Usrimg/' . $image_one );
             $data[ 'image' ] = 'images/Usrimg/' . $image_one;
-            // image/postimg/343434.png
+            // images/Usrimg/343434.png
             DB::table( 'users' )->where( 'id', $id )->update( $data );
-            unlink( $oldimage );
+            if ( file_exists( $image_one ) ) {
+                //File::delete( $image_path );
+                File::delete( $image_one );
+            }
+            // unlink( $oldimage );
 
             $notification = array(
                 'message' => 'Users Data  Updated Successfully',

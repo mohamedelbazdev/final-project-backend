@@ -27,10 +27,25 @@ Route::group(['middleware' =>['auth','auth.admin'] ], function () {
         Route::get('/dashboard', function () {
                 return view('admin.index');
         })->name('dashboard');
-        Route::resource('user', UserController::class);
-        Route::resource('admins', AdminsController::class);
-        Route::resource('category', CategoryController::class);
-        Route::resource('provider', ProviderController::class);
+        Route::resource('user', UserController::class, ['except' => [
+        'create'
+        ]]);
+        Route::get('/create/user', [UserController::class, 'create'])->name('user.create');
+
+        Route::resource('admins', AdminsController::class, ['except' => [
+        'create'
+        ]]);
+         Route::get('/create/admins', [AdminsController::class, 'create'])->name('admins.create');
+        Route::resource('provider', ProviderController::class, ['except' => [
+        'create'
+        ]]);
+         Route::get('/create/provider', [ProviderController::class, 'create'])->name('provider.create');
+        Route::resource('category', CategoryController::class, ['except' => [
+        'create'
+        ]]);
+        Route::get('/create/category', [CategoryController::class, 'create'])->name('category.create');
+
+
         Route::resource('payment', PaymentsController::class);
         Route::resource('orders', OrdersController::class);
         Route::get('/providers/inactive/{id}', [ProviderController::class,"Inactive"])->name('Inactive');

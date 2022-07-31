@@ -20,14 +20,14 @@ class UserSeeder extends Seeder {
                 'email' => 'admin@admin.com',
                 'password' => Hash::make( '123456789' ),
                 'mobile' => '01099812536',
-                'role_id' => 1 // user role
+                'role_id' => 1 // admin role
             ],
             [
                 'name' => 'provider',
                 'email' => 'provider@provider.com',
                 'password' => Hash::make( '123456789' ),
                 'mobile' => '01553524888',
-                'role_id' => 2 // user role
+                'role_id' => 2 // provider role
             ],
             [
                 'name' => 'user',

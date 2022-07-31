@@ -17,7 +17,7 @@ $editData = DB::table('users')
             <div class="profile-desc">
                 <div class="profile-pic">
                     <div class="count-indicator">
-                        <img class="img-xs rounded-circle " src="{{ URL::to($editData->image) }}" alt="">
+                        <img class="img-xs rounded-circle " src="{{ URL::to($editData->image ?? '') }}" alt="">
                         <span class="count bg-success"></span>
                     </div>
                     <div class="profile-name">
@@ -89,7 +89,7 @@ $editData = DB::table('users')
             </div>
         </li>
 
-        
+
 
         <li class="nav-item menu-items">
             <a class="nav-link " data-toggle="collapse" href="#district" aria-expanded="false" aria-controls="district">
@@ -112,7 +112,7 @@ $editData = DB::table('users')
 
 
 
-       
+
 
         <li class="nav-item menu-items">
             <a class="nav-link" data-toggle="collapse" href="#setting" aria-expanded="false" aria-controls="post">
@@ -131,24 +131,26 @@ $editData = DB::table('users')
             </div>
         </li>
 
-        
 
 
-       
+
+
 
 
         <li class="nav-item menu-items">
-            <a class="nav-link" data-toggle="collapse" href="#photo" aria-expanded="false" aria-controls="post">
+            <a class="nav-link" data-toggle="collapse" href="#admin" aria-expanded="false" aria-controls="post">
                 <span class="menu-icon">
                     <i class="mdi mdi-account-box"></i>
                 </span>
                 <span class="menu-title">Admins</span>
                 <i class="menu-arrow"></i>
             </a>
-            <div class="collapse" id="photo">
+            <div class="collapse" id="admin">
                 <ul class="nav flex-column sub-menu">
-                    <li class="nav-item"> <a class="nav-link" href="{{ route('admins.create') }}"> add admin</a></li>
-                    <li class="nav-item"> <a class="nav-link" href="{{ route('admins.index') }}"> admin List </a></li>
+                    <li class="nav-item"> <a class="nav-link" href="{{ route('admins.create') }}"> add admin</a>
+                    </li>
+                    <li class="nav-item"> <a class="nav-link" href="{{ route('admins.index') }}"> admin List </a>
+                    </li>
 
 
                 </ul>
@@ -223,7 +225,8 @@ $editData = DB::table('users')
                 <ul class="nav flex-column sub-menu">
                     <!-- <li class="nav-item"> <a class="nav-link" href=""> Add Payment
                         </a></li> -->
-                    <li class="nav-item"> <a class="nav-link" href="{{ route('payment.index') }}"> All Payemts</a></li> 
+                    <li class="nav-item"> <a class="nav-link" href="{{ route('payment.index') }}"> All Payemts</a>
+                    </li>
 
 
                 </ul>

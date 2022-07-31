@@ -27,5 +27,8 @@ class Provider extends Model
         return $this->belongsTo(User::class, 'user_id');
     }
 
-    
+    public function rateprovider()
+    {
+        return $this->hasMany(RateProvider::class, 'provider_id');
+    }
 }
