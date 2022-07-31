@@ -20,6 +20,9 @@
                                 <label class="form-label mg-b-0">Name</label>
                                 <input class="form-control" name="name" type="text" placeholder="Enter your firstname"
                                     type="text" value="">
+                                    @error('name')
+                                <span class="text-danger">{{ $message }}</span>
+                                 @enderror
 
 
                             </div>
@@ -28,6 +31,9 @@
                         <label class="form-label mg-b-0">Email</label>
                         <input class="form-control" name="email" type="text" placeholder="Enter your email"
                             type="text" value="">
+                            @error('email')
+                                <span class="text-danger">{{ $message }}</span>
+                            @enderror
 
                     </div>
 
@@ -41,6 +47,9 @@
                             <label class="form-label mg-b-0">Mobile Number</label>
                             <input class="form-control" name="mobile" type="text"
                                 placeholder="Enter your Mobile Number">
+                                @error('mobile')
+                            <span class="text-danger">{{ $message }}</span>
+                        @enderror
                         </div>
 
 
@@ -72,7 +81,7 @@
                              @endif
                         </div>
                         <div id="map" style="width:100%;height:400px;"></div>
-                    <input type="hidden" id="text-map" name="map" value="">
+                    <input type="hidden" id="text-map" name="map" value="30.071265, 31.021114">
 
 
                         <button class="btn btn-primary mr-2 pd-x-30 mg-r-5 mg-t-5">Add Provider</button>

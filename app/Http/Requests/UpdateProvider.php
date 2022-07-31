@@ -25,7 +25,10 @@ class UpdateProvider extends FormRequest
     {
         return [
             //
-            // 'user_id'     => 'required',
+            'name'     => 'required|min:3',
+            'email'    => 'required|email',
+            'mobile' => 'required|min:11|numeric',
+            'image'   => 'required|image|mimes:png,jpg,gif',
             'description'     => 'required',
             'price'     => 'required',
             'category_id'     => 'required'
