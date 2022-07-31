@@ -54,7 +54,7 @@ class UserController extends Controller
 
         $providers = $this->userModel
             ->with('providers')->provider()
-            ->whereUserId($request->post('user_id'))
+            ->whereId($request->post('user_id'))
             ->first();
 
         return $this->apiResponse('successfully', $providers);

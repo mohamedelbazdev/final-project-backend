@@ -288,6 +288,44 @@
 						}
 					},
 					"response": []
+				},
+				{
+					"name": "provider_details",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "9|t53QfEF3keDwfhIg8s9VpQA18Brhn5OSzcskxIr5",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \r\n    \"user_id\":10\r\n \r\n\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{url}}/users/providers/details",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"users",
+								"providers",
+								"details"
+							]
+						}
+					},
+					"response": []
 				}
 			]
 		},
