@@ -62,6 +62,7 @@ Route::group(['middleware'=>['auth:sanctum'], 'prefix' => 'users'], function(){
     Route::get('favorites', [FavoriteController::class, 'index']);
     Route::post('favorites/create', [FavoriteController::class, 'store']);
     Route::post('favorites/destroy', [FavoriteController::class, 'destroy']);
+    Route::post('providers/details', [UserController::class, 'getProviderDetails']);
 
 });
 

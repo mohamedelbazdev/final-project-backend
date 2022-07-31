@@ -37,6 +37,29 @@ class UserController extends Controller
         return $this->apiResponse('successfully', $providers);
     }
 
+
+    /**
+     * @param Request $request
+     * @return \Illuminate\Http\JsonResponse
+     */
+    public function getProviderDetails(Request $request): \Illuminate\Http\JsonResponse
+    {
+        $validator = validator::make($request->all(), [
+            'user_id' => 'required|exists:users,id',
+        ]);
+
+        if ($validator->fails()) {
+            return $this->apiResponseValidation($validator);
+        }
+
+        $providers = $this->userModel
+            ->with('providers')->provider()
+            ->whereUserId($request->post('user_id'))
+            ->first();
+
+        return $this->apiResponse('successfully', $providers);
+    }
+
     /**
      * Display a listing of the resource.
      *
