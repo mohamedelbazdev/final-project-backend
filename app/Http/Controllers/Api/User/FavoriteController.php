@@ -65,7 +65,7 @@ class FavoriteController extends Controller
         $isExist = $this->favoriteModel->whereProviderIdAndUserId($request->post('provider_id'), Auth::id())->count();
 
         if($isExist){
-            $isExist->delete();
+         $isExist->delete();
           //  return $this->apiResponse('not allow add it because is exits', null, 422);
         }
 
