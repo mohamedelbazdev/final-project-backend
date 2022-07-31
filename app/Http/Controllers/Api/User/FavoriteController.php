@@ -65,7 +65,8 @@ class FavoriteController extends Controller
         $isExist = $this->favoriteModel->whereProviderIdAndUserId($request->post('provider_id'), Auth::id())->count();
 
         if($isExist){
-            return $this->apiResponse('not allow add it because is exits', null, 422);
+            $isExist->delete();
+          //  return $this->apiResponse('not allow add it because is exits', null, 422);
         }
 
         $category = $this->favoriteModel->create([
