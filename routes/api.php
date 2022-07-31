@@ -68,8 +68,9 @@ Route::group(['middleware'=>['auth:sanctum'], 'prefix' => 'users'], function(){
 /** Chat Section */
 Route::group( ['prefix' => 'users'], function(){
     Route::get('categories', [CategroyController::class, 'index']);
-
     Route::get('providers', [UserController::class, 'providers']);
+    Route::get('orders/sended', [OrderController::class, 'myOrders']);
+    Route::get('orders/received', [OrderController::class, 'resivedOrders']);
 });
 
 /** Chat Section */

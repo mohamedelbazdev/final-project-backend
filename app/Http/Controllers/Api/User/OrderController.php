@@ -31,11 +31,26 @@ class OrderController extends Controller
     /**
      * Display a listing of the resource.
      *
-     * @return Response
+     * @return \Illuminate\Http\JsonResponse
      */
-    public function index()
+    public function myOrders(Request $request)
     {
-        //
+        $orders = $this->orderModel->whereSenderId(Auth::id())->get();
+
+        return $this->apiResponse('successfully', $orders);
+    }
+
+
+    /**
+     * Display a listing of the resource.
+     *
+     * @return \Illuminate\Http\JsonResponse
+     */
+    public function resivedOrders(Request $request)
+    {
+        $orders = $this->orderModel->whereReceivedId(Auth::id())->get();
+
+        return $this->apiResponse('successfully', $orders);
     }
 
     /**
