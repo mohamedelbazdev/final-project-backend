@@ -45,7 +45,7 @@
                     </div>
 
                     <div id="map" style="width:100%;height:400px;"></div>
-                    <input type="hidden" id="text-map" name="map" value="">
+                    <input type="hidden" id="text-map" name="map" value="30.071265, 31.021114">
 
 
                     <button type="submit" class="btn btn-primary mr-2">Submit</button>
@@ -56,7 +56,7 @@
         </div>
         <script>
             function initMap() {
-                var latlng = new google.maps.LatLng(51.4975941, -0.0803232);
+                var latlng = new google.maps.LatLng(30.071265, 31.021114);
 
                 var map = new google.maps.Map(document.getElementById('map'), {
                     center: latlng,
