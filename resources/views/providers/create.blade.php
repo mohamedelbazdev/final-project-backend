@@ -92,7 +92,7 @@
         </div>
         <script>
             function initMap() {
-                var latlng = new google.maps.LatLng(51.4975941, -0.0803232);
+                var latlng = new google.maps.LatLng(30.071265, 31.021114);
 
                 var map = new google.maps.Map(document.getElementById('map'), {
                     center: latlng,
@@ -116,7 +116,6 @@
             window.initMap = initMap;
         </script>
 
-        <script type="text/javascript"
+<script type="text/javascript"
             src="https://maps.google.com/maps/api/js?key={{ env('GOOGLE_MAP_KEY') }}&callback=initMap"></script>
-   
     @endsection

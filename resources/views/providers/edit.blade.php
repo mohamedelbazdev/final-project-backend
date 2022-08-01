@@ -28,7 +28,7 @@
 
                     <div class="form-group">
                         <label class="form-label mg-b-0">Mobile Number</label>
-                        <input class="form-control" name="mobile" type="text" placeholder="Enter your Mobile Number">
+                        <input class="form-control" name="mobile" type="text" value="{{ $user->mobile }}">
                     </div>
                         
 
@@ -66,7 +66,7 @@
                 </div>
 
                 <div id="map" style="width:100%;height:400px;"></div>
-                    <input type="hidden" id="text-map" name="map" value="">
+                    <input type="hidden" id="text-map" name="map" value="30.071265, 31.021114">
 
                 <br>
                 {!! Form::submit('update provider', ['class' => 'btn btn-primary']) !!}
@@ -76,7 +76,7 @@
     </div>
     <script>
             function initMap() {
-                var latlng = new google.maps.LatLng(51.4975941, -0.0803232);
+                var latlng = new google.maps.LatLng(30.071265, 31.021114);
 
                 var map = new google.maps.Map(document.getElementById('map'), {
                     center: latlng,

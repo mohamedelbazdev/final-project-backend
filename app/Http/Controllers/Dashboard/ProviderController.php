@@ -145,10 +145,14 @@ class ProviderController extends Controller
             // image/postimg/343434.png
             
           $user=User::where( 'id', $user_id )->update( $data );
-            unlink( $oldimage );
+            // unlink( $oldimage );
+            if ( file_exists( $image_one ) ) {
+                //File::delete( $image_path );
+                File::delete( $image_one );
+            }
         }
             else {
-                $data[ 'image' ] = $oldimage;
+                // $data[ 'image' ] = $oldimage;
               $user= User::where( 'id', $user_id )->update( $data );
             }
         $user = User::find($id) ; 
