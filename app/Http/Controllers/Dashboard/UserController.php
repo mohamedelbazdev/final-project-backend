@@ -8,6 +8,7 @@ use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\DB;
 use Intervention\Image\Facades\Image as Image;
 use App\Models\User;
+use Illuminate\Support\Facades\File;
 
 class UserController extends Controller {
     /**
@@ -179,7 +180,10 @@ class UserController extends Controller {
     public function destroy( $id ) {
         //
         $User = DB::table( 'users' )->where( 'id', $id )->first();
-        unlink( $User->image );
+        if ( file_exists( $User->image ) ) {
+            //File::delete( $image_path );
+            File::delete( $User->image );
+        }
 
         DB::table( 'users' )->where( 'id', $id )->delete();
 

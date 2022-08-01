@@ -2,7 +2,7 @@
 
 @section('admin')
     <div class="box-header">
-        <a href="{{ URL::to('/user/create') }}" class="btn btn-info m-4">Add User</a>
+        <a href="{{ route('user.create') }}" class="btn btn-info m-4">Add User</a>
     </div>
     <div class="card-body">
         <div class="box-header with-border">

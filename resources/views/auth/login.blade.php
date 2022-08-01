@@ -5,7 +5,7 @@
     <!-- Required meta tags -->
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <title>Corona Admin</title>
+    <title>Sanay3ey Admin</title>
     <!-- plugins:css -->
     <link rel="stylesheet" href="{{ asset('backend/assets/vendors/mdi/css/materialdesignicons.min.css') }}">
     <link rel="stylesheet" href="{{ asset('backend/assets/vendors/css/vendor.bundle.base.css') }}">
@@ -51,6 +51,9 @@
 
 
                             </form>
+                            @if (Session::has('message'))
+                                <div class="alert alert-danger">{{ Session::get('message') }}</div>
+                            @endif
                         </div>
                     </div>
                 </div>

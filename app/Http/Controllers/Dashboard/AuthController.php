@@ -110,7 +110,8 @@ class AuthController extends Controller {
         ->first();
         if ( $user && $user->role_id != 1 ) {
 
-            return 'Not Allowed Login By this User';
+            Session::flash( 'message', 'Not Allowed Login By this User' );
+            return redirect()->back();
 
         }
         $credentials = $request->only( 'email', 'password' );
