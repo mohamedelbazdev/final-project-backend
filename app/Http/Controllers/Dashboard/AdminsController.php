@@ -8,11 +8,11 @@ use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\DB;
 use Intervention\Image\Facades\Image as Image;
 use App\Models\User;
+use Illuminate\Support\Facades\File;
 
-class AdminsController extends Controller
-{
+class AdminsController extends Controller {
     //
-    
+
     public function index() {
 
         //
@@ -20,11 +20,9 @@ class AdminsController extends Controller
         return view( 'admins.index', compact( 'users' ) );
     }
 
-
     public function create() {
         //
         return view( 'admins.create' );
-      
 
     }
 
@@ -65,13 +63,11 @@ class AdminsController extends Controller
         //
     }
 
-
     public function edit( $id ) {
         //
         $user = DB::table( 'users' )->where( 'id', $id )->first();
         return view( 'admins.edit', compact( 'user' ) );
     }
-
 
     public function update( Request $request, $id ) {
         //
@@ -92,7 +88,11 @@ class AdminsController extends Controller
             $data[ 'image' ] = 'images/Usrimg/' . $image_one;
             // image/postimg/343434.png
             DB::table( 'users' )->where( 'id', $id )->update( $data );
-            unlink( $oldimage );
+            // unlink( $oldimage );
+            if ( file_exists( $image_one ) ) {
+                //File::delete( $image_path );
+                File::delete( $image_one );
+            }
 
             $notification = array(
                 'message' => 'Admin Data  Updated Successfully',
@@ -113,7 +113,6 @@ class AdminsController extends Controller
         // End Condition
 
     }
-
 
     public function destroy( $id ) {
         //

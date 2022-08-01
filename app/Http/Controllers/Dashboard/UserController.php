@@ -8,6 +8,7 @@ use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\DB;
 use Intervention\Image\Facades\Image as Image;
 use App\Models\User;
+use Illuminate\Support\Facades\File;
 
 class UserController extends Controller {
     /**
