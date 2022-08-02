@@ -41,6 +41,7 @@ class RateProviderController extends Controller
                 // 'user_id' => 3,
                 'provider_id' => $request->provider_id,
                 'rate' => $request->rate,
+                'description' => $request->description,
             ]);
             $provider = Provider::findorFail($request->provider_id);
             if ($provider) {
@@ -83,8 +84,9 @@ class RateProviderController extends Controller
         $data = RateProvider::findorfail($id);
         $data->update([
             'user_id' => auth()->id(),
-            'provider_id' => $request->book_id,
+            'provider_id' => $request->provider_id,
             'rate' => $request->rate,
+            'description' => $request->description,
         ]);
         return new RateProviderResource($data);
     }

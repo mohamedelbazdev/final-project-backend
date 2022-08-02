@@ -12,6 +12,7 @@ class RateProvider extends Model
         'user_id',
         'provider_id',
         'rate',
+        'description'
     ];
 
     public function user()
