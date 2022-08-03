@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Api\User;
 use App\Http\Controllers\Controller;
 use App\Http\Traits\ApiResponseTrait;
 use App\Models\Category;
+use App\Models\Provider;
 use App\Models\Order;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
@@ -62,32 +63,38 @@ class OrderController extends Controller
     public function store(Request $request): \Illuminate\Http\JsonResponse
     {
         $validator = validator::make($request->all(), [
-            'user_id' => 'required|string',
-            'provider_id' => 'required|string',
-            'sender_id' => 'required|string',
-            'received_id' => 'required|string',
-            'description' => 'required|string',
-            'amount' => 'required|string',
-            'lat' => 'required|string',
-            'lng' => 'required|string',
-            'executed_at' => 'required|string',
+           
+            'provider_id' => 'required',
+            'received_id' => 'required',
+            'description' => 'required',  
+            'hours' => 'required',
+            'lat' => 'required',
+            'lng' => 'required',
+            'executed_at' => 'required',
         ]);
 
         if ($validator->fails()) {
             return $this->apiResponseValidation($validator);
         }
-
+        $provider = Provider::whereUserId($request->provider_id)->first();
+        $price =$provider->price;
         $order = $this->orderModel->create([
+            
             'user_id' => Auth::id(),
             'provider_id' => $request->post('provider_id'),
             'sender_id' => Auth::id(),
             'received_id' => $request->post('received_id'),
             'description' => $request->post('description'),
-            'amount' => $request->post('amount'),
+            'amount' => $price,
+            'total_amount'=>$request->post('hours')*$price,
+            'hours' => $request->post('hours'),
             'lat' => $request->post('lat'),
             'lng' => $request->post('lat'),
             'executed_at' => $request->post('executed_at'),
         ]);
+
+     
+        
 
         return $this->apiResponse('successfully', $order);
     }

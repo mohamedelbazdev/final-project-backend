@@ -19,9 +19,16 @@ class Order extends Model
         'received_id',
         'description',
         'amount',
+        'hours',
+        'total_amount',
         'lat',
         'lng',
         'status',
         'executed_at'
     ];
+
+    public function user()
+    {
+        return  $this->belongsTo(User::class, 'user_id', 'id');
+    }
 }

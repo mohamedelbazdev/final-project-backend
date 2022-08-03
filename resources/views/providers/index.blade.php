@@ -23,7 +23,7 @@
                         <th>Price</th>
                         <th>Rate</th>
                         <th>Mobile Number</th>
-                        <!-- <th>Status</th> -->
+                        <th>Status</th>
                         <th >Action</th>
                     </tr>
                 </thead>
