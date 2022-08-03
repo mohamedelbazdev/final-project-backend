@@ -22,7 +22,7 @@ class AddProviderIdTorateProvidersTable extends Migration
             ->onUpdate('cascade');
 
             $table->foreignId('provider_id')
-            ->constrained('providers')
+            ->constrained('users')
             ->onDelete('cascade')
             ->onUpdate('cascade');
 

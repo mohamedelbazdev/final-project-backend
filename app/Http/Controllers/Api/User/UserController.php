@@ -41,7 +41,8 @@ class UserController extends Controller {
     * @return \Illuminate\Http\JsonResponse
     */
 
-    public function getProviderDetails( Request $request ): \Illuminate\Http\JsonResponse {
+    public function getProviderDetails( Request $request ): \Illuminate\Http\JsonResponse
+    {
         $validator = validator::make( $request->all(), [
             'user_id' => 'required|exists:users,id',
         ] );
@@ -50,12 +51,13 @@ class UserController extends Controller {
             return $this->apiResponseValidation( $validator );
         }
 
-        $providers = $this->userModel
-        ->with( 'providers' )->provider()
-        ->whereId( $request->post( 'user_id' ) )
+        $provider = $this->userModel
+        ->with('providers' )->provider()
+        ->withCount('rateprovider')
+        ->whereId($request->post('user_id'))
         ->first();
 
-        return $this->apiResponse( 'successfully', $providers );
+        return $this->apiResponse( 'successfully', $provider);
     }
 
     /**

@@ -3,10 +3,12 @@
 namespace App\Http\Controllers\Api\User;
 
 use App\Http\Controllers\Controller;
+use App\Models\User;
 use Illuminate\Http\Request;
 use App\Http\Resources\RateProviderResource;
 use App\Models\Provider;
 use App\Models\RateProvider;
+use Illuminate\Http\Response;
 use Illuminate\Support\Facades\Auth;
 
 class RateProviderController extends Controller
@@ -14,47 +16,52 @@ class RateProviderController extends Controller
     /**
      * Display a listing of the resource.
      *
-     * @return \Illuminate\Http\Response
+     * @return Response
      */
     public function index()
     {
         //
         {
             return  RateProviderResource::collection(RateProvider::all());
-            
+
         }
     }
 
     /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
+     * @param Request $request
+     * @return RateProviderResource|\Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\Routing\ResponseFactory|Response
      */
     public function store(Request $request)
     {
         //
         $rataProvider = RateProvider::where('user_id', auth()->id())->where('provider_id',$request->provider_id)->first();
         if (!$rataProvider) {
+
             $data = RateProvider::create([
                 'user_id' =>auth()->id(),
                 // 'user_id' => 3,
                 'provider_id' => $request->provider_id,
                 'rate' => $request->rate,
             ]);
-            $provider = Provider::findorFail($request->provider_id);
+
+            $provider = Provider::whereUserId($request->provider_id)->first();
+
+            $count = RateProvider::whereProviderId($request->post('provider_id'))->count();
+            $submit = RateProvider::whereProviderId($request->post('provider_id'))->sum('rate');
+
             if ($provider) {
-                $all_provider_rates = 0;
-                foreach ($provider->rateprovider as $rate) {
-                    $all_provider_rates += $rate->rate;
-                }
-                $provider->rate = $all_provider_rates / count($provider->rateprovider);
+//                $all_provider_rates = 0;
+//                foreach ($provider->rateprovider as $rate) {
+//                    $all_provider_rates += $rate->rate;
+//                }
+                $provider->rate = $submit / $count;
                 $provider->save();
             }
+
             return new RateProviderResource($data);
 
         } else {
-            return response('The User Rating provider already', 400);
+            return response('The User Rating provider already', 422);
         }
     }
 
@@ -62,7 +69,7 @@ class RateProviderController extends Controller
      * Display the specified resource.
      *
      * @param  int  $id
-     * @return \Illuminate\Http\Response
+     * @return Response
      */
     public function show($id)
     {
@@ -75,7 +82,7 @@ class RateProviderController extends Controller
      *
      * @param  \Illuminate\Http\Request  $request
      * @param  int  $id
-     * @return \Illuminate\Http\Response
+     * @return Response
      */
     public function update(Request $request, $id)
     {
@@ -93,7 +100,7 @@ class RateProviderController extends Controller
      * Remove the specified resource from storage.
      *
      * @param  int  $id
-     * @return \Illuminate\Http\Response
+     * @return Response
      */
     public function destroy($id)
     {
