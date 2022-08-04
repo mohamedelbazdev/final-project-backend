@@ -125,11 +125,13 @@ class RateProviderController extends Controller
             return $this->apiResponseValidation( $validator );
         }
         // $provider = Provider::whereUserId($request->provider_id)->first();
+        $count = RateProvider::whereProviderId($request->post('provider_id'))->count();
         $viewers=RateProvider::whereProviderId($request->post('provider_id'))->with('user')->get();
         
         
         $data=[
             // 'provider_id' => $request->post('provider_id'),
+            'reviews'=>$count,
             'rate' => $viewers,   
         ];
         
