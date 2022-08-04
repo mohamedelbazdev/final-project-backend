@@ -204,9 +204,10 @@ $editData = DB::table('users')
             </a>
             <div class="collapse" id="photo">
                 <ul class="nav flex-column sub-menu">
-                    <li class="nav-item"> <a class="nav-link" href=""> add Feedback</a>
+                    <li class="nav-item"> <a class="nav-link" href="{{ route('contact.us.store') }}"> add
+                            Feedback</a>
                     </li>
-                    <li class="nav-item"> <a class="nav-link" href=""> List All Feedbacks
+                    <li class="nav-item"> <a class="nav-link" href="{{ route('contacts.all') }}"> List All Feedbacks
                         </a></li>
 
 

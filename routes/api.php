@@ -13,6 +13,7 @@ use App\Http\Controllers\Api\User\RateController;
 use App\Http\Controllers\Api\User\RateProviderController;
 use App\Http\Controllers\Api\User\RateUserController;
 use App\Http\Controllers\Api\User\UserController;
+use App\Http\Controllers\Api\User\ContactFormController;
 
 
 
@@ -63,6 +64,7 @@ Route::group(['middleware'=>['auth:sanctum'], 'prefix' => 'users'], function(){
     Route::post('favorites/create', [FavoriteController::class, 'store']);
     Route::post('favorites/destroy', [FavoriteController::class, 'destroy']);
     Route::post('providers/details', [UserController::class, 'getProviderDetails']);
+    Route::post('contact', [ContactFormController::class, 'ContactForm']);
 
 });
 
