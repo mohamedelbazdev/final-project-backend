@@ -124,12 +124,12 @@ class RateProviderController extends Controller
         if ( $validator->fails() ) {
             return $this->apiResponseValidation( $validator );
         }
-        $provider = Provider::whereUserId($request->provider_id)->first();
-        $viewers=RateProvider::whereProviderId($request->post('provider_id'))->get();
+        // $provider = Provider::whereUserId($request->provider_id)->first();
+        $viewers=RateProvider::whereProviderId($request->post('provider_id'))->with('user')->get();
         
         
         $data=[
-            'provider_id' => $request->post('provider_id'),
+            // 'provider_id' => $request->post('provider_id'),
             'rate' => $viewers,   
         ];
         
