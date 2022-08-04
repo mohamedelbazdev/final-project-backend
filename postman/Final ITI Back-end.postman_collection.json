@@ -358,52 +358,26 @@
 				{
 					"name": "Create",
 					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "9|t53QfEF3keDwfhIg8s9VpQA18Brhn5OSzcskxIr5",
+									"type": "string"
+								}
+							]
+						},
 						"method": "POST",
 						"header": [],
 						"body": {
-							"mode": "formdata",
-							"formdata": [
-								{
-									"key": "provider_id",
-									"value": "",
-									"type": "text"
-								},
-								{
-									"key": "sender_id",
-									"value": "",
-									"type": "text"
-								},
-								{
-									"key": "received_id",
-									"value": "",
-									"type": "text"
-								},
-								{
-									"key": "description",
-									"value": "",
-									"type": "text"
-								},
-								{
-									"key": "amount",
-									"value": "",
-									"type": "text"
-								},
-								{
-									"key": "lat",
-									"value": "",
-									"type": "text"
-								},
-								{
-									"key": "lng",
-									"value": "",
-									"type": "text"
-								},
-								{
-									"key": "executed_at",
-									"value": "",
-									"type": "text"
+							"mode": "raw",
+							"raw": "{\r\n    \r\n    \"provider_id\":2,\r\n    \"received_id\":2,\r\n    \"description\":\"djelijikljndlknflklkjsslkjlk\",\r\n    \"hours\":3,\r\n    \"lat\":30.071265,\r\n    \"lng\":31.021114,\r\n    \"executed_at\":\"2020-4-4\"\r\n    \r\n\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
 								}
-							]
+							}
 						},
 						"url": {
 							"raw": "{{url}}/users/orders/create",
@@ -566,43 +540,6 @@
 					"response": []
 				},
 				{
-					"name": "get_rates",
-					"request": {
-						"method": "GET",
-						"header": [],
-						"url": {
-							"raw": "{{url}}/users/rateprovider",
-							"host": [
-								"{{url}}"
-							],
-							"path": [
-								"users",
-								"rateprovider"
-							]
-						}
-					},
-					"response": []
-				},
-				{
-					"name": "get_rate_by_id",
-					"request": {
-						"method": "GET",
-						"header": [],
-						"url": {
-							"raw": "{{url}}/users/rateprovider/3",
-							"host": [
-								"{{url}}"
-							],
-							"path": [
-								"users",
-								"rateprovider",
-								"3"
-							]
-						}
-					},
-					"response": []
-				},
-				{
 					"name": "delete_rate",
 					"request": {
 						"method": "DELETE",
@@ -616,6 +553,43 @@
 								"users",
 								"rateprovider",
 								"3"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "viewers",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "9|t53QfEF3keDwfhIg8s9VpQA18Brhn5OSzcskxIr5",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"provider_id\":6\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{url}}/users/viewers",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"users",
+								"viewers"
 							]
 						}
 					},

@@ -78,7 +78,7 @@ class OrderController extends Controller
         }
         $provider = Provider::whereUserId($request->provider_id)->first();
         $price =$provider->price;
-        $order = $this->orderModel->create([
+        $order = $this->orderModel->with('user')->create([
             
             'user_id' => Auth::id(),
             'provider_id' => $request->post('provider_id'),
@@ -91,11 +91,9 @@ class OrderController extends Controller
             'lat' => $request->post('lat'),
             'lng' => $request->post('lat'),
             'executed_at' => $request->post('executed_at'),
+            
         ]);
-
-     
         
-
         return $this->apiResponse('successfully', $order);
     }
 

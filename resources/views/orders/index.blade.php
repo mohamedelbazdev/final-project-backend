@@ -6,8 +6,8 @@
     ?>
     <ol class="breadcrumb">
         <li class="breadcrumb-item {{ $pull }}"><a href="{{ URL::to('/dashboard') }}"> Home</a></li>
-        <li class="breadcrumb-item {{ $pull }}"><a href="{{ URL::to('/payments') }}"> Payments</a></li>
-        <li class="breadcrumb-item active {{ $pull }}">Payments DataTable</li>
+        <li class="breadcrumb-item {{ $pull }}"><a href="{{ URL::to('/orders') }}"> orders</a></li>
+        <li class="breadcrumb-item active {{ $pull }}">order DataTable</li>
     </ol>
     <div class="card">
         <div class="card-body">

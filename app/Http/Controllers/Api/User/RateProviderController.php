@@ -6,13 +6,17 @@ use App\Http\Controllers\Controller;
 use App\Models\User;
 use Illuminate\Http\Request;
 use App\Http\Resources\RateProviderResource;
+use App\Http\Resources\ViewresResource;
+use App\Http\Traits\ApiResponseTrait;
 use App\Models\Provider;
 use App\Models\RateProvider;
 use Illuminate\Http\Response;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Validator;
 
 class RateProviderController extends Controller
 {
+    use ApiResponseTrait;
     /**
      * Display a listing of the resource.
      *
@@ -51,10 +55,7 @@ class RateProviderController extends Controller
             $submit = RateProvider::whereProviderId($request->post('provider_id'))->sum('rate');
 
             if ($provider) {
-//                $all_provider_rates = 0;
-//                foreach ($provider->rateprovider as $rate) {
-//                    $all_provider_rates += $rate->rate;
-//                }
+
                 $provider->rate = $submit / $count;
                 $provider->save();
             }
@@ -110,5 +111,34 @@ class RateProviderController extends Controller
         $data = RateProvider::findorfail($id);
         $data->delete();
         return response('Data Deleted Successfully', 200);
+    }
+
+
+
+    public function viewers(Request $request){
+
+        $validator = validator::make( $request->all(), [
+            'provider_id' => 'required',
+        ] );
+
+        if ( $validator->fails() ) {
+            return $this->apiResponseValidation( $validator );
+        }
+        // $provider = Provider::whereUserId($request->provider_id)->first();
+        $count = RateProvider::whereProviderId($request->post('provider_id'))->count();
+        $viewers=RateProvider::whereProviderId($request->post('provider_id'))->with('user')->get();
+        
+        
+        $data=[
+            // 'provider_id' => $request->post('provider_id'),
+            'reviews'=>$count,
+            'rate' => $viewers,   
+        ];
+        
+       
+        return $this->apiResponse( 'successfully', $data);
+    
+       
+
     }
 }
