@@ -130,7 +130,7 @@ class RateProviderController extends Controller
         
         
         $data=[
-            // 'provider_id' => $request->post('provider_id'),
+            
             'reviews'=>$count,
             'rate' => $viewers,   
         ];

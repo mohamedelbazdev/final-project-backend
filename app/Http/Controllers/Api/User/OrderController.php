@@ -7,6 +7,7 @@ use App\Http\Traits\ApiResponseTrait;
 use App\Models\Category;
 use App\Models\Provider;
 use App\Models\Order;
+use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 use Illuminate\Support\Facades\Auth;
@@ -77,8 +78,9 @@ class OrderController extends Controller
             return $this->apiResponseValidation($validator);
         }
         $provider = Provider::whereUserId($request->provider_id)->first();
+        $user=User::where('id', auth()->id())->get();
         $price =$provider->price;
-        $order = $this->orderModel->with('user')->create([
+        $order = $this->orderModel->create([
             
             'user_id' => Auth::id(),
             'provider_id' => $request->post('provider_id'),
@@ -93,8 +95,13 @@ class OrderController extends Controller
             'executed_at' => $request->post('executed_at'),
             
         ]);
+        $data=[
+            
+            'order'=>$order,
+            'user' => $user,   
+        ];
         
-        return $this->apiResponse('successfully', $order);
+        return $this->apiResponse('successfully', $data);
     }
 
     /**
@@ -130,4 +137,6 @@ class OrderController extends Controller
     {
         //
     }
+
+    
 }
