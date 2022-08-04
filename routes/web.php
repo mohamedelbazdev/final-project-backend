@@ -8,6 +8,7 @@ use App\Http\Controllers\Dashboard\ProviderController;
 use App\Http\Controllers\Dashboard\PaymentsController;
 use App\Http\Controllers\Dashboard\AuthController;
 use App\Http\Controllers\Dashboard\OrdersController;
+use App\Http\Controllers\Dashboard\ContactControler;
 
 /*
 |--------------------------------------------------------------------------
@@ -52,7 +53,9 @@ Route::group(['middleware' =>['auth','auth.admin'] ], function () {
         Route::get('/providers/active/{id}', [ProviderController::class,"Active"])->name('Active');
         Route::get('/user/inactive/{id}', [UserController::class,'Inactive'])->name('InactiveUser');
         Route::get('/user/active/{id}', [UserController::class,'Active'])->name('ActiveUser');
-
+        Route::get('contact-us', [ContactControler::class, 'index']);
+        Route::post('contact-us', [ContactControler::class, 'store'])->name('contact.us.store');
+        Route::get('allConatcts',[ContactControler::class, 'allContactMessages'])->name('contacts.all');
 });
 
 // Account Setting Routes
