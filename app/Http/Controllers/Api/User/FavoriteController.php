@@ -47,9 +47,11 @@ class FavoriteController extends Controller {
     */
 
     public function store( Request $request ) {
+
         $validator = validator::make( $request->all(), [
             'provider_id' => 'required|exists:users,id',
         ] );
+
 
         if ( $validator->fails() ) {
             return $this->apiResponseValidation( $validator );
@@ -68,12 +70,12 @@ class FavoriteController extends Controller {
             //  return $this->apiResponse( 'not allow add it because is exits', null, 422 );
         }
 
-        $category = $this->favoriteModel->create( [
+        $favorite = $this->favoriteModel->create( [
             'provider_id' => $request->post( 'provider_id' ),
             'user_id' => Auth::id(),
         ] );
 
-        return $this->apiResponse( 'successfully', $category );
+        return $this->apiResponse( 'successfully', $favorite );
     }
 
     /**

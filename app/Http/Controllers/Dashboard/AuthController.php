@@ -108,7 +108,7 @@ class AuthController extends Controller {
         ] );
         $user = User::where( 'email', '=', $request->email )
         ->first();
-        if ( $user && $user->role_id != 1 ) {
+        if ( $user && $user->role_id != 1 && $user->status == 1 ) {
 
             Session::flash( 'message', 'Not Allowed Login By this User' );
             return redirect()->back();
