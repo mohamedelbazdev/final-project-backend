@@ -60,6 +60,7 @@ Route::group(['middleware'=>['auth:sanctum'], 'prefix' => 'users'], function(){
     Route::post('orders/create', [OrderController::class, 'store']);
     Route::apiResource('rateprovider',RateProviderController::class);
     Route::post('viewers', [RateProviderController::class, 'viewers']);
+    Route::post('providersByCat', [CategroyController::class, 'getProviderById']);
     Route::get('favorites', [FavoriteController::class, 'index']);
     Route::post('favorites/create', [FavoriteController::class, 'store']);
     Route::post('favorites/destroy', [FavoriteController::class, 'destroy']);

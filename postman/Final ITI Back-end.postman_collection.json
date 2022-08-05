@@ -326,6 +326,43 @@
 						}
 					},
 					"response": []
+				},
+				{
+					"name": "providersbycat",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "11|wArhPWkaRdA3pLpsEm1iiRzke2qcIk1dJWfb4oKL",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"category_id\":2\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{url}}/users/providersByCat",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"users",
+								"providersByCat"
+							]
+						}
+					},
+					"response": []
 				}
 			]
 		},
