@@ -199,15 +199,17 @@ $editData = DB::table('users')
                 <span class="menu-icon">
                     <i class="mdi mdi-playlist-play"></i>
                 </span>
-                <span class="menu-title">FeedBack</span>
+                <span class="menu-title">
+                    Contact Us
+                </span>
                 <i class="menu-arrow"></i>
             </a>
             <div class="collapse" id="photo">
                 <ul class="nav flex-column sub-menu">
                     <li class="nav-item"> <a class="nav-link" href="{{ route('contact.us.store') }}"> add
-                            Feedback</a>
+                            Message</a>
                     </li>
-                    <li class="nav-item"> <a class="nav-link" href="{{ route('contacts.all') }}"> List All Feedbacks
+                    <li class="nav-item"> <a class="nav-link" href="{{ route('contacts.all') }}"> List All Messages
                         </a></li>
 
 
