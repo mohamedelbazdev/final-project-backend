@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Api\User;
 use App\Http\Controllers\Controller;
 use App\Http\Traits\ApiResponseTrait;
 use App\Models\Category;
+use App\Models\Provider;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 use Illuminate\Support\Facades\Validator;
@@ -111,5 +112,29 @@ class CategroyController extends Controller
         $this->categoryModel->find($request->post('category_id'))->delete();
 
         return $this->apiResponse('successfully');
+    }
+
+
+    public function getProviderById(Request $request){
+
+        $validator = validator::make( $request->all(), [
+            'category_id' => 'required',
+        ] );
+
+        if ( $validator->fails() ) {
+            return $this->apiResponseValidation( $validator );
+        }
+        $category= Category::whereId($request->post('category_id'))->get();
+        $providerByCat=Provider::whereCategoryId($request->post('category_id'))->get();
+
+        $date=[
+            'category'=> $category,
+            'providers'=>$providerByCat,
+ 
+        ];
+       
+        return $this->apiResponse( 'successfully', $date );
+        
+
     }
 }
