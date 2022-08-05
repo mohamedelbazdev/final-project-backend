@@ -34,7 +34,7 @@ class FavoriteController extends Controller {
     */
 
     public function index() {
-        $favorites = $this->favoriteModel->with( 'providers' )->get();
+        $favorites = $this->favoriteModel->with('providers')->get();
 
         return $this->apiResponse( 'successfully', $favorites );
     }
