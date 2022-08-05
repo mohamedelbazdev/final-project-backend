@@ -31,4 +31,9 @@ class Provider extends Model
     {
         return $this->hasMany(RateProvider::class, 'provider_id');
     }
+
+    public function order()
+    {
+        return $this->hasMany(Order::class, 'user_id');
+    }
 }

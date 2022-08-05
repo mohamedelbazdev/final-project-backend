@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Dashboard;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use App\Models\Order;
 
 class OrdersController extends Controller {
     /**
@@ -13,8 +14,9 @@ class OrdersController extends Controller {
     */
 
     public function index() {
+        $orders = Order::all();
         //
-        return view( 'orders.index' );
+        return view( 'orders.index' ,compact('orders'));
 
     }
 

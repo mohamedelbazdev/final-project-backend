@@ -11,70 +11,61 @@
     </ol>
     <div class="card">
         <div class="card-body">
-            <h4 class="card-title">Payments Table</h4>
-            <p class="card-description"><code>Payments</code>
-            </p>
+            <h4 class="card-title">Orders</h4>
+            <!-- <p class="card-description"><code>Payments</code>
+            </p> -->
             <div class="table-responsive">
                 <table class="table table-hover">
                     <thead>
+                    
                         <tr>
                             <th>User</th>
                             <th>Provider</th>
-                            <th>Order</th>
+                            <th>Description</th>
                             <th>Order Status</th>
                             <th>Total Amount</th>
-                            <th>PaymentDate</th>
+                            <th>hours</th>
                             <th>Stripe Code</th>
+                            <th>excuted Time</th>
 
 
                         </tr>
                     </thead>
+                   
                     <tbody>
-                        <tr>
-                            <td>Jacob</td>
-                            <td>Photoshop</td>
-                            <td class="text-danger"> 28.76% <i class="mdi mdi-arrow-down"></i></td>
-                            <td><label class="badge badge-danger">Pending</label></td>
-                            <td>1450</td>
-                            <td>25-07-2022</td>
-                            <td>1561564545454</td>
-                        </tr>
-                        <tr>
-                            <td>Messsy</td>
-                            <td>Flash</td>
-                            <td class="text-danger"> 21.06% <i class="mdi mdi-arrow-down"></i></td>
-                            <td><label class="badge badge-warning">In progress</label></td>
-                            <td>1450</td>
-                            <td>25-07-2022</td>
-                            <td>1561564545454</td>
-                        </tr>
-                        <tr>
-                            <td>John</td>
-                            <td>Premier</td>
-                            <td class="text-danger"> 35.00% <i class="mdi mdi-arrow-down"></i></td>
-                            <td><label class="badge badge-info">Fixed</label></td>
-                            <td>1450</td>
-                            <td>25-07-2022</td>
-                            <td>1561564545454</td>
-                        </tr>
-                        <tr>
-                            <td>Peter</td>
-                            <td>After effects</td>
-                            <td class="text-success"> 82.00% <i class="mdi mdi-arrow-up"></i></td>
-                            <td><label class="badge badge-success">Completed</label></td>
-                            <td>1450</td>
-                            <td>25-07-2022</td>
-                            <td>1561564545454</td>
-                        </tr>
-                        <tr>
-                            <td>Dave</td>
-                            <td>53275535</td>
-                            <td class="text-success"> 98.05% <i class="mdi mdi-arrow-up"></i></td>
-                            <td><label class="badge badge-warning">In progress</label></td>
-                            <td>1450</td>
-                            <td>25-07-2022</td>
-                            <td>1561564545454</td>
-                        </tr>
+                        @foreach ($orders as $key => $order)
+                            <tr>
+                                <td>{{$order->user->name}}</td>
+                                <td>{{$order->provider->name}}</td>
+                                <!-- <td class="text-danger"> 28.76% <i class="mdi mdi-arrow-down"></i></td> -->
+                                <td>{{ $order->description }}</td>
+                                
+                                <!-- <td>
+                                @if ($order->status==0)
+                                <span class="badge badge-success">Pending</span>
+                                elseif ($order->status==1)
+                                <span class="badge badge-success">Accepted</span>
+                                else
+                                <span class="badge badge-danger">Refused</span>
+                                @endif
+                                </td> -->
+                                <td style="width: 50%">
+                                @if ($order->status==0)
+                                <span class="badge badge-warning">Pendinng</span>
+                                @elseif ($order->status==1)
+                                <span class="badge badge-success">Accepted</span>
+                                @else
+                                <span class="badge badge-danger">Refused</span>
+                                @endif
+                            </td>
+                                
+                                <td>{{ $order->total_amount }}</td>
+                                <td>{{ $order->hours }}</td>
+                                <td>1561564545454</td>
+                                <td>{{$order->executed_at}}</td>
+                            </tr>
+                        @endforeach
+
                     </tbody>
                 </table>
             </div>
