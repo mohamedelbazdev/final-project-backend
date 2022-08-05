@@ -52,7 +52,7 @@ class AuthController extends Controller
                 return $this->apiResponse($message, null,403, 'not authorized');
             }
 
-           if(user->status == 0){
+           if($user->status == 0){
                return $this->apiResponse('please active account', '',403,  'please active account');
            }
 
