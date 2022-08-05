@@ -52,14 +52,15 @@ class AuthController extends Controller
                 return $this->apiResponse($message, null,403, 'not authorized');
             }
 
-//            if(is_null($admin['email_verified_at'])){
-//                return $this->apiResponse('please verified email', '',403,  'email not verified');
-//            }
+           if(user->status == 0){
+               return $this->apiResponse('please active account', '',403,  'please active account');
+           }
 
             $token = $user->createToken('token')->plainTextToken;
 
             return $this->apiResponse('successfully', $user, 200 , null, $token);
         }
+
         return $this->apiResponse('not found user', '',403,  'not found user');
     }
 
