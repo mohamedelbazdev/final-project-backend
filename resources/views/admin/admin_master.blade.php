@@ -5,7 +5,7 @@
     <!-- Required meta tags -->
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <title>Easy News Admin</title>
+    <title>Sany3ey Admin Dashboard</title>
     <meta name="csrf-token" content="{{ csrf_token() }}">
     <!-- plugins:css -->
     <link rel="stylesheet" href="{{ asset('backend/assets/vendors/mdi/css/materialdesignicons.min.css') }}">
