@@ -51,26 +51,22 @@ Route::group(['middleware'=>['auth:sanctum'], 'prefix' => 'chats'], function(){
 
 });
 
-/** Chat Section */
+/**  Section */
 Route::group(['middleware'=>['auth:sanctum'], 'prefix' => 'users'], function(){
     Route::get('profile', [AuthController::class, 'profile']);
     Route::post('profile/edit', [AuthController::class, 'updateProfile']);
     Route::post('create', [AuthController::class, 'storeUser']);
     Route::post('orders/create', [OrderController::class, 'store']);
     Route::apiResource('rateprovider',RateProviderController::class);
-
     Route::post('viewers', [RateProviderController::class, 'viewers']);
     Route::post('providersByCat', [CategroyController::class, 'getProviderById']);
-
-
-
     Route::get('favorites', [FavoriteController::class, 'index']);
     Route::post('favorites/create', [FavoriteController::class, 'store']);
     Route::post('favorites/destroy', [FavoriteController::class, 'destroy']);
     Route::post('providers/details', [UserController::class, 'getProviderDetails']);
 });
 
-/** Chat Section */
+/** views without login Section */
 Route::group( ['prefix' => 'users'], function(){
     Route::get('categories', [CategroyController::class, 'index']);
     Route::get('providers', [UserController::class, 'providers']);
