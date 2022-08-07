@@ -126,9 +126,11 @@ class CategroyController extends Controller
         }
         $category= Category::whereId($request->post('category_id'))->get();
         $providerByCat=Provider::whereCategoryId($request->post('category_id'))->get();
+        $count=Provider::whereCategoryId($request->post('category_id'))->count();
 
         $date=[
             'category'=> $category,
+            'count'=>$count,
             'providers'=>$providerByCat,
  
         ];

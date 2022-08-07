@@ -56,7 +56,7 @@ class UserController extends Controller {
         ->withCount('rateprovider')
         ->whereId($request->post('user_id'))
         ->first();
-
+       
         return $this->apiResponse( 'successfully', $provider);
     }
 

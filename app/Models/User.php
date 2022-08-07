@@ -79,6 +79,9 @@ class User extends Authenticatable {
         return $this->hasOne( Provider::class, 'user_id');
     }
 
+  
+   
+
     /**
      * Get the user's full path url.
      *
