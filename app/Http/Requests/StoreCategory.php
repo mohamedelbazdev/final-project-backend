@@ -25,7 +25,7 @@ class StoreCategory extends FormRequest
     {
         return [
             //
-            'name'     => 'required|unique:categories,name',
+            'name'     => 'required|unique:categories,name|regex:/(^[a-zA-Z][a-zA-Z\s]{0,20}[a-zA-Z]$)/',
             'image'   => 'required|image|mimes:png,jpg,gif',
         ];
     }

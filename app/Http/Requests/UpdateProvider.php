@@ -25,7 +25,7 @@ class UpdateProvider extends FormRequest
     {
         return [
             //
-            'name'     => 'required|min:3',
+            'name'     => 'required|min:3|regex:/(^[a-zA-Z][a-zA-Z\s]{0,20}[a-zA-Z]$)/',
             'email'    => 'required|email',
             'mobile' => 'required|min:11|numeric',
             'image'   => 'required|image|mimes:png,jpg,gif',

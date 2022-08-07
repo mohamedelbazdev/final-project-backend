@@ -38,16 +38,18 @@
                     {{ Form::select('category_id',$categories, $provider['category_id'], ['class'=>'form-control select2','id'=>'category_id']) }}
                 </div>
 
-                <div class="form-group">
-                        <label class="form-label mg-b-0">Image</label>
+                <label for="image">image</label>
+                        
+                        {{ Form::file('image',['class'=>'form-control']) }}
+                       
                         <div class="form-group col-md-6">
-                            <label for="exampleInputName1">Old Image</label>
-                            <img src="{{ URL::to($user->image) }}" style="width: 70px; height: 50px;">
-                            <input type="hidden" name="oldimage" value="{{ $user->image }}">
-                        </div>
-                        <input class="form-control" type="file" name="image">
-
-                    </div>
+                                    <label for="exampleInputName1">Old Image</label>
+                                    <img src="{{ URL::to($user->image) }}" style="width: 70px; height: 50px;">
+                                    <input type="hidden" name="oldimage" value="{{ $provider->image }}">
+                                    @if($errors->has('image'))
+                                      <div class="alert alert-danger">{{$errors->first('image')}}
+                                 @endif 
+                                </div>
 
              
                 <div class="form-group">

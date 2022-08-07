@@ -40,7 +40,9 @@
                     <div class="form-group">
                         <label class="form-label mg-b-0">Image</label>
                         <input class="form-control" type="file" name="image">
-
+                        @if($errors->has('image'))
+                                 <span class="text-danger">{{$errors->first('image')}}</span>
+                             @endif
                     </div>
 
                     <div class="form-group">
@@ -84,7 +86,7 @@
                     <input type="hidden" id="text-map" name="map" value="30.071265, 31.021114">
 
 
-                        <button class="btn btn-primary mr-2 pd-x-30 mg-r-5 mg-t-5">Add Provider</button>
+                        <button class="btn btn-primary mr-2 pd-x-30 mg-r-5 mg-t-5 m-2">Add Provider</button>
                                    
                     {!! Form::close() !!}
                 </div>

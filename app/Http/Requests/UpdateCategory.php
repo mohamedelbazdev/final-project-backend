@@ -25,7 +25,7 @@ class UpdateCategory extends FormRequest
     {
         return [
             //
-            'name'     => 'required',
+            'name'     => 'required|unique:categories,name|min:3|regex:/(^[a-zA-Z][a-zA-Z\s]{0,20}[a-zA-Z]$)/',
             'image'   => 'required|image|mimes:png,jpg,gif',
         ];
     }
