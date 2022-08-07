@@ -193,11 +193,29 @@ $editData = DB::table('users')
                 </ul>
             </div>
         </li>
+        <li class="nav-item menu-items">
+            <a class="nav-link " data-toggle="collapse" href="#districtt" aria-expanded="false" aria-controls="district">
+                <span class="menu-icon">
+                    <i class="mdi mdi-playlist-play"></i>
+                </span>
+                <span class="menu-title">Slider</span>
+                <i class="menu-arrow"></i>
+            </a>
+            <div class="collapse" id="districtt">
+                <ul class="nav flex-column sub-menu">
+                    <li class="nav-item "> <a class="nav-link" href="{{ route('slider.create') }}"> Add Slider </a>
+                    </li>
+                    <li class="nav-item"> <a class="nav-link" href="{{ route('slider.index') }}"> All Sliders </a>
+                    </li>
+
+                </ul>
+            </div>
+        </li>
 
         <li class="nav-item menu-items">
             <a class="nav-link" data-toggle="collapse" href="#photo" aria-expanded="false" aria-controls="post">
                 <span class="menu-icon">
-                    <i class="mdi mdi-playlist-play"></i>
+                    <i class="mdi mdi-contacts"></i>
                 </span>
                 <span class="menu-title">
                     Contact Us
@@ -219,7 +237,7 @@ $editData = DB::table('users')
         <li class="nav-item menu-items">
             <a class="nav-link" data-toggle="collapse" href="#website" aria-expanded="false" aria-controls="post">
                 <span class="menu-icon">
-                    <i class="mdi mdi-playlist-play"></i>
+                    <i class="mdi mdi-security"></i>
                 </span>
                 <span class="menu-title">Payments</span>
                 <i class="menu-arrow"></i>
