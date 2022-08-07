@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Http\Traits\ApiResponseTrait;
 use App\Models\Category;
 use App\Models\User;
+use App\Models\Provider;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
@@ -31,7 +32,7 @@ class UserController extends Controller {
     */
 
     public function providers(): \Illuminate\Http\JsonResponse {
-        $providers = $this->userModel ->with( 'providers' ) ->provider()->get();
+        $providers = $this->userModel ->with( 'providers' )->withCount('favourite') ->provider()->get();
 
         return $this->apiResponse( 'successfully', $providers );
     }
@@ -56,6 +57,7 @@ class UserController extends Controller {
         ->withCount('rateprovider')
         ->whereId($request->post('user_id'))
         ->first();
+       
        
         return $this->apiResponse( 'successfully', $provider);
     }
