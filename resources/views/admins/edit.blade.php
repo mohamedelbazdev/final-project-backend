@@ -19,7 +19,9 @@
                         <input class="form-control" name="name" type="text" placeholder="Enter your firstname"
                             type="text" value="{{ $user->name }}">
 
-
+                            @error('name')
+                            <span class="text-danger">{{ $message }}</span>
+                        @enderror
                     </div>
 
 
@@ -27,6 +29,16 @@
                         <label class="form-label mg-b-0">Email</label>
                         <input class="form-control" name="email" type="text" placeholder="Enter your email"
                             type="text" value="{{ $user->email }}">
+                            @error('email')
+                            <span class="text-danger">{{ $message }}</span>
+                        @enderror
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label mg-b-0">Password</label>
+                        <input class="form-control" name="password" type="password" placeholder="Enter your password">
+                        @error('password')
+                            <span class="text-danger">{{ $message }}</span>
+                        @enderror
 
                     </div>
                     <div class="form-group">
@@ -37,18 +49,23 @@
                             <input type="hidden" name="oldimage" value="{{ $user->image }}">
                         </div>
                         <input class="form-control" type="file" name="image">
-
+                        @error('image')
+                            <span class="text-danger">{{ $message }}</span>
+                        @enderror
                     </div>
                     <div class="form-group">
                         <label class="form-label mg-b-0">Mobile Number</label>
                         <input class="form-control" name="mobile" type="text" placeholder="Enter your Mobile Number">
+                        @error('mobile')
+                        <span class="text-danger">{{ $message }}</span>
+                    @enderror
                     </div>
 
                     <div id="map" style="width:100%;height:400px;"></div>
                     <input type="hidden" id="text-map" name="map" value="30.071265, 31.021114">
 
 
-                    <button type="submit" class="btn btn-primary mr-2">Submit</button>
+                    <button type="submit" class="btn btn-primary mr-2 m-2">Submit</button>
 
                     </form>
                 </div>
