@@ -2,29 +2,29 @@
 @section('admin')
     <div class="content-wrapper">
         <!-- <div class="row">
-                                                                                                                                                                                                                                                                                    <div class="col-12 grid-margin stretch-card">
-                                                                                                                                                                                                                                                                                        <div class="card corona-gradient-card">
-                                                                                                                                                                                                                                                                                            <div class="card-body py-0 px-0 px-sm-3">
-                                                                                                                                                                                                                                                                                                <div class="row align-items-center">
-                                                                                                                                                                                                                                                                                                    <div class="col-4 col-sm-3 col-xl-2">
-                                                                                                                                                                                                                                                                                                        <img src="{{ asset('backend/assets/images/dashboard/Group126@2x.png') }}"
-                                                                                                                                                                                                                                                                                                            class="gradient-corona-img img-fluid" alt="">
-                                                                                                                                                                                                                                                                                                    </div>
-                                                                                                                                                                                                                                                                                                    <div class="col-5 col-sm-7 col-xl-8 p-0">
-                                                                                                                                                                                                                                                                                                        <h4 class="mb-1 mb-sm-0">create new user account </h4>
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                <div class="col-12 grid-margin stretch-card">
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                    <div class="card corona-gradient-card">
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                        <div class="card-body py-0 px-0 px-sm-3">
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                            <div class="row align-items-center">
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                <div class="col-4 col-sm-3 col-xl-2">
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    <img src="{{ asset('backend/assets/images/dashboard/Group126@2x.png') }}"
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        class="gradient-corona-img img-fluid" alt="">
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                </div>
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                <div class="col-5 col-sm-7 col-xl-8 p-0">
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    <h4 class="mb-1 mb-sm-0">create new user account </h4>
 
-                                                                                                                                                                                                                                                                                                    </div>
-                                                                                                                                                                                                                                                                                                    <div class="col-3 col-sm-2 col-xl-2 pl-0 text-center">
-                                                                                                                                                                                                                                                                                                        <span>
-                                                                                                                                                                                                                                                                                                            <a href=" {{ url('/') }} " target="_blank"
-                                                                                                                                                                                                                                                                                                                class="btn btn-outline-light btn-rounded get-started-btn">Visit Fontend ? </a>
-                                                                                                                                                                                                                                                                                                        </span>
-                                                                                                                                                                                                                                                                                                    </div>
-                                                                                                                                                                                                                                                                                                </div>
-                                                                                                                                                                                                                                                                                            </div>
-                                                                                                                                                                                                                                                                                        </div>
-                                                                                                                                                                                                                                                                                    </div>
-                                                                                                                                                                                                                                                                                </div> -->
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                </div>
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                <div class="col-3 col-sm-2 col-xl-2 pl-0 text-center">
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    <span>
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        <a href=" {{ url('/') }} " target="_blank"
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                            class="btn btn-outline-light btn-rounded get-started-btn">Visit Fontend ? </a>
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    </span>
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                </div>
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                            </div>
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                        </div>
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                    </div>
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                </div>
+                                                                                                                                                                                                                                                                                                                                                                                                                                                            </div> -->
 
 
 
@@ -52,7 +52,8 @@
 
                     <div class="form-group">
                         <label class="form-label mg-b-0">Password</label>
-                        <input class="form-control" name="password" type="password" placeholder="Enter your password">
+                        <input class="form-control" name="password" type="password" placeholder="Enter your password"
+                            value="{{ old('password') }}">
                         @error('password')
                             <span class="text-danger">{{ $message }}</span>
                         @enderror
@@ -77,22 +78,33 @@
                         @enderror
 
                     </div>
-                    <div class="form-group">
-                        <label class="form-label mg-b-0">Image</label>
-                        <div class="form-group col-md-6">
+                    <div class="col-lg-6">
+                        <div class="form-group"
+                            style="position:relative;
+                                    padding:0;
+                                    margin-bottom: 10px;">
+                            <label class="form-control-label">Image: <span class="tx-danger">*</span></label>
                             <label for="exampleInputName1">Old Image</label>
                             <img src="{{ URL::to($user->image) }}" style="width: 70px; height: 50px;">
                             <input type="hidden" name="oldimage" value="{{ $user->image }}">
+                            <input class="form-control" type="file"class="custom-file-input" name="image"
+                                onchange="readURL(this);"
+                                style=" height:40px;
+                                        margin-bottom:25px;
+                                        padding-left:30px;">
+                            <span class="custom-file-control"></span>
+                            <img src="#" id="one">
+                            @error('image')
+                                <span class="text-danger">{{ $message }}</span>
+                            @enderror
+
                         </div>
-                        <input class="form-control" type="file" name="image">
-                        @error('image')
-                            <span class="text-danger">{{ $message }}</span>
-                        @enderror
                     </div>
 
 
-                    <div id="map" style="width:100%;height:400px;"></div>
-                    <input type="hidden" id="text-map" name="map" value="" />
+
+                    <div id="map" style="width:100%;height:400px;margin-bottom:20px;"></div>
+                    <input type="hidden" id="text-map" name="map" value="30.071265, 31.021114" />
 
 
                     <button type="submit" class="btn btn-primary mr-2">Submit</button>
@@ -161,6 +173,20 @@
                 });
             }
             window.initMap = initMap;
+        </script>
+        <script type="text/javascript">
+            function readURL(input) {
+                if (input.files && input.files[0]) {
+                    var reader = new FileReader();
+                    reader.onload = function(e) {
+                        $('#one')
+                            .attr('src', e.target.result)
+                            .width(80)
+                            .height(80);
+                    };
+                    reader.readAsDataURL(input.files[0]);
+                }
+            }
         </script>
 
         <script type="text/javascript"
