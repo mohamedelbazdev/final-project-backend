@@ -52,11 +52,12 @@ class UserController extends Controller {
             return $this->apiResponseValidation( $validator );
         }
 
-        $provider = $this->userModel
-        ->with('providers' )->provider()
-        ->withCount('rateprovider')
-        ->whereId($request->post('user_id'))
-        ->first();
+        // $provider = $this->userModel
+        // ->with('providers' )->provider()
+        // ->withCount('rateprovider')
+        // ->whereId($request->post('user_id'))
+        // ->first();
+        $provider=Provider::with('users')->whereUserId($request->post('user_id'))->with('categories')->withCount('rateprovider') ->first();;
        
        
         return $this->apiResponse( 'successfully', $provider);
