@@ -1,7 +1,7 @@
 @extends('admin.admin_master')
 @section('admin')
                 <div class="box-header">
-                    <a href="{{URL::to('/category/create')}}" class="btn btn-info m-4">Add category</a>
+                    <a href="{{URL::to('/create/category')}}" class="btn btn-info m-4">Add category</a>
                 </div> 
     
       
