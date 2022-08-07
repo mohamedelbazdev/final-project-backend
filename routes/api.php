@@ -14,6 +14,7 @@ use App\Http\Controllers\Api\User\RateProviderController;
 use App\Http\Controllers\Api\User\RateUserController;
 use App\Http\Controllers\Api\User\UserController;
 use App\Http\Controllers\Api\User\ContactFormController;
+use App\Http\Controllers\Api\User\SliderController;
 
 
 
@@ -74,6 +75,7 @@ Route::group(['middleware'=>['auth:sanctum'], 'prefix' => 'users'], function(){
 Route::group( ['prefix' => 'users'], function(){
     Route::get('categories', [CategroyController::class, 'index']);
     Route::get('providers', [UserController::class, 'providers']);
+    Route::get('sliders', [SliderController::class, 'index']);
     Route::post('contacts', [ContactFormController::class, 'ContactForm']);
 });
 
