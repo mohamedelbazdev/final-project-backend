@@ -124,17 +124,17 @@ class CategroyController extends Controller {
         }
         $category = Category::whereId( $request->post( 'category_id' ) )->get();
         $providerByCat = Provider::whereCategoryId( $request->post( 'category_id' ) )->get();
-        <<<<<<< Updated upstream
+        
         $count = Provider::whereCategoryId( $request->post( 'category_id' ) )->count();
 
-        $date = [
-            'category'=> $category,
-            'count'=>$count,
-            ===  ===  =
+        // $date = [
+        //     'category'=> $category,
+        //    
+            
 
             $date = [
                 'category'=> $category,
-                >>>>>>> Stashed changes
+                'count'=>$count,
                 'providers'=>$providerByCat,
 
             ];
