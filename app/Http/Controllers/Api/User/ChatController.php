@@ -109,8 +109,8 @@ class ChatController extends Controller
     {
         $data = $this->chat_room_model->where('user_1', $userId)
             ->orwhere('user_2', $userId)
-            ->with('user1_data:id,name,email')
-            ->with('user2_data:id,name,email')
+            ->with('user1_data:id,name,email,image')
+            ->with('user2_data:id,name,email,image')
             ->with('last_msg:body,room_id')
             ->with('unread_chat')
             ->orderBy('updated_at', 'DESC')
