@@ -41,6 +41,7 @@ Route::post('auth/login', [AuthController::class, 'login']);
 Route::apiResource('categories', CategroyController::class);
 
 
+
 /** Chat Section */
 Route::group(['middleware'=>['auth:sanctum'], 'prefix' => 'chats'], function(){
     Route::post('create_room', [ChatController::class, 'createRoom']);

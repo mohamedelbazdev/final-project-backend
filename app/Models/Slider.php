@@ -13,4 +13,12 @@ class Slider extends Model
         'image',
         'description'
     ];
+
+
+    public function getImageAttribute($value)
+    {
+        if($value) return url($value);
+
+        return $value;
+    }
 }

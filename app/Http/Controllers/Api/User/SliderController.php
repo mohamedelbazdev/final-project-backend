@@ -16,7 +16,12 @@ class SliderController extends Controller
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
+     * 
      */
+    public function __construct( Slider $slider ) {
+        $this->sliderModel = $slider;
+    }
+
     public function index()
     {
         //
@@ -44,6 +49,25 @@ class SliderController extends Controller
     public function store(Request $request)
     {
         //
+        // $validator = validator::make( $request->all(), [
+        //     'title' => 'required|string',
+        //     'description' => 'required|string',
+        // ] );
+
+        // if ( $validator->fails() ) {
+        //     return $this->apiResponseValidation( $validator );
+        // }
+
+        // $slider = $this->sliderModel->create( [
+        //     'title' => $request->post( 'title' ),
+        //     'description' => $request->post( 'description' ),
+        // ] );
+
+        // if ( $request->hasFile( 'avatar' ) && $request->file( 'avatar' )->isValid() ) {
+        //     $slider->addMediaFromRequest( 'avatar' )->toMediaCollection( 'avatar' );
+        // }
+
+        // return $this->apiResponse( 'successfully', $slider );
     }
 
     /**
