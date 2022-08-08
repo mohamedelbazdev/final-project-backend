@@ -25,13 +25,13 @@ class StoreProvider extends FormRequest
     {
         return [
             //
-            // 'user_id'     => 'required',
-            'name'     => 'required|min:3',
+            
+            'name'     => 'required|min:3|regex:/(^[a-zA-Z][a-zA-Z\s]{0,20}[a-zA-Z]$)/',
             'email'    => 'required|email',
-            'mobile' => 'required|min:11|numeric',
+            'mobile' => 'required|min:11|numeric|unique:users,mobile',
             'image'   => 'required|image|mimes:png,jpg,gif',
             'description'     => 'required',
-            'price'     => 'required',
+            'price'     => 'required|numeric',
             'category_id'     => 'required'
         ];
     }

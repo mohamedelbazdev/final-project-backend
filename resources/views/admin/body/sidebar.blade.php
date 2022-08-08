@@ -1,9 +1,3 @@
-@php
-$editData = DB::table('users')
-    ->where('id', Auth::user()->id)
-    ->first();
-@endphp
-
 <!-- partial:partials/_sidebar.html -->
 <nav class="sidebar sidebar-offcanvas" id="sidebar">
     <div class="sidebar-brand-wrapper d-none d-lg-flex align-items-center justify-content-center fixed-top">
@@ -17,15 +11,16 @@ $editData = DB::table('users')
             <div class="profile-desc">
                 <div class="profile-pic">
                     <div class="count-indicator">
-                        <img class="img-xs rounded-circle " src="{{ URL::to($editData->image ?? '') }}" alt="">
+                        <img class="img-xs rounded-circle " src="{{ URL::to(\Auth::user()->image ?? '') }}"
+                            alt="">
                         <span class="count bg-success"></span>
                     </div>
                     <div class="profile-name">
                         <h5 class="mb-0 font-weight-normal">{{ Auth::user()->name }}</h5>
                         <span>
-                            @if ($editData->role_id == 1)
+                            @if (\Auth::user()->role_id == 1)
                                 Admin
-                            @elseif($editData->role_id == 2)
+                            @elseif(\Auth::user()->role_id == 2)
                                 Provider
                             @else
                                 User
@@ -123,8 +118,8 @@ $editData = DB::table('users')
             </a>
             <div class="collapse" id="setting">
                 <ul class="nav flex-column sub-menu">
-                    <li class="nav-item"> <a class="nav-link" href="{{ route('user.create') }}"> add User </a></li>
-                    <li class="nav-item"> <a class="nav-link" href="{{ route('user.index') }}">User List </a></li>
+                    <li class="nav-item"> <a class="nav-link" href="{{ route('user.create') }}"> Add User </a></li>
+                    <li class="nav-item"> <a class="nav-link" href="{{ route('user.index') }}">All Users</a></li>
 
 
                 </ul>
@@ -193,11 +188,29 @@ $editData = DB::table('users')
                 </ul>
             </div>
         </li>
+        <li class="nav-item menu-items">
+            <a class="nav-link " data-toggle="collapse" href="#districtt" aria-expanded="false" aria-controls="district">
+                <span class="menu-icon">
+                    <i class="mdi mdi-playlist-play"></i>
+                </span>
+                <span class="menu-title">Slider</span>
+                <i class="menu-arrow"></i>
+            </a>
+            <div class="collapse" id="districtt">
+                <ul class="nav flex-column sub-menu">
+                    <li class="nav-item "> <a class="nav-link" href="{{ route('slider.create') }}"> Add Slider </a>
+                    </li>
+                    <li class="nav-item"> <a class="nav-link" href="{{ route('slider.index') }}"> All Sliders </a>
+                    </li>
+
+                </ul>
+            </div>
+        </li>
 
         <li class="nav-item menu-items">
             <a class="nav-link" data-toggle="collapse" href="#photo" aria-expanded="false" aria-controls="post">
                 <span class="menu-icon">
-                    <i class="mdi mdi-playlist-play"></i>
+                    <i class="mdi mdi-contacts"></i>
                 </span>
                 <span class="menu-title">
                     Contact Us
@@ -219,7 +232,7 @@ $editData = DB::table('users')
         <li class="nav-item menu-items">
             <a class="nav-link" data-toggle="collapse" href="#website" aria-expanded="false" aria-controls="post">
                 <span class="menu-icon">
-                    <i class="mdi mdi-playlist-play"></i>
+                    <i class="mdi mdi-security"></i>
                 </span>
                 <span class="menu-title">Payments</span>
                 <i class="menu-arrow"></i>

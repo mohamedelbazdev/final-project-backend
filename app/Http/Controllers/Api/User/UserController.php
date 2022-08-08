@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Http\Traits\ApiResponseTrait;
 use App\Models\Category;
 use App\Models\User;
+use App\Models\Provider;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
@@ -31,10 +32,14 @@ class UserController extends Controller {
     */
 
     public function providers(): \Illuminate\Http\JsonResponse {
-        $providers = $this->userModel ->with( ['providers' => function($querey){
-            $querey->with('categories');
-        }] ) ->provider()->get();
 
+        $providers = $this->userModel ->with(['providers' => function($querey){
+
+            $querey->with('categories');
+            
+        }])->withCount('favourite')->provider()->get();
+
+   
         return $this->apiResponse( 'successfully', $providers );
     }
 
@@ -53,12 +58,14 @@ class UserController extends Controller {
             return $this->apiResponseValidation( $validator );
         }
 
-        $provider = $this->userModel
-        ->with('providers' )->provider()
-        ->withCount('rateprovider')
-        ->whereId($request->post('user_id'))
-        ->first();
-
+        // $provider = $this->userModel
+        // ->with('providers' )->provider()
+        // ->withCount('rateprovider')
+        // ->whereId($request->post('user_id'))
+        // ->first();
+        $provider=Provider::with('users')->whereUserId($request->post('user_id'))->with('categories')->withCount('rateprovider') ->first();;
+       
+       
         return $this->apiResponse( 'successfully', $provider);
     }
 

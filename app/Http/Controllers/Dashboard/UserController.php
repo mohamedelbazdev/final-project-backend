@@ -20,7 +20,7 @@ class UserController extends Controller {
     public function index() {
 
         //
-        $users = User::all();
+        $users = User::where( 'role_id', '=', 3 )->get();
         return view( 'users.index', compact( 'users' ) );
     }
 
@@ -46,7 +46,7 @@ class UserController extends Controller {
     public function store( Request $request ) {
         //
         $data =  $this->validate( $request, [
-            'name'     => 'required|min:3',
+            'name'     => 'required|min:3|regex:/(^[a-zA-Z][a-zA-Z\s]{0,20}[a-zA-Z]$)/',
             'email'    => 'required|email',
             'password' => 'required|min:6|max:10',
             'mobile' => 'required|min:11|numeric',
@@ -121,11 +121,11 @@ class UserController extends Controller {
     public function update( Request $request, $id ) {
         //
         $data =  $this->validate( $request, [
-            'name'     => 'required|min:3',
-            'email'    => 'required|email',
-            'password' => 'required|min:6|max:10',
-            'mobile' => 'required|min:11|numeric',
-            'image'   => 'required|image|mimes:png,jpg,gif'
+            'name'     => 'required|min:3|regex:/(^[a-zA-Z][a-zA-Z\s]{0,20}[a-zA-Z]$)/',
+            'email'    => 'email',
+            'password' => 'min:6|max:10',
+            'mobile' => 'min:11|numeric',
+            'image'   =>'image|mimes:png,jpg,gif'
         ] );
 
         # Hash Password
@@ -134,6 +134,7 @@ class UserController extends Controller {
 
         $position = $request->map;
         $mycoords = explode( ',', $position );
+
         $data[ 'lat' ] = $mycoords[ 0 ];
         $data[ 'lng' ] = $mycoords[ 1 ];
         $oldimage = $request->oldimage;

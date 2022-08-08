@@ -21,7 +21,18 @@
                             
                     
                         <label for="image">image</label>
+                        
                 {{ Form::file('image',['class'=>'form-control']) }}
+               
+                <div class="form-group col-md-6">
+                            <label for="exampleInputName1">Old Image</label>
+                            <img src="{{ URL::to($category->image) }}" style="width: 70px; height: 50px;">
+                            <input type="hidden" name="oldimage" value="{{ $category->image }}">
+                            @if($errors->has('image'))
+                              <div class="alert alert-danger">{{$errors->first('image')}}
+                         @endif 
+                        </div>
+                       
                 <br>
                 {!! Form::submit('update category', ['class' => 'btn btn-primary']) !!}
                 {!! Form::close() !!}

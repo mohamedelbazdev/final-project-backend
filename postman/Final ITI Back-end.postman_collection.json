@@ -30,7 +30,7 @@
 							"formdata": [
 								{
 									"key": "email",
-									"value": "user@user.com",
+									"value": "ahmed@user.com",
 									"type": "text"
 								},
 								{
@@ -627,6 +627,29 @@
 							"path": [
 								"users",
 								"viewers"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Slider",
+			"item": [
+				{
+					"name": "New Request",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{url}}/users/sliders",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"users",
+								"sliders"
 							]
 						}
 					},

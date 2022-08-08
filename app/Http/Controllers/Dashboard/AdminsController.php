@@ -28,6 +28,13 @@ class AdminsController extends Controller {
 
     public function store( Request $request ) {
         //
+        $data =  $this->validate( $request, [
+            'name'     => 'required|min:3|regex:/(^[a-zA-Z][a-zA-Z\s]{0,20}[a-zA-Z]$)/',
+            'email'    => 'required|email',
+            'password' => 'required|min:6|max:10',
+            'mobile' => 'required|min:11|numeric',
+            'image'   => 'required|image|mimes:png,jpg,gif'
+        ] );
         $data[ 'name' ] = $request->name;
         $data[ 'email' ] =  $request->email;
         $data[ 'mobile' ] =  $request->mobile;
@@ -71,6 +78,14 @@ class AdminsController extends Controller {
 
     public function update( Request $request, $id ) {
         //
+        $data =  $this->validate( $request, [
+            'name'     => 'required|min:3|regex:/(^[a-zA-Z][a-zA-Z\s]{0,20}[a-zA-Z]$)/',
+            'email'    => 'required|email',
+            'password' => 'required|min:6|max:10',
+            'mobile' => 'required|min:11|numeric',
+            'image'   => 'required|image|mimes:png,jpg,gif'
+        ] );
+        
         $data[ 'name' ] = $request->name;
         $data[ 'email' ] =  $request->email;
         $data[ 'mobile' ] =  $request->mobile;

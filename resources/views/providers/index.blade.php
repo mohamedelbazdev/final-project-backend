@@ -2,7 +2,7 @@
 
 @section('admin')
                 <div class="box-header">
-                    <a href="{{URL::to('/provider/create')}}" class="btn btn-info m-4">Add Provider</a>
+                    <a href="{{URL::to('/create/provider')}}" class="btn btn-info m-4">Add Provider</a>
                 </div> 
     <div class="card-body">
         <div class="box-header with-border">

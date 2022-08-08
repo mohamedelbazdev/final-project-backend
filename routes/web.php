@@ -5,6 +5,7 @@ use  App\Http\Controllers\Dashboard\AdminsController;
 use  App\Http\Controllers\Dashboard\UserController;
 use App\Http\Controllers\Dashboard\CategoryController;
 use App\Http\Controllers\Dashboard\ProviderController;
+use App\Http\Controllers\Dashboard\SliderController;
 use App\Http\Controllers\Dashboard\PaymentsController;
 use App\Http\Controllers\Dashboard\AuthController;
 use App\Http\Controllers\Dashboard\OrdersController;
@@ -45,6 +46,12 @@ Route::group(['middleware' =>['auth','auth.admin'] ], function () {
         'create'
         ]]);
         Route::get('/create/category', [CategoryController::class, 'create'])->name('category.create');
+
+        Route::resource('slider', SliderController::class, ['except' => [
+                'create'
+                ]]);
+                Route::get('/create/slider', [SliderController::class, 'create'])->name('slider.create');
+        
 
 
         Route::resource('payment', PaymentsController::class);
