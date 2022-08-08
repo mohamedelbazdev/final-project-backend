@@ -44,7 +44,7 @@ class SliderController extends Controller
     {
         //
         $slider =  $this->validate( $request, [
-            'title'     => 'required|min:3|regex:/(^[a-zA-Z][a-zA-Z\s]{0,20}[a-zA-Z]$)/',
+            'title'     => 'required|min:3',
             'description'     => 'required|string',
             'image'   => 'required|image|mimes:png,jpg,gif'
         ] );
@@ -99,7 +99,7 @@ class SliderController extends Controller
     {
         //
         $slider =  $this->validate( $request, [
-            'title'     => 'required|min:3|regex:/(^[a-zA-Z][a-zA-Z\s]{0,20}[a-zA-Z]$)/',
+            'title'     => 'required|min:3',
             'description'     => 'required|string',
             'image'   => 'required|image|mimes:png,jpg,gif'
         ] );
