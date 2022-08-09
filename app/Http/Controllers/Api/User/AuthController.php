@@ -44,7 +44,7 @@ class AuthController extends Controller
             return $this->apiResponseValidation($validator);
         }
 
-        $user = $this->userModel->whereEmail($request->post('email'))->withCount('order')->withCount('favourite')->first();
+        $user = $this->userModel->whereEmail($request->post('email'))->first();
 
         if ($user) {
             if (!Hash::check($request->post('password'), $user->password)) {
