@@ -37,7 +37,7 @@ class UserController extends Controller {
         $providers = $this->userModel->with(['providers' => function($querey){
 
             $querey->with('categories');
-            
+
         }])->withCount('favourite')->provider()->get();
 
         return $this->apiResponse( 'successfully', $providers);
@@ -64,8 +64,8 @@ class UserController extends Controller {
         // ->whereId($request->post('user_id'))
         // ->first();
         $provider=Provider::with('users')->whereUserId($request->post('user_id'))->with('categories')->withCount('rateprovider') ->first();;
-       
-       
+
+
         return $this->apiResponse( 'successfully', $provider);
     }
 
@@ -156,6 +156,5 @@ class UserController extends Controller {
     public function count(){
         $counter=User::where('id', auth()->id())->withCount('order')->withCount('favourite')->first();
         return $this->apiResponse( 'successfully', $counter );
-        
     }
 }

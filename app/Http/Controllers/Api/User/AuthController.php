@@ -56,6 +56,10 @@ class AuthController extends Controller
                return $this->apiResponse('please active account', '',403,  'please active account');
            }
 
+           if($user->role_id == 1){
+               return $this->apiResponse('please join as user', '',403,  'please join as user');
+           }
+
             $token = $user->createToken('token')->plainTextToken;
 
             return $this->apiResponse('successfully', $user, 200 , null, $token);
