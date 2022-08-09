@@ -34,17 +34,13 @@ class UserController extends Controller {
 
     public function providers(): \Illuminate\Http\JsonResponse {
 
-        $providers = $this->userModel ->with(['providers' => function($querey){
+        $providers = $this->userModel->with(['providers' => function($querey){
 
             $querey->with('categories');
             
         }])->withCount('favourite')->provider()->get();
 
-
-
-   
-
-        return $this->apiResponse( 'successfully', $providers );
+        return $this->apiResponse( 'successfully', $providers);
     }
 
     /**

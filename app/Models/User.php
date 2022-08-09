@@ -80,8 +80,6 @@ class User extends Authenticatable {
         return $this->hasOne( Provider::class, 'user_id');
     }
 
-  
-   
 
     /**
      * Get the user's full path url.
@@ -106,8 +104,8 @@ class User extends Authenticatable {
         return $this->hasMany(Order::class, 'user_id');
     }
 
-    public function favourite(){
-        return $this->hasMany(Favorite::class, 'user_id')->whereUserId(Auth::id());
+    public function favorites(){
+        return $this->hasMany(Favorite::class, 'provider_id')->whereUserId(Auth::id());;
     }
     
 }

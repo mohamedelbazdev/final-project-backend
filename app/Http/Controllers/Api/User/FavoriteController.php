@@ -63,11 +63,11 @@ class FavoriteController extends Controller {
             return $this->apiResponse( 'not allow add it', null, 422 );
         }
 
-        $isExist = $this->favoriteModel->whereProviderIdAndUserId( $request->post( 'provider_id' ), Auth::id() )->count();
+        $isExist = $this->favoriteModel->whereProviderIdAndUserId( $request->post( 'provider_id' ), Auth::id() )->first();
 
-        if ( $isExist ) {
+        if ($isExist) {
             $isExist->delete();
-            //  return $this->apiResponse( 'not allow add it because is exits', null, 422 );
+            return $this->apiResponse( 'successfully remove it', $favorite );
         }
 
         $favorite = $this->favoriteModel->create( [
@@ -75,7 +75,7 @@ class FavoriteController extends Controller {
             'user_id' => Auth::id(),
         ] );
 
-        return $this->apiResponse( 'successfully', $favorite );
+        return $this->apiResponse( 'successfully added it', $favorite );
     }
 
     /**
