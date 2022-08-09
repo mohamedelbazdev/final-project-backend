@@ -54,7 +54,7 @@ class SliderController extends Controller
         $image = $request->image;
         if ( $image ) {
             $image_one = uniqid() . '.' . $image->getClientOriginalExtension();
-            Image::make( $image )->resize( 500, 300 )->save( 'images/Catimg/' . $image_one );
+            Image::make( $image )->save( 'images/Catimg/' . $image_one );
             $slider[ 'image' ] = 'images/Catimg/' . $image_one;}
             $notification = array(
                 'message' => 'slider Data Inserted Successfully',
@@ -110,7 +110,7 @@ class SliderController extends Controller
         $image = $request->image;
         if ( $image ) {
             $image_one = uniqid() . '.' . $image->getClientOriginalExtension();
-            Image::make( $image )->resize( 500, 300 )->save( 'images/Catimg/' . $image_one );
+            Image::make( $image )->save( 'images/Catimg/' . $image_one );
             $slider[ 'image' ] = 'images/Catimg/' . $image_one;}
         $slider->update();
         $notification = array(
