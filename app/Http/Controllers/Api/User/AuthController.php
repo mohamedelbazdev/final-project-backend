@@ -93,12 +93,13 @@ class AuthController extends Controller
             return $this->apiResponseValidation($validator);
         }
 
-        $user = $this->userModel->update([
+        $user = $this->userModel->create([
             'email' => $request->post('email'),
             'password' => $request->post('password'),
             'name' => $request->post('name'),
             'lat' => $request->post('lat'),
             'lng' => $request->post('lng'),
+            'mobile' => $request->post('phone')
         ]);
 
         return $this->apiResponse('successfully', $user);
