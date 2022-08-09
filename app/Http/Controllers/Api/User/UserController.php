@@ -10,6 +10,7 @@ use App\Models\Provider;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
+use Illuminate\Support\Facades\Auth;
 
 class UserController extends Controller {
     use ApiResponseTrait;
@@ -154,5 +155,11 @@ class UserController extends Controller {
 
     public function destroy( $id ) {
         //
+    }
+
+    public function count(){
+        $counter=User::where('id', auth()->id())->withCount('order')->withCount('favourite')->first();
+        return $this->apiResponse( 'successfully', $counter );
+        
     }
 }

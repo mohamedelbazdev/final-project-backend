@@ -306,7 +306,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \r\n    \"user_id\":10\r\n \r\n\r\n}",
+							"raw": "{\r\n    \r\n    \"user_id\":12\r\n \r\n\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -395,16 +395,6 @@
 				{
 					"name": "Create",
 					"request": {
-						"auth": {
-							"type": "bearer",
-							"bearer": [
-								{
-									"key": "token",
-									"value": "9|t53QfEF3keDwfhIg8s9VpQA18Brhn5OSzcskxIr5",
-									"type": "string"
-								}
-							]
-						},
 						"method": "POST",
 						"header": [],
 						"body": {
@@ -438,6 +428,16 @@
 				{
 					"name": "Create Favorit",
 					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "18|BZIue8OZksxoW0WOBP1d2AxhWc0szRrzqxD015KS",
+									"type": "string"
+								}
+							]
+						},
 						"method": "POST",
 						"header": [],
 						"body": {
@@ -445,7 +445,7 @@
 							"formdata": [
 								{
 									"key": "provider_id",
-									"value": "1",
+									"value": "10",
 									"type": "text"
 								}
 							]
@@ -652,6 +652,19 @@
 								"sliders"
 							]
 						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "countorderandfav",
+			"item": [
+				{
+					"name": "counter",
+					"request": {
+						"method": "GET",
+						"header": []
 					},
 					"response": []
 				}
