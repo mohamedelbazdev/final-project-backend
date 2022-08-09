@@ -74,7 +74,7 @@ class ChatController extends Controller
 
 //      $room_data = $this->chat_room_model::where('id', $room->id)->with('chat')->with('chat_post')->with('user1_data:id,name,email,phone')->with('user2_data:id,name,email,phone')->with('unread_chat')->first();
         $room_data = $this->chat_room_model->where('id', $room->id)->with('chat')->with('user1_data:id,name,email')->with('user2_data:id,name,email')->with('unread_chat')->first();
-      //  event(new chatRooms($room->user_1 , $room->id , $room_data));
+        event(new chatRooms($room->user_1 , $room->id , $room_data));
         return $this->apiResponse('created', $room);
     }
 
@@ -150,7 +150,7 @@ class ChatController extends Controller
             $room = $this->chat_room_model->find($message_data->room_id);
             $room->touch();
             $notificationUserId = $room['user_1'] == $message_data['sender_id'] ? $room['user_2'] : $room['user_1'];
-//            event(new roomMessages($message_data->body , $message_data->room_id , $message_data->sender_id , $message_data->created_at));
+            event(new roomMessages($message_data->body , $message_data->room_id , $message_data->sender_id , $message_data->created_at));
 
 //            $userReceived = $this->userModel->whereId($notificationUserId)->first();
             $userSender = $this->userModel->whereId($message_data['sender_id'])->first();
