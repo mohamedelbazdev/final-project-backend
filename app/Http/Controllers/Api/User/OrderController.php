@@ -77,7 +77,7 @@ class OrderController extends Controller
         if ($validator->fails()) {
             return $this->apiResponseValidation($validator);
         }
-        $provider = Provider::whereUserId($request->provider_id)->first();
+        $provider = Provider::whereUserId($request->provider_id)->with('users:id,name,image')->first();
         $user=User::where('id', auth()->id())->get();
         $price =$provider->price;
         $order = $this->orderModel->create([
@@ -96,7 +96,7 @@ class OrderController extends Controller
             
         ]);
         $data=[
-            
+            'provider'=>$provider,
             'order'=>$order,
             'user' => $user,   
         ];
