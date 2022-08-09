@@ -95,7 +95,7 @@ class AuthController extends Controller
 
         $user = $this->userModel->create([
             'email' => $request->post('email'),
-            'password' => $request->post('password'),
+            'password' => Hash::make($request->post('password')),
             'name' => $request->post('name'),
             'lat' => $request->post('lat'),
             'lng' => $request->post('lng'),
