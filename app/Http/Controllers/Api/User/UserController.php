@@ -63,7 +63,14 @@ class UserController extends Controller {
         // ->withCount('rateprovider')
         // ->whereId($request->post('user_id'))
         // ->first();
-        $provider=Provider::with('users')->whereUserId($request->post('user_id'))->with('categories')->withCount('rateprovider') ->first();
+        $provider=Provider::with(['users' => function($query){
+
+            $query->withCount('favorite');
+
+        }])->whereUserId($request->post('user_id'))
+            ->with('categories')
+            ->withCount('rateprovider')
+            ->first();
 
 
         return $this->apiResponse( 'successfully', $provider);
