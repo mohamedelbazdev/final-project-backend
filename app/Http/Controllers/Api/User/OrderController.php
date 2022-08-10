@@ -8,6 +8,7 @@ use App\Models\Category;
 use App\Models\Provider;
 use App\Models\Order;
 use App\Models\User;
+use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 use Illuminate\Support\Facades\Auth;
@@ -42,7 +43,6 @@ class OrderController extends Controller
         return $this->apiResponse('successfully', $orders);
     }
 
-
     /**
      * Display a listing of the resource.
      *
@@ -56,6 +56,27 @@ class OrderController extends Controller
     }
 
     /**
+     * Display a listing of the resource.
+     *
+     * @param Request $request
+     * @return JsonResponse
+     */
+    public function showOrder(Request $request): \Illuminate\Http\JsonResponse
+    {
+        $validator = validator::make($request->all(), [
+            'order_id' => 'required',
+        ]);
+
+        if ($validator->fails()) {
+            return $this->apiResponseValidation($validator);
+        }
+
+        $orders = $this->orderModel->find($request->post('order_id'));
+
+        return $this->apiResponse('successfully', $orders);
+    }
+
+    /**
      * Store a newly created resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
@@ -64,10 +85,10 @@ class OrderController extends Controller
     public function store(Request $request): \Illuminate\Http\JsonResponse
     {
         $validator = validator::make($request->all(), [
-           
+
             'provider_id' => 'required',
             'received_id' => 'required',
-            'description' => 'required',  
+            'description' => 'required',
             'hours' => 'required',
             'lat' => 'required',
             'lng' => 'required',
@@ -77,11 +98,12 @@ class OrderController extends Controller
         if ($validator->fails()) {
             return $this->apiResponseValidation($validator);
         }
+
         $provider = Provider::whereUserId($request->provider_id)->with('users:id,name,image')->first();
         $user=User::where('id', auth()->id())->get();
         $price =$provider->price;
         $order = $this->orderModel->create([
-            
+
             'user_id' => Auth::id(),
             'provider_id' => $request->post('provider_id'),
             'sender_id' => Auth::id(),
@@ -93,14 +115,14 @@ class OrderController extends Controller
             'lat' => $request->post('lat'),
             'lng' => $request->post('lat'),
             'executed_at' => $request->post('executed_at'),
-            
+
         ]);
         $data=[
             'provider'=>$provider,
             'order'=>$order,
-            'user' => $user,   
+            'user' => $user,
         ];
-        
+
         return $this->apiResponse('successfully', $data);
     }
 
@@ -138,5 +160,5 @@ class OrderController extends Controller
         //
     }
 
-    
+
 }

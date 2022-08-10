@@ -67,6 +67,7 @@ Route::group(['middleware'=>['auth:sanctum'], 'prefix' => 'users'], function(){
     Route::post('favorites/destroy', [FavoriteController::class, 'destroy']);
     Route::post('providers/details', [UserController::class, 'getProviderDetails']);
     Route::get('count', [UserController::class, 'count']);
+    Route::get('orders/details', [OrderController::class, 'showOrder']);
     Route::get('orders/sended', [OrderController::class, 'myOrders']);
     Route::get('orders/received', [OrderController::class, 'resivedOrders']);
 });
