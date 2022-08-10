@@ -154,7 +154,7 @@ class UserController extends Controller {
     }
 
     public function count(){
-        $counter=User::where('id', auth()->id())->withCount('order')->withCount('favourite')->first();
+        $counter=User::where('id', auth()->id())->withCount('order')->withCount('favorite')->first();
         return $this->apiResponse( 'successfully', $counter );
     }
 }
