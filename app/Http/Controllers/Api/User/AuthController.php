@@ -103,7 +103,8 @@ class AuthController extends Controller
             'name' => $request->post('name'),
             'lat' => $request->post('lat'),
             'lng' => $request->post('lng'),
-            'mobile' => $request->post('phone')
+            'mobile' => $request->post('phone'),
+            'role_id' => 3
         ]);
 
         return $this->apiResponse('successfully', $user);
