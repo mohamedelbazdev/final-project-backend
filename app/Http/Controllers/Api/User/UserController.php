@@ -34,9 +34,9 @@ class UserController extends Controller {
 
     public function providers(): \Illuminate\Http\JsonResponse {
 
-        $providers = $this->userModel->with(['providers' => function($querey){
+        $providers = $this->userModel->with(['providers' => function($query){
 
-            $querey->with('categories');
+            $query->with('categories');
 
         }])->get();
 
@@ -63,7 +63,6 @@ class UserController extends Controller {
         // ->withCount('rateprovider')
         // ->whereId($request->post('user_id'))
         // ->first();
-<<<<<<< HEAD
         $provider=Provider::with(['users' => function($query){
 
             $query->withCount('favorite');
@@ -71,17 +70,7 @@ class UserController extends Controller {
         }])->whereUserId($request->post('user_id'))
             ->with('categories')
             ->withCount('rateprovider')
-=======
-        $provider=Provider::with('users')
-        ->whereUserId($request->post('user_id'))
-        ->with('categories')
-        ->withCount('rateprovider')
-        ->with(['users' => function($querey){
-
-            $querey->withCount('favorite'); }])
->>>>>>> 784727596320e15bc767e2e77696c9c14002a087
             ->first();
-
 
         return $this->apiResponse( 'successfully', $provider);
     }
