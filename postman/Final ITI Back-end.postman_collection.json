@@ -419,6 +419,14 @@
 						}
 					},
 					"response": []
+				},
+				{
+					"name": "updateOrder",
+					"request": {
+						"method": "GET",
+						"header": []
+					},
+					"response": []
 				}
 			]
 		},

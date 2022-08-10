@@ -59,6 +59,7 @@ Route::group(['middleware'=>['auth:sanctum'], 'prefix' => 'users'], function(){
     Route::post('profile/edit', [AuthController::class, 'updateProfile']);
     Route::post('create', [AuthController::class, 'storeUser']);
     Route::post('orders/create', [OrderController::class, 'store']);
+    Route::post('orders/update', [OrderController::class, 'update']);
     Route::apiResource('rateprovider',RateProviderController::class);
     Route::post('viewers', [RateProviderController::class, 'viewers']);
     Route::post('providersByCat', [CategroyController::class, 'getProviderById']);
