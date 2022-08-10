@@ -38,7 +38,7 @@ class UserController extends Controller {
 
             $querey->with('categories');
 
-        }])->withCount('favourite')->provider()->get();
+        }])->get();
 
         return $this->apiResponse( 'successfully', $providers);
     }
