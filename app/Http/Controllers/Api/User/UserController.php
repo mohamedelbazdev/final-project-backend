@@ -38,7 +38,7 @@ class UserController extends Controller {
 
             $query->with('categories');
 
-        }])->get();
+        }])->where('role_id',2)->get();
 
         return $this->apiResponse( 'successfully', $providers);
     }
