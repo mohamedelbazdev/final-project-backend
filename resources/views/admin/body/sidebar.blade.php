@@ -119,7 +119,7 @@
             <div class="collapse" id="setting">
                 <ul class="nav flex-column sub-menu">
                     <li class="nav-item"> <a class="nav-link" href="{{ route('user.create') }}"> Add User </a></li>
-                    <li class="nav-item"> <a class="nav-link" href="{{ route('user.index') }}">All Users</a></li>
+                    <li class="nav-item"> <a class="nav-link" href="{{ route('user.index') }}">User List</a></li>
 
 
                 </ul>
@@ -189,7 +189,8 @@
             </div>
         </li>
         <li class="nav-item menu-items">
-            <a class="nav-link " data-toggle="collapse" href="#districtt" aria-expanded="false" aria-controls="district">
+            <a class="nav-link " data-toggle="collapse" href="#districtt" aria-expanded="false"
+                aria-controls="district">
                 <span class="menu-icon">
                     <i class="mdi mdi-playlist-play"></i>
                 </span>
@@ -219,9 +220,9 @@
             </a>
             <div class="collapse" id="photo">
                 <ul class="nav flex-column sub-menu">
-                    <li class="nav-item"> <a class="nav-link" href="{{ route('contact.us.store') }}"> add
+                    {{-- <li class="nav-item"> <a class="nav-link" href="{{ route('contact.us.store') }}"> add
                             Message</a>
-                    </li>
+                    </li> --}}
                     <li class="nav-item"> <a class="nav-link" href="{{ route('contacts.all') }}"> List All Messages
                         </a></li>
 
