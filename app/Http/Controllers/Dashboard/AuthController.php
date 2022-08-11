@@ -11,6 +11,8 @@ use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Facades\DB;
 use Intervention\Image\Facades\Image as Image;
 use Illuminate\Support\Facades\File;
+use Illuminate\Support\Facades\Redirect;
+use Illuminate\Support\Facades\Cache;
 
 class AuthController extends Controller {
     //
@@ -125,8 +127,11 @@ class AuthController extends Controller {
 
     public function signOut() {
         Session::flush();
-        Auth::logout();
-
-        return Redirect( 'admin/login' );
+        // Auth::logout();
+        auth()->logout();
+        Cache::flush();
+        return Redirect::to( 'admin/login' );
+        // return Redirect( 'admin/login' );
+        // return 'logged out successfully';
     }
 }
