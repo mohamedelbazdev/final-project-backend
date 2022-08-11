@@ -28,6 +28,15 @@
                             </div>
 
                             <div class="form-group">
+                            <label class="form-label mg-b-0">Password</label>
+                            <input class="form-control" name="password" type="password" placeholder="Enter your password">
+                            @error('password')
+                                <span class="text-danger">{{ $message }}</span>
+                            @enderror
+
+                        </div>
+
+                            <div class="form-group">
                         <label class="form-label mg-b-0">Email</label>
                         <input class="form-control" name="email" type="text" placeholder="Enter your email"
                             type="text" value="">

@@ -27,6 +27,18 @@
                     </div>
 
                     <div class="form-group">
+                        <label class="form-label mg-b-0">Password</label>
+                        <input class="form-control" name="password" type="password" placeholder="Enter your password"
+                            value="">
+                        @error('password')
+                            <span class="text-danger">{{ $message }}</span>
+                        @enderror
+
+                    </div>
+
+                    
+
+                    <div class="form-group">
                         <label class="form-label mg-b-0">Mobile Number</label>
                         <input class="form-control" name="mobile" type="text" value="{{ $user->mobile }}">
                     </div>
