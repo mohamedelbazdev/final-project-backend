@@ -6,6 +6,7 @@
         @php
             $category = DB::table('categories')->get();
             $user = DB::table('users')->get();
+            $order = DB::table('orders')->get();
             $admin = DB::table('users')->where('role_id',1)->get();
             $active = DB::table('users')->where('status',1)->where('role_id',3)->get();
             $inactive = DB::table('users')->where('status',0)->where('role_id',3)->get();
@@ -183,7 +184,7 @@
                         <div class="row">
                             <div class="col-9">
                                 <div class="d-flex align-items-center align-self-start">
-                                    <h3 class="mb-0"></h3>
+                                    <h3 class="mb-0">{{ count($order) }}</h3>
                                     <p class="text-success ml-2 mb-0 font-weight-medium">Orders</p>
                                 </div>
                             </div>
