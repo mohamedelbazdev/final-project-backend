@@ -452,6 +452,33 @@
 					"name": "myOrder",
 					"request": {
 						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{url}}/users/orders/sended",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"users",
+								"orders",
+								"sended"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "ordersReceived",
+					"request": {
+						"method": "GET",
+						"header": []
+					},
+					"response": []
+				},
+				{
+					"name": "orderDetails",
+					"request": {
+						"method": "GET",
 						"header": []
 					},
 					"response": []
