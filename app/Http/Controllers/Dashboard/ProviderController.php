@@ -157,7 +157,7 @@ class ProviderController extends Controller
             }
         $user = User::find($id) ; 
         $provider = Provider::find($id);
-        $provider->user_id = $user->id;
+        // $provider->user_id = $user->id;
         $provider->description = $request->description;
         $provider->category_id =$request->category_id;
         $provider->price = $request->price;
