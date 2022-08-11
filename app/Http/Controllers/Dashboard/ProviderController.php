@@ -181,7 +181,9 @@ class ProviderController extends Controller
     public function destroy($id)
     {
         //
+        $user_id =Provider::findOrFail($id)->user_id;
         DB :: table( 'providers' )->where( 'id', $id )->delete();
+        $user= User::where( 'id', $user_id )->delete();
         $notification = array(
             'message' => 'provider Deleted Successfully',
             'alert-type' => 'success'
