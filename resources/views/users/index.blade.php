@@ -40,9 +40,9 @@
                             <td style="width: 50%">{{ $user->mobile }}</td>
                             <td style="width: 50%">
                                 @if ($user->status == 1)
-                                    <span class="badge badge-success">Active</span>
+                                    <span class="badge badge-pill badge-success">active</span>
                                 @else
-                                    <span class="badge badge-danger">Inactive</span>
+                                    <span class="badge badge-pill badge-danger">Inactive</span>
                                 @endif
 
                             </td>
@@ -52,7 +52,7 @@
                                 @elseif($user->role_id == 2)
                                     <button type="button" class="btn btn-outline-danger btn-fw">Provider</button>
                                 @else
-                                    <button type="button" class="btn btn-outline-warning btn-fw">User</button>
+                                    <span class="badge badge-pill badge-primary">User</span>
                                 @endif
                             </td>
 
