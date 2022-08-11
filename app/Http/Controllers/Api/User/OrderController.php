@@ -71,7 +71,7 @@ class OrderController extends Controller
             return $this->apiResponseValidation($validator);
         }
 
-        $orders = $this->orderModel->find($request->post('order_id'));
+        $orders = $this->orderModel->find($request->post('order_id'))->with('user:id,name')->get();
 
         return $this->apiResponse('successfully', $orders);
     }
