@@ -39,7 +39,14 @@
 
                     <div class="form-group">
                         <label class="form-label mg-b-0">Image</label>
-                        <input class="form-control" type="file" name="image">
+                        <input class="form-control" type="file" class="custom-file-input" name="image"
+                        onchange="readURL(this);" required=""
+                                    style=" height:40px;
+                                        margin-bottom:25px;
+                                        padding-left:30px;">
+                                <span class="custom-file-control"></span>
+                                <img src="#" id="one" alt="">
+                        
                         @if($errors->has('image'))
                                  <span class="text-danger">{{$errors->first('image')}}</span>
                              @endif
@@ -92,6 +99,10 @@
                 </div>
             </div>
         </div>
+
+
+
+        
         <script>
             function initMap() {
                 var latlng = new google.maps.LatLng(30.071265, 31.021114);
@@ -116,6 +127,22 @@
                 });
             }
             window.initMap = initMap;
+        </script>
+
+</script>
+        <script type="text/javascript">
+            function readURL(input) {
+                if (input.files && input.files[0]) {
+                    var reader = new FileReader();
+                    reader.onload = function(e) {
+                        $('#one')
+                            .attr('src', e.target.result)
+                            .width(80)
+                            .height(80);
+                    };
+                    reader.readAsDataURL(input.files[0]);
+                }
+            }
         </script>
 
 <script type="text/javascript"

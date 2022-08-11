@@ -38,18 +38,28 @@
                     {{ Form::select('category_id',$categories, $provider['category_id'], ['class'=>'form-control select2','id'=>'category_id']) }}
                 </div>
 
-                <label for="image">image</label>
-                        
-                        {{ Form::file('image',['class'=>'form-control']) }}
-                       
-                        <div class="form-group col-md-6">
-                                    <label for="exampleInputName1">Old Image</label>
-                                    <img src="{{ URL::to($user->image) }}" style="width: 70px; height: 50px;">
-                                    <input type="hidden" name="oldimage" value="{{ $provider->image }}">
-                                    @if($errors->has('image'))
-                                      <div class="alert alert-danger">{{$errors->first('image')}}
-                                 @endif 
-                                </div>
+                <div class="col-lg-6">
+                        <div class="form-group"
+                            style="position:relative;
+                                    padding:0;
+                                    margin-bottom: 10px;">
+                            <label class="form-control-label">Image: <span class="tx-danger">*</span></label>
+                            <label for="exampleInputName1">Old Image</label>
+                            <img src="{{ URL::to($user->image) }}" style="width: 70px; height: 50px;">
+                            <input type="hidden" name="oldimage" value="{{ $provider->image }}">
+                            <input class="form-control" type="file"class="custom-file-input" name="image"
+                                onchange="readURL(this);"
+                                style=" height:40px;
+                                        margin-bottom:25px;
+                                        padding-left:30px;">
+                            <span class="custom-file-control"></span>
+                            <img src="#" id="one" alt="">
+                            @error('image')
+                                <span class="text-danger">{{ $message }}</span>
+                            @enderror
+
+                        </div>
+                    </div>
 
              
                 <div class="form-group">
@@ -68,7 +78,7 @@
                 </div>
 
                 <div id="map" style="width:100%;height:400px;"></div>
-                    <input type="hidden" id="text-map" name="map" value="30.071265, 31.021114">
+                    <input type="hidden" id="text-map" name="map" value="{{ $user->lat . ',' . $user->lng }}">
 
                 <br>
                 {!! Form::submit('update provider', ['class' => 'btn btn-primary']) !!}
@@ -100,6 +110,21 @@
                 });
             }
             window.initMap = initMap;
+        </script>
+
+<script type="text/javascript">
+            function readURL(input) {
+                if (input.files && input.files[0]) {
+                    var reader = new FileReader();
+                    reader.onload = function(e) {
+                        $('#one')
+                            .attr('src', e.target.result)
+                            .width(80)
+                            .height(80);
+                    };
+                    reader.readAsDataURL(input.files[0]);
+                }
+            }
         </script>
 
         <script type="text/javascript"
