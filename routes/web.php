@@ -51,7 +51,7 @@ Route::group(['middleware' =>['auth','auth.admin'] ], function () {
                 'create'
                 ]]);
                 Route::get('/create/slider', [SliderController::class, 'create'])->name('slider.create');
-        
+
 
 
         Route::resource('payment', PaymentsController::class);
@@ -65,7 +65,12 @@ Route::group(['middleware' =>['auth','auth.admin'] ], function () {
         Route::get('allConatcts',[ContactControler::class, 'allContactMessages'])->name('contacts.all');
 });
 
-// Account Setting Routes
+
+
+//admin=======
+Route::group(['middleware' =>['auth','auth.admin'] ], function(){
+    Route::get('admin/home', [AuthController::class,'index']);
+    // Account Setting Routes
 Route::get('/account/setting', [AuthController::class, 'AccountSetting'])->name('account.setting');
 
 Route::get('/profile/edit', [AuthController::class, 'ProfileEdit'])->name('profile.edit');
@@ -77,9 +82,8 @@ Route::post('/profile/store', [AuthController::class, 'ProfileStore'])->name('pr
 Route::get('/show/password', [AuthController::class, 'ShowPassword'])->name('show.password');
 
 Route::post('/change/password', [AuthController::class, 'ChangePassword'])->name('change.password');
+});
 
-//admin=======
-Route::get('admin/home', [AuthController::class,'index']);
 Route::get('admin/login', [AuthController::class,'showLoginForm'])->name('admin.showlogin')->middleware('guest');;
 Route::post('admin/login', [AuthController::class,'customLogin'])->name('admin.login');
 Route::get('admin/logout', [AuthController::class,'signOut'])->name('admin.logout');
