@@ -38,7 +38,7 @@ class OrderController extends Controller
      */
     public function myOrders(Request $request)
     {
-        $orders = $this->orderModel->whereSenderId(Auth::id())->get();
+        $orders = $this->orderModel->whereSenderId(Auth::id())->with('provider')->get();
 
         return $this->apiResponse('successfully', $orders);
     }

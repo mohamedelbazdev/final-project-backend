@@ -423,6 +423,34 @@
 				{
 					"name": "updateOrder",
 					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"order_id\":1,\r\n    \"status\":1\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{url}}/users/orders/update",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"users",
+								"orders",
+								"update"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "myOrder",
+					"request": {
 						"method": "GET",
 						"header": []
 					},
