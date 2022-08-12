@@ -85,7 +85,6 @@ class OrderController extends Controller
     public function store(Request $request): \Illuminate\Http\JsonResponse
     {
         $validator = validator::make($request->all(), [
-
             'provider_id' => 'required',
             'received_id' => 'required',
             'description' => 'required',
@@ -113,7 +112,7 @@ class OrderController extends Controller
             'total_amount'=>$request->post('hours')*$price,
             'hours' => $request->post('hours'),
             'lat' => $request->post('lat'),
-            'lng' => $request->post('lat'),
+            'lng' => $request->post('lng'),
             'executed_at' => $request->post('executed_at'),
 
         ]);
@@ -173,7 +172,7 @@ class OrderController extends Controller
     {
         //
     }
-   
+
 
 
 }
