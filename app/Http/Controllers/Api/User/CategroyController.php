@@ -122,8 +122,8 @@ class CategroyController extends Controller {
         if ( $validator->fails() ) {
             return $this->apiResponseValidation( $validator );
         }
-        $category = Category::whereId( $request->post( 'category_id' ) )->get();
-        $providerByCat = Provider::whereCategoryId( $request->post( 'category_id' ) )->get();
+        $category = Category::whereId( $request->post( 'category_id' ) )->first();
+        $providerByCat = Provider::whereCategoryId( $request->post( 'category_id' ) )->with('users')->get();
         
         $count = Provider::whereCategoryId( $request->post( 'category_id' ) )->count();
 
