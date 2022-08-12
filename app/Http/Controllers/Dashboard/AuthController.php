@@ -125,13 +125,15 @@ class AuthController extends Controller {
         return redirect( 'admin/login' )->withSuccess( 'Login details are not valid' );
     }
 
-    public function signOut() {
+    public function signOut(Request $request) {
         Session::flush();
         // Auth::logout();
         auth()->logout();
         Cache::flush();
-        return Redirect::to( 'admin/login' );
-        // return Redirect( 'admin/login' );
+        $request->session()->regenerate();
+        // return Redirect::back();
+     //   return Redirect::to( 'admin/login' );
+        return Redirect( 'admin/login' );
         // return 'logged out successfully';
     }
 }

@@ -50,7 +50,7 @@ class OrderController extends Controller
      */
     public function resivedOrders(Request $request)
     {
-        $orders = $this->orderModel->whereReceivedId(Auth::id())->get();
+        $orders = $this->orderModel->whereReceivedId(Auth::id())->with('user:id,name,image')->with('provider')->get();
 
         return $this->apiResponse('successfully', $orders);
     }
