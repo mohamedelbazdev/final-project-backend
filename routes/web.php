@@ -22,7 +22,8 @@ use App\Http\Controllers\Dashboard\ContactControler;
 |
 */
 Route::get('/',function(){
-return view('welcome');
+     // return view('welcome');
+     return redirect()->route('dashboard');
 });
 
 Route::group(['middleware' =>['auth','auth.admin'] ], function () {
