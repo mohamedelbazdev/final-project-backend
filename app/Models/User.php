@@ -105,7 +105,12 @@ class User extends Authenticatable {
     }
 
     public function favorite(){
-        return $this->hasMany(Favorite::class, 'user_id')->whereUserId(Auth::id());;
+        return $this->hasMany(Favorite::class, 'user_id')->whereUserId(Auth::id());
+    }
+
+    
+    public function isFavorite(){
+        return $this->hasMany(Favorite::class, 'provider_id')->whereUserId(Auth::id());
     }
     
 }

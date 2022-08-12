@@ -65,7 +65,7 @@ class UserController extends Controller {
         // ->first();
         $provider=Provider::with(['users' => function($query){
 
-            $query->withCount('favorite');
+            $query->withCount('isFavorite');
 
         }])->whereUserId($request->post('user_id'))
             ->with('categories')
