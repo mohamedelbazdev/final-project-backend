@@ -37,12 +37,21 @@ class RateProviderController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $validator = validator::make( $request->all(), [
+            'provider_id' => 'required|exists:users,id',
+            'rate' => 'required',
+            'description' => 'required|',
+        ] );
+
+        if ( $validator->fails() ) {
+            return $this->apiResponseValidation( $validator );
+        }
+
         $rataProvider = RateProvider::where('user_id', auth()->id())->where('provider_id',$request->provider_id)->first();
         if (!$rataProvider) {
 
             $data = RateProvider::create([
-                'user_id' =>auth()->id(),
+                'user_id' => auth()->id(),
                 // 'user_id' => 3,
                 'provider_id' => $request->provider_id,
                 'rate' => $request->rate,
@@ -55,7 +64,6 @@ class RateProviderController extends Controller
             $submit = RateProvider::whereProviderId($request->post('provider_id'))->sum('rate');
 
             if ($provider) {
-
                 $provider->rate = $submit / $count;
                 $provider->save();
             }
@@ -127,18 +135,18 @@ class RateProviderController extends Controller
         // $provider = Provider::whereUserId($request->provider_id)->first();
         $count = RateProvider::whereProviderId($request->post('provider_id'))->count();
         $viewers=RateProvider::whereProviderId($request->post('provider_id'))->with('user')->get();
-        
-        
+
+
         $data=[
-            
+
             'reviews'=>$count,
-            'rate' => $viewers,   
+            'rate' => $viewers,
         ];
-        
-       
+
+
         return $this->apiResponse( 'successfully', $data);
-    
-       
+
+
 
     }
 }
