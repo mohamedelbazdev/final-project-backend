@@ -52,6 +52,8 @@ Route::group(['middleware'=>['auth:sanctum'], 'prefix' => 'chats'], function(){
     Route::post('send_message', [ChatController::class, 'sendMessage']);
     Route::put('mark_as_read/{id}' , [ChatController::class, 'mark_as_read']);
     Route::get('delete_msg/{id}' , [ChatController::class, 'delete_msg']);
+    Route::get('sitesetting',[SiteSettingsController::class,'index']);
+    Route::post('EditSiteSetting',[SiteSettingsController::class, 'UpdateSiteSetting']);
 });
 
 /**  Section */
