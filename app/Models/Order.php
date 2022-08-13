@@ -24,6 +24,7 @@ class Order extends Model
         'lat',
         'lng',
         'status',
+        'paid',
         'executed_at'
     ];
 

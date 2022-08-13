@@ -71,6 +71,8 @@ Route::group(['middleware'=>['auth:sanctum'], 'prefix' => 'users'], function(){
     Route::post('orders/details', [OrderController::class, 'showOrder']);
     Route::get('orders/sended', [OrderController::class, 'myOrders']);
     Route::get('orders/received', [OrderController::class, 'resivedOrders']);
+    // pay order
+    Route::post('orders/pay', [PaymentController::class, 'pay']);
 });
 
 
