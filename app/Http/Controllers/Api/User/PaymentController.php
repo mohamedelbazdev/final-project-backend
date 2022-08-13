@@ -36,20 +36,24 @@ class PaymentController extends Controller
 
        $stripe = new \Stripe\StripeClient(env('STRIPE_SECRET'));
 
-       $data = $stripe->tokens->create([
-           'card' => [
-               'number' => $request->post('card_number'),
-               'exp_month' => $request->post('card_exp_month'),
-               'exp_year' => $request->post('card_exp_year'),
-               'cvc' => $request->post('card_cvc'),
-           ],
-       ]);
+       try {
+           $card = $stripe->tokens->create([
+               'card' => [
+                   'number' => $request->post('card_number'),
+                   'exp_month' => $request->post('card_exp_month'),
+                   'exp_year' => $request->post('card_exp_year'),
+                   'cvc' => $request->post('card_cvc'),
+               ],
+           ]);
+       }catch (\Exception $exception){
+           return $this->apiResponse('please check your card data', null, 422, 'error in Card');
+       }
 
        $order = Order::whereIdAndPaid($request->post('order_id'), '0')->whereSenderId(Auth::id())->first();
 
-       if($data['id'] && $order){
+       if($card['id'] && $order){
 
-           $stripeToken = $data['id'];
+           $stripeToken = $card['id'];
            Stripe\Stripe::setApiKey(env('STRIPE_SECRET'));
            $stripe = Stripe\Charge::create ([
                "amount" => $order['amount'],
@@ -57,7 +61,6 @@ class PaymentController extends Controller
                "source" => $stripeToken,
                "description" => "Test payment from itsolutionstuff.com."
            ]);
-//           return $this->apiResponse('successfully', $stripe->paid === true);
 
            if($stripe && $stripe->paid === true){
 
