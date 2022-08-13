@@ -72,8 +72,7 @@ Route::group(['middleware'=>['auth:sanctum'], 'prefix' => 'users'], function(){
     Route::post('orders/details', [OrderController::class, 'showOrder']);
     Route::get('orders/sended', [OrderController::class, 'myOrders']);
     Route::get('orders/received', [OrderController::class, 'resivedOrders']);
-    Route::get('sitesetting/', [SiteSettingsController::class,'index']);
-    Route::post('EditSiteSetting', [SiteSettingsController::class, 'UpdateSiteSetting']);
+
 });
 
 
@@ -83,6 +82,8 @@ Route::group( ['prefix' => 'users'], function(){
     Route::get('providers', [UserController::class, 'providers']);
     Route::get('sliders', [SliderController::class, 'index']);
     Route::post('contacts', [ContactFormController::class, 'ContactForm']);
+     Route::get('sitesetting', [SiteSettingsController::class,'index']);
+    Route::post('EditSiteSetting', [SiteSettingsController::class, 'UpdateSiteSetting']);
 });
 
 /** Chat Section */

@@ -15,76 +15,81 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Validator;
 
 class OrderController extends Controller
-{
+ {
     use ApiResponseTrait;
 
     /**
-     * @var Order
-     */
+    * @var Order
+    */
     protected $orderModel;
 
     /**
-     * @param Order $order
-     */
-    public function __construct(Order $order)
-    {
+    * @param Order $order
+    */
+
+    public function __construct( Order $order )
+ {
         $this->orderModel = $order;
     }
 
     /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\JsonResponse
-     */
-    public function myOrders(Request $request)
-    {
-        $orders = $this->orderModel->whereSenderId(Auth::id())->with('user:id,name,image')->with('provider')->get();
+    * Display a listing of the resource.
+    *
+    * @return \Illuminate\Http\JsonResponse
+    */
 
-        return $this->apiResponse('successfully', $orders);
+    public function myOrders( Request $request )
+ {
+        $orders = $this->orderModel->whereSenderId( Auth::id() )->with( 'user:id,name,image' )->with( 'provider' )->get();
+
+        return $this->apiResponse( 'successfully', $orders );
     }
 
     /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\JsonResponse
-     */
-    public function resivedOrders(Request $request)
-    {
-        $orders = $this->orderModel->whereReceivedId(Auth::id())->with('user:id,name,image')->with('provider')->get();
+    * Display a listing of the resource.
+    *
+    * @return \Illuminate\Http\JsonResponse
+    */
 
-        return $this->apiResponse('successfully', $orders);
+    public function resivedOrders( Request $request )
+ {
+        $orders = $this->orderModel->whereReceivedId( Auth::id() )->with( 'user:id,name,image' )->with( 'provider' )->get();
+
+        return $this->apiResponse( 'successfully', $orders );
     }
 
     /**
-     * Display a listing of the resource.
-     *
-     * @param Request $request
-     * @return JsonResponse
-     */
-    public function showOrder(Request $request): \Illuminate\Http\JsonResponse
-    {
-        $validator = validator::make($request->all(), [
+    * Display a listing of the resource.
+    *
+    * @param Request $request
+    * @return JsonResponse
+    */
+
+    public function showOrder( Request $request ): \Illuminate\Http\JsonResponse
+ {
+        $validator = validator::make( $request->all(), [
             'order_id' => 'required',
-        ]);
+        ] );
 
-        if ($validator->fails()) {
-            return $this->apiResponseValidation($validator);
+        if ( $validator->fails() ) {
+            return $this->apiResponseValidation( $validator );
         }
 
-        $orders = $this->orderModel->whereId($request->post('order_id'))->with('user:id,name')->first();
+        $orders = $this->orderModel->whereId( $request->post( 'order_id' ) )->with( 'user:id,name' )->first();
 
-        return $this->apiResponse('successfully', $orders);
+        return $this->apiResponse( 'successfully', $orders );
     }
 
     /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\JsonResponse
-     */
-    public function store(Request $request): \Illuminate\Http\JsonResponse
-    {
-        $validator = validator::make($request->all(), [
+    * Store a newly created resource in storage.
+    *
+    * @param  \Illuminate\Http\Request  $request
+    * @return \Illuminate\Http\JsonResponse
+    */
+
+    public function store( Request $request ): \Illuminate\Http\JsonResponse
+ {
+        $validator = validator::make( $request->all(), [
 
             'provider_id' => 'required',
             'received_id' => 'required',
@@ -93,59 +98,61 @@ class OrderController extends Controller
             'lat' => 'required',
             'lng' => 'required',
             'executed_at' => 'required',
-        ]);
+        ] );
 
-        if ($validator->fails()) {
-            return $this->apiResponseValidation($validator);
+        if ( $validator->fails() ) {
+            return $this->apiResponseValidation( $validator );
         }
 
-        $provider = Provider::whereUserId($request->provider_id)->with('users:id,name,image')->first();
-        $user=User::where('id', auth()->id())->get();
-        $price =$provider->price;
-        $order = $this->orderModel->create([
+        $provider = Provider::whereUserId( $request->provider_id )->with( 'users:id,name,image' )->first();
+        $user = User::where( 'id', auth()->id() )->get();
+        $price = $provider->price;
+        $order = $this->orderModel->create( [
 
             'user_id' => Auth::id(),
-            'provider_id' => $request->post('provider_id'),
+            'provider_id' => $request->post( 'provider_id' ),
             'sender_id' => Auth::id(),
-            'received_id' => $request->post('received_id'),
-            'description' => $request->post('description'),
+            'received_id' => $request->post( 'received_id' ),
+            'description' => $request->post( 'description' ),
             'amount' => $price,
-            'total_amount'=>$request->post('hours')*$price,
-            'hours' => $request->post('hours'),
-            'lat' => $request->post('lat'),
-            'lng' => $request->post('lat'),
-            'executed_at' => $request->post('executed_at'),
+            'total_amount'=>$request->post( 'hours' )*$price,
+            'hours' => $request->post( 'hours' ),
+            'lat' => $request->post( 'lat' ),
+            'lng' => $request->post( 'lat' ),
+            'executed_at' => $request->post( 'executed_at' ),
 
-        ]);
-        $data=[
+        ] );
+        $data = [
             'provider'=>$provider,
             'order'=>$order,
             'user' => $user,
         ];
 
-        return $this->apiResponse('successfully', $data);
+        return $this->apiResponse( 'successfully', $data );
     }
 
     /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return Response
-     */
-    public function show($id)
-    {
+    * Display the specified resource.
+    *
+    * @param  int  $id
+    * @return Response
+    */
+
+    public function show( $id )
+ {
         //
     }
 
     /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return Response
-     */
-    public function update(Request $request)
-    {
+    * Update the specified resource in storage.
+    *
+    * @param  \Illuminate\Http\Request  $request
+    * @param  int  $id
+    * @return Response
+    */
+
+    public function update( Request $request )
+ {
         //
 
         $validator = validator::make( $request->all(), [
@@ -164,16 +171,15 @@ class OrderController extends Controller
     }
 
     /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return Response
-     */
-    public function destroy($id)
-    {
+    * Remove the specified resource from storage.
+    *
+    * @param  int  $id
+    * @return Response
+    */
+
+    public function destroy( $id )
+ {
         //
     }
-   
-
 
 }
