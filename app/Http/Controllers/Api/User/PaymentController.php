@@ -56,7 +56,7 @@ class PaymentController extends Controller
            $stripeToken = $card['id'];
            Stripe\Stripe::setApiKey(env('STRIPE_SECRET'));
            $stripe = Stripe\Charge::create ([
-               "amount" => $order['amount'],
+               "amount" => $order['total_amount'],
                "currency" => "usd",
                "source" => $stripeToken,
                "description" => "Test payment from itsolutionstuff.com."
