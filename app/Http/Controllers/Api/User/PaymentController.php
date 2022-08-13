@@ -68,7 +68,7 @@ class PaymentController extends Controller
 
                Payment::create([
                    'order_id' => $order['id'],
-                   'amount' => $stripe['amount'],
+                   'amount' => $stripe['total_amount'],
                    'currency' => $stripe['currency'],
                    'source' => $stripe['source']->id,
                    'description' => $stripe['description'],
