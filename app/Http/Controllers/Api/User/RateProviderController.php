@@ -49,7 +49,7 @@ class RateProviderController extends Controller
                 'description' => $request->description,
             ]);
 
-            $provider = Provider::whereId($request->provider_id)->first();
+            $provider = Provider::whereUserId($request->provider_id)->first();
 
             $count = RateProvider::whereProviderId($request->post('provider_id'))->count();
             $submit = RateProvider::whereProviderId($request->post('provider_id'))->sum('rate');
