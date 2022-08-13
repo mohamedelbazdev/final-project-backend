@@ -48,7 +48,7 @@ class CategoryController extends Controller
         $image = $request->image;
         if ( $image ) {
             $image_one = uniqid() . '.' . $image->getClientOriginalExtension();
-            Image::make( $image )->resize( 500, 300 )->save( 'images/Catimg/' . $image_one );
+            Image::make( $image )->save( 'images/Catimg/' . $image_one );
             $category[ 'image' ] = 'images/Catimg/' . $image_one;}
             $notification = array(
                 'message' => 'Category Data Inserted Successfully',
@@ -98,7 +98,7 @@ class CategoryController extends Controller
         $image = $request->image;
         if ( $image ) {
             $image_one = uniqid() . '.' . $image->getClientOriginalExtension();
-            Image::make( $image )->resize( 500, 300 )->save( 'images/Catimg/' . $image_one );
+            Image::make( $image )->save( 'images/Catimg/' . $image_one );
             $category[ 'image' ] = 'images/Catimg/' . $image_one;}
         $category->update();
         $notification = array(
