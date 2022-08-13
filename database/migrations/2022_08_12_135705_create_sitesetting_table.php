@@ -16,14 +16,14 @@ class CreateSitesettingTable extends Migration
         Schema::create('sitesetting', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->string('phone')->nullable();
-            $table->string('mobile')->nullable();
+            $table->string('moblie')->nullable();
             $table->string('email')->nullable();
             $table->string('company_name')->nullable();
             $table->string('company_address')->nullable();
             $table->string('facebook')->nullable();
             $table->string('youtube')->nullable();
             $table->string('twitter')->nullable();
-            $table->string('instagram')->nullable();
+            $table->string('instgram')->nullable();
             $table->timestamps();
         });
     }
