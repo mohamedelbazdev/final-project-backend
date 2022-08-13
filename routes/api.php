@@ -15,6 +15,7 @@ use App\Http\Controllers\Api\User\RateUserController;
 use App\Http\Controllers\Api\User\UserController;
 use App\Http\Controllers\Api\User\ContactFormController;
 use App\Http\Controllers\Api\User\SliderController;
+use App\Http\Controllers\Api\User\SiteSettingsController;
 
 
 
@@ -71,6 +72,8 @@ Route::group(['middleware'=>['auth:sanctum'], 'prefix' => 'users'], function(){
     Route::post('orders/details', [OrderController::class, 'showOrder']);
     Route::get('orders/sended', [OrderController::class, 'myOrders']);
     Route::get('orders/received', [OrderController::class, 'resivedOrders']);
+    Route::get('sitesetting/', [SiteSettingsController::class,'index']);
+    Route::post('EditSiteSetting', [SiteSettingsController::class, 'UpdateSiteSetting']);
 });
 
 
