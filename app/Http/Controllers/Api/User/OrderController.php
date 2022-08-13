@@ -11,7 +11,7 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Validator;
 use Stripe;
 
-class PaymentController extends Controller {
+class OrderController extends Controller {
 
     use ApiResponseTrait;
 
