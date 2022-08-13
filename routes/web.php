@@ -10,7 +10,7 @@ use App\Http\Controllers\Dashboard\PaymentsController;
 use App\Http\Controllers\Dashboard\AuthController;
 use App\Http\Controllers\Dashboard\OrdersController;
 use App\Http\Controllers\Dashboard\ContactControler;
-
+use App\Http\Controllers\Dashboard\SettingController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -83,10 +83,14 @@ Route::post('/profile/store', [AuthController::class, 'ProfileStore'])->name('pr
 Route::get('/show/password', [AuthController::class, 'ShowPassword'])->name('show.password');
 
 Route::post('/change/password', [AuthController::class, 'ChangePassword'])->name('change.password');
+
 });
 
 Route::get('admin/login', [AuthController::class,'showLoginForm'])->name('admin.showlogin')->middleware('guest');;
 Route::post('admin/login', [AuthController::class,'customLogin'])->name('admin.login');
 Route::get('admin/logout', [AuthController::class,'signOut'])->name('admin.logout');
+
+Route::get('/web/setting', [SettingController::class, 'SiteSetting'])->name('website.setting');
+ Route::post('update/web/setting', [SettingController::class, 'UpdateSiteSetting'])->name('update.site.setting');
 
 

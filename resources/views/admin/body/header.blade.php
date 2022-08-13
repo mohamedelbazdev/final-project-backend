@@ -1,4 +1,3 @@
-
 <!-- partial -->
 <div class="container-fluid page-body-wrapper">
     <!-- partial:partials/_navbar.html -->
@@ -165,7 +164,8 @@
                 <li class="nav-item dropdown">
                     <a class="nav-link" id="profileDropdown" href="#" data-toggle="dropdown">
                         <div class="navbar-profile">
-                            <img class="img-xs rounded-circle" src="{{ URL::to(\Auth::user()->image) }}" alt="">
+                            <img class="img-xs rounded-circle" src="{{ URL::to(\Auth::user()->image) }}"
+                                alt="">
                             {{-- <p class="mb-0 d-none d-sm-block navbar-profile-name">{{ \Auth::user()->name }}</p> --}}
                             <i class="mdi mdi-menu-down d-none d-sm-block"></i>
                         </div>
@@ -174,7 +174,7 @@
                         aria-labelledby="profileDropdown">
                         <h6 class="p-3 mb-0">Profile</h6>
                         <div class="dropdown-divider"></div>
-                        <a class="dropdown-item preview-item">
+                        <a class="dropdown-item preview-item" href="{{ route('website.setting') }}">
                             <div class="preview-thumbnail">
                                 <div class="preview-icon bg-dark rounded-circle">
                                     <i class="mdi mdi-settings text-success"></i>
