@@ -141,25 +141,25 @@ class OrderController extends Controller
      *
      * @param  \Illuminate\Http\Request  $request
      * @param  int  $id
-     * @return Response
+     * @return
      */
     public function update(Request $request)
     {
         //
-
         $validator = validator::make( $request->all(), [
             'order_id' => 'required|exists:orders,id',
             'status' => 'required',
-        ] );
-        if ( $validator->fails() ) {
+        ]);
+
+        if ($validator->fails()) {
             return $this->apiResponseValidation( $validator );
         }
-        $order = Order::find( $request->post( 'order_id' ) );
-        $order->update( [
-            'status' => $request->post( 'status' ),
-        ] );
 
-        return $this->apiResponse( 'successfully', $order );
+        $order = Order::find($request->post('order_id'));
+
+        $order->update(['status' => $request->post('status')]);
+
+        return $this->apiResponse( 'successfully', $order);
     }
 
     /**
