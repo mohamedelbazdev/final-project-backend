@@ -4,182 +4,82 @@ namespace App\Http\Controllers\Api\User;
 
 use App\Http\Controllers\Controller;
 use App\Http\Traits\ApiResponseTrait;
-use App\Models\Category;
-use App\Models\Provider;
 use App\Models\Order;
-use App\Models\User;
-use Illuminate\Http\JsonResponse;
+use App\Models\Payment;
 use Illuminate\Http\Request;
-use Illuminate\Http\Response;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Validator;
+use Stripe;
 
-class OrderController extends Controller
- {
+class PaymentController extends Controller {
+
     use ApiResponseTrait;
 
     /**
-    * @var Order
-    */
-    protected $orderModel;
-
-    /**
-    * @param Order $order
-    */
-
-    public function __construct( Order $order )
- {
-        $this->orderModel = $order;
-    }
-
-    /**
-    * Display a listing of the resource.
-    *
-    * @return \Illuminate\Http\JsonResponse
-    */
-
-    public function myOrders( Request $request )
- {
-        $orders = $this->orderModel->whereSenderId( Auth::id() )->with( 'user:id,name,image' )->with( 'provider' )->get();
-
-        return $this->apiResponse( 'successfully', $orders );
-    }
-
-    /**
-    * Display a listing of the resource.
-    *
-    * @return \Illuminate\Http\JsonResponse
-    */
-
-    public function resivedOrders( Request $request )
- {
-        $orders = $this->orderModel->whereReceivedId( Auth::id() )->with( 'user:id,name,image' )->with( 'provider' )->get();
-
-        return $this->apiResponse( 'successfully', $orders );
-    }
-
-    /**
-    * Display a listing of the resource.
-    *
     * @param Request $request
-    * @return JsonResponse
-    */
-
-    public function showOrder( Request $request ): \Illuminate\Http\JsonResponse
- {
-        $validator = validator::make( $request->all(), [
-            'order_id' => 'required',
-        ] );
-
-        if ( $validator->fails() ) {
-            return $this->apiResponseValidation( $validator );
-        }
-
-        $orders = $this->orderModel->whereId( $request->post( 'order_id' ) )->with( 'user:id,name' )->first();
-
-        return $this->apiResponse( 'successfully', $orders );
-    }
-
-    /**
-    * Store a newly created resource in storage.
-    *
-    * @param  \Illuminate\Http\Request  $request
     * @return \Illuminate\Http\JsonResponse
+    * @throws Stripe\Exception\ApiErrorException
     */
 
-    public function store( Request $request ): \Illuminate\Http\JsonResponse
- {
-        $validator = validator::make( $request->all(), [
-
-            'provider_id' => 'required',
-            'received_id' => 'required',
-            'description' => 'required',
-            'hours' => 'required',
-            'lat' => 'required',
-            'lng' => 'required',
-            'executed_at' => 'required',
-        ] );
-
-        if ( $validator->fails() ) {
-            return $this->apiResponseValidation( $validator );
-        }
-
-        $provider = Provider::whereUserId( $request->provider_id )->with( 'users:id,name,image' )->first();
-        $user = User::where( 'id', auth()->id() )->get();
-        $price = $provider->price;
-        $order = $this->orderModel->create( [
-
-            'user_id' => Auth::id(),
-            'provider_id' => $request->post( 'provider_id' ),
-            'sender_id' => Auth::id(),
-            'received_id' => $request->post( 'received_id' ),
-            'description' => $request->post( 'description' ),
-            'amount' => $price,
-            'total_amount'=>$request->post( 'hours' )*$price,
-            'hours' => $request->post( 'hours' ),
-            'lat' => $request->post( 'lat' ),
-            'lng' => $request->post( 'lat' ),
-            'executed_at' => $request->post( 'executed_at' ),
-
-        ] );
-        $data = [
-            'provider'=>$provider,
-            'order'=>$order,
-            'user' => $user,
-        ];
-
-        return $this->apiResponse( 'successfully', $data );
-    }
-
-    /**
-    * Display the specified resource.
-    *
-    * @param  int  $id
-    * @return Response
-    */
-
-    public function show( $id )
- {
-        //
-    }
-
-    /**
-    * Update the specified resource in storage.
-    *
-    * @param  \Illuminate\Http\Request  $request
-    * @param  int  $id
-    * @return Response
-    */
-
-    public function update( Request $request )
- {
-        //
-
+    public function pay( Request $request ) {
         $validator = validator::make( $request->all(), [
             'order_id' => 'required|exists:orders,id',
-            'status' => 'required',
+            'card_number' => 'required|string',
+            'card_exp_month' => 'required|string',
+            'card_exp_year' => 'required|string',
+            'card_cvc' => 'required|string',
         ] );
+
         if ( $validator->fails() ) {
             return $this->apiResponseValidation( $validator );
         }
-        $order = Order::find( $request->post( 'order_id' ) );
-        $order->update( [
-            'status' => $request->post( 'status' ),
-        ] );
 
-        return $this->apiResponse( 'successfully', $order );
+        $stripe = new \Stripe\StripeClient( env( 'STRIPE_SECRET' ) );
+
+        try {
+            $card = $stripe->tokens->create( [
+                'card' => [
+                    'number' => $request->post( 'card_number' ),
+                    'exp_month' => $request->post( 'card_exp_month' ),
+                    'exp_year' => $request->post( 'card_exp_year' ),
+                    'cvc' => $request->post( 'card_cvc' ),
+                ],
+            ] );
+        } catch ( \Exception $exception ) {
+            return $this->apiResponse( 'please check your card data', null, 422, 'error in Card' );
+        }
+
+        $order = Order::whereIdAndPaid( $request->post( 'order_id' ), '0' )->whereSenderId( Auth::id() )->first();
+
+        if ( $card[ 'id' ] && $order ) {
+
+            $stripeToken = $card[ 'id' ];
+            Stripe\Stripe::setApiKey( env( 'STRIPE_SECRET' ) );
+            $stripe = Stripe\Charge::create ( [
+                'amount' => $order[ 'total_amount' ],
+                'currency' => 'usd',
+                'source' => $stripeToken,
+                'description' => 'Test payment from itsolutionstuff.com.'
+            ] );
+
+            if ( $stripe && $stripe->paid === true ) {
+
+                $order->update( [ 'paid' => 1 ] );
+
+                Payment::create( [
+                    'order_id' => $order[ 'id' ],
+                    'amount' => $stripe[ 'total_amount' ],
+                    'currency' => $stripe[ 'currency' ],
+                    'source' => $stripe[ 'source' ]->id,
+                    'description' => $stripe[ 'description' ],
+                    'strip_id' => $stripe[ 'id' ]
+                ] );
+
+                return $this->apiResponse( 'successfully', $order );
+            }
+            return $this->apiResponse( 'error charged', null, 422, 'error' );
+        }
+
+        return $this->apiResponse( 'error in order', null, 422, 'error' );
     }
-
-    /**
-    * Remove the specified resource from storage.
-    *
-    * @param  int  $id
-    * @return Response
-    */
-
-    public function destroy( $id )
- {
-        //
-    }
-
 }
