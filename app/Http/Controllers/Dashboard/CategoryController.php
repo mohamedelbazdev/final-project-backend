@@ -128,7 +128,7 @@ class CategoryController extends Controller
         })->pluck('id');
 
         if($users){
-            $users->delete();
+            User::destroy($users);
         }
 
         DB :: table( 'categories' )->where( 'id', $id )->delete();
