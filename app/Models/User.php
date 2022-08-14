@@ -53,6 +53,14 @@ class User extends Authenticatable {
     * @param $query
     * @return void
     */
+    public function scopeActive($query) {
+        $query->where( 'status', '1');
+    }
+
+    /**
+    * @param $query
+    * @return void
+    */
 
     public function scopeAdmin( $query ) {
         $query->where( 'role_id', 1 );
@@ -108,7 +116,7 @@ class User extends Authenticatable {
         return $this->hasMany(Favorite::class, 'user_id')->whereUserId(Auth::id());
     }
 
-    
+
     public function isFavorite(){
         return $this->hasMany(Favorite::class, 'provider_id')->whereUserId(Auth::id());
     }
@@ -117,6 +125,4 @@ class User extends Authenticatable {
     {
         return $this->hasMany(Payment::class, 'user_id');
     }
-    
-    
 }

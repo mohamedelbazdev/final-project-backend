@@ -34,7 +34,7 @@ class UserController extends Controller {
 
     public function providers(): \Illuminate\Http\JsonResponse {
 
-        $providers = $this->userModel->with(['providers' => function($query){
+        $providers = $this->userModel->active()->with(['providers' => function($query){
 
             $query->with('categories');
 
