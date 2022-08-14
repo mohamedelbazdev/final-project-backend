@@ -91,9 +91,9 @@ class CategoryController extends Controller
     /**
      * Update the specified resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return Response
+     * @param UpdateCategory $request
+     * @param int $id
+     * @return Application|RedirectResponse|Redirector
      */
     public function update(UpdateCategory $request, $id)
     {
