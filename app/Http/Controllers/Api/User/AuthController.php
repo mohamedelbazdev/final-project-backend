@@ -6,6 +6,8 @@ use App\Http\Controllers\Controller;
 use App\Http\Traits\ApiResponseTrait;
 use App\Http\Traits\FileUploaderTrait;
 use App\Models\User;
+use App\Rules\CheckSamePassword;
+use App\Rules\MatchOldPassword;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -120,7 +122,8 @@ class AuthController extends Controller
             'name' => 'required|string',
             'lat' => 'required',
             'lng' => 'required',
-            'email' => 'required'
+            'email' => 'required',
+            'mobile' => 'required'
         ]);
 
         if ($validator->fails()) {
@@ -133,9 +136,36 @@ class AuthController extends Controller
             'lat' => $request->post('lat'),
             'lng' => $request->post('lng'),
             'email' => $request->post('email'),
+            'mobile' => $request->post('mobile'),
         ]);
 
         return $this->apiResponse('successfully', $user);
     }
 
+    /**
+     * @param $request
+     * @return JsonResponse
+     */
+    public function changePassword(Request $request): JsonResponse
+    {
+        $validator = validator::make($request->all(), [
+            'current_password' => ['required', new MatchOldPassword],
+            'password' => ['required','min:8', new CheckSamePassword],
+            'password_confirmation' => 'required|same:password',
+        ]);
+
+        if ($validator->fails()) {
+            return $this->apiResponseValidation($validator);
+        }
+
+        $user = $this->userModel->find(Auth::id());
+        if($user){
+            $user->update(
+                [ 'password' => Hash::make($request->password)]
+            );
+            return $this->apiResponse('Successfully Updated');
+        }else{
+            return $this->apiResponse('not found',null,422,'not found');
+        }
+    }
 }
