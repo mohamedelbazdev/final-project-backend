@@ -19,7 +19,7 @@
                                     <div class="form-group">
                                 <label class="form-label mg-b-0">Name</label>
                                 <input class="form-control" name="name" type="text" placeholder="Enter your firstname"
-                                    type="text" value="">
+                                    type="text" value="{{ old('name') }}">
                                     @error('name')
                                 <span class="text-danger">{{ $message }}</span>
                                  @enderror
@@ -29,7 +29,7 @@
 
                             <div class="form-group">
                             <label class="form-label mg-b-0">Password</label>
-                            <input class="form-control" name="password" type="password" placeholder="Enter your password">
+                            <input class="form-control" name="password" type="password" placeholder="Enter your password"value="{{ old('password') }}">
                             @error('password')
                                 <span class="text-danger">{{ $message }}</span>
                             @enderror
@@ -39,7 +39,7 @@
                             <div class="form-group">
                         <label class="form-label mg-b-0">Email</label>
                         <input class="form-control" name="email" type="text" placeholder="Enter your email"
-                            type="text" value="">
+                            type="text" value="{{ old('email') }}">
                             @error('email')
                                 <span class="text-danger">{{ $message }}</span>
                             @enderror
@@ -56,15 +56,15 @@
                                 <span class="custom-file-control"></span>
                                 <img src="#" id="one" alt="">
                         
-                        @if($errors->has('image'))
-                                 <span class="text-danger">{{$errors->first('image')}}</span>
-                             @endif
+                                @error('image')
+                                <span class="text-danger">{{ $message }}</span>
+                                 @enderror
                     </div>
 
                     <div class="form-group">
                             <label class="form-label mg-b-0">Mobile Number</label>
                             <input class="form-control" name="mobile" type="text"
-                                placeholder="Enter your Mobile Number">
+                                placeholder="Enter your Mobile Number" value="{{ old('mobile') }}">
                                 @error('mobile')
                             <span class="text-danger">{{ $message }}</span>
                         @enderror
@@ -76,24 +76,24 @@
                         <div class="form-group">
                                 <label for="categories"> Category</label>
                             {{ Form::select('category_id',$categories, null, ['class'=>'form-control select2','id'=>'category_id']) }}
-                            @if($errors->has('category_id'))
-                                 <span class="text-danger">{{$errors->first('category_id')}}</span>
-                             @endif
+                            @error('category_id')
+                                <span class="text-danger">{{ $message }}</span>
+                                 @enderror
                         </div>
 
                        
 
                         <div class="form-group">
                             <label for="exampleFormControlSelect2">Description</label>
-                            <input name="description" class="form-control" placeholder="Enter Provider Description" type="textarea">
-                            @if($errors->has('description'))
-                                 <span class="text-danger">{{$errors->first('description')}}</span>
-                             @endif
+                            <input name="description" class="form-control" placeholder="Enter Provider Description" type="textarea" value="{{ old('description') }}">
+                            @error('description')
+                                <span class="text-danger">{{ $message }}</span>
+                                 @enderror
                         </div>
 
                         <div class="form-group">
                             <label for="exampleFormControlSelect2">Price</label>
-                            <input name="price" class="form-control" placeholder="Enter Provider Price" type="textarea">
+                            <input name="price" class="form-control" placeholder="Enter Provider Price" type="textarea" value="{{ old('price') }}">
                             @if($errors->has('price'))
                                  <span class="text-danger">{{$errors->first('price')}}</span>
                              @endif
