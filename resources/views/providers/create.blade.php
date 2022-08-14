@@ -49,16 +49,16 @@
                     <div class="form-group">
                         <label class="form-label mg-b-0">Image</label>
                         <input class="form-control" type="file" class="custom-file-input" name="image"
-                        onchange="readURL(this);" required=""
+                        onchange="readURL(this);" 
                                     style=" height:40px;
                                         margin-bottom:25px;
                                         padding-left:30px;">
                                 <span class="custom-file-control"></span>
                                 <img src="#" id="one" alt="">
-                        
                                 @error('image')
                                 <span class="text-danger">{{ $message }}</span>
                                  @enderror
+                              
                     </div>
 
                     <div class="form-group">

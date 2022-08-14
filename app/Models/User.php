@@ -112,5 +112,10 @@ class User extends Authenticatable {
     public function isFavorite(){
         return $this->hasMany(Favorite::class, 'provider_id')->whereUserId(Auth::id());
     }
+
+    public function payment()
+    {
+        return $this->hasMany(Payment::class, 'user_id');
+    }
     
 }

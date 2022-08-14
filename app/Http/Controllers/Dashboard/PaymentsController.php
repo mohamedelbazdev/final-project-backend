@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Dashboard;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use App\Models\Payment;
 
 class PaymentsController extends Controller {
     /**
@@ -14,7 +15,9 @@ class PaymentsController extends Controller {
 
     public function index() {
         //
-        return view( 'payments.index' );
+        $payments = Payment::latest()->get();
+        //
+        return view( 'payments.index' ,compact('payments'));
     }
 
     /**
