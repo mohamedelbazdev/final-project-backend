@@ -70,6 +70,7 @@ class UserController extends Controller {
         }])->whereUserId($request->post('user_id'))
             ->with('categories')
             ->withCount('rateprovider')
+            
             ->first();
 
         return $this->apiResponse( 'successfully', $provider);
