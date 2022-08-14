@@ -125,7 +125,11 @@ class CategoryController extends Controller
         DB::beginTransaction();
         $users = User::whereHas('providers', function($query) use($id){
             $query->where('category_id', $id);
-        })->delete();
+        })->pluck('id');
+
+        if($users){
+            $users->delete();
+        }
 
         DB :: table( 'categories' )->where( 'id', $id )->delete();
 
