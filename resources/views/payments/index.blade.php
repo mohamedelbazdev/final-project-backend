@@ -6,7 +6,7 @@
     ?>
     <ol class="breadcrumb">
         <li class="breadcrumb-item {{ $pull }}"><a href="{{ URL::to('/dashboard') }}"> Home</a></li>
-        <li class="breadcrumb-item {{ $pull }}"><a href="{{ URL::to('/payments') }}"> Payments</a></li>
+        <!-- <li class="breadcrumb-item {{ $pull }}"><a href="{{ URL::to('/payments') }}"> Payments</a></li> -->
         <li class="breadcrumb-item active {{ $pull }}">Payments DataTable</li>
     </ol>
     <div class="card">
@@ -20,9 +20,9 @@
                         <tr>
                             <th>User</th>
                             <th>Provider</th>
-                            <th>Order</th>
                             <th>Total Amount</th>
                             <th>currency</th>
+                            <th>source</th>
                             <th>description</th>
                             <th>strip_id</th>
 
@@ -32,12 +32,12 @@
                     <tbody>
                     @foreach ($payments as $key => $payment)
                         <tr>
-                            <td>user</td>
-                            <td>Provider</td>
-                            <td class="text-danger"> 28.76% <i class="mdi mdi-arrow-down"></i></td> 
-                            <td>{{$payment->amount}}</td>
+                            <td>{{$payment->order->user->name}}</td>
+                            <td>{{$payment->order->provider->name}}</td>
+                           <td>{{$payment->amount}}</td>
                             <td>{{$payment->currency}}</td>
-                            <td>{{$payment->description}}</td>
+                            <td>{{\Illuminate\Support\Str::limit($payment->source,10)}}</td>
+                            <td>{{\Illuminate\Support\Str::limit($payment->description,10)}}</td>
                             <td>{{$payment->strip_id}}</td>
                         </tr>
                       

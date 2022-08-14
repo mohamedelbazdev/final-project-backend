@@ -15,7 +15,11 @@ class PaymentsController extends Controller {
 
     public function index() {
         //
-        $payments = Payment::latest()->get();
+        $payments = Payment::latest()->with(['order' => function($query){
+
+            $query->with(['user','provider']);
+        }])->get();
+            
         //
         return view( 'payments.index' ,compact('payments'));
     }
