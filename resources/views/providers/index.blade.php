@@ -39,7 +39,7 @@
                               {{optional($provider->categories)->name}}
                             </td>
                             <td style="width: 50%"><img src="{{$provider->users->image}}" alt=""></td>
-                            <td style="width: 50%">{{ $provider->description }}</td>
+                            <td style="width: 50%">{{\Illuminate\Support\Str::limit($provider->description,10)}}</td>
                             <td style="width: 50%">{{ $provider->price }}</td>
                             <td style="width: 50%">{{ $provider->rate }}</td>
                             <td style="width: 50%">{{ $provider->users->mobile }}</td>
