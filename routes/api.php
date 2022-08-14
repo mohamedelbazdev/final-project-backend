@@ -15,8 +15,6 @@ use App\Http\Controllers\Api\User\ContactFormController;
 use App\Http\Controllers\Api\User\SliderController;
 
 
-
-
 /*
 |--------------------------------------------------------------------------
 | API Routes

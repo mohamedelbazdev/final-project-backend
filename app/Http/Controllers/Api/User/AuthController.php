@@ -146,7 +146,7 @@ class AuthController extends Controller
      * @param $request
      * @return JsonResponse
      */
-    public function changePassword($request): JsonResponse
+    public function changePassword(Request $request): JsonResponse
     {
         $validator = validator::make($request->all(), [
             'current_password' => ['required', new MatchOldPassword],
@@ -154,8 +154,8 @@ class AuthController extends Controller
             'password_confirmation' => 'required|same:password',
         ]);
 
-        if($validator->fails()){
-            return $this->apiResponse('Validation Errors' ,null, 422, $validator->errors());
+        if ($validator->fails()) {
+            return $this->apiResponseValidation($validator);
         }
 
         $user = $this->userModel->find(Auth::id());
