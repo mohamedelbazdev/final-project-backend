@@ -6,7 +6,7 @@
     ?>
     <ol class="breadcrumb">
         <li class="breadcrumb-item {{ $pull }}"><a href="{{ URL::to('/dashboard') }}"> Home</a></li>
-        <li class="breadcrumb-item {{ $pull }}"><a href="{{ URL::to('/payments') }}"> Payments</a></li>
+        <!-- <li class="breadcrumb-item {{ $pull }}"><a href="{{ URL::to('/payments') }}"> Payments</a></li> -->
         <li class="breadcrumb-item active {{ $pull }}">Payments DataTable</li>
     </ol>
     <div class="card">
@@ -20,61 +20,29 @@
                         <tr>
                             <th>User</th>
                             <th>Provider</th>
-                            <th>Order</th>
-                            <th>Paymnet Status</th>
                             <th>Total Amount</th>
-                            <th>PaymentDate</th>
-                            <th>Serial Number</th>
+                            <th>currency</th>
+                            <th>source</th>
+                            <th>description</th>
+                            <th>strip_id</th>
 
 
                         </tr>
                     </thead>
                     <tbody>
+                    @foreach ($payments as $key => $payment)
                         <tr>
-                            <td>Jacob</td>
-                            <td>Photoshop</td>
-                            <td class="text-danger"> 28.76% <i class="mdi mdi-arrow-down"></i></td>
-                            <td><label class="badge badge-danger">Pending</label></td>
-                            <td>1450</td>
-                            <td>25-07-2022</td>
-                            <td>1561564545454</td>
+                            <td>{{$payment->order->user->name}}</td>
+                            <td>{{$payment->order->provider->name}}</td>
+                           <td>{{$payment->amount}}</td>
+                            <td>{{$payment->currency}}</td>
+                            <td>{{\Illuminate\Support\Str::limit($payment->source,10)}}</td>
+                            <td>{{\Illuminate\Support\Str::limit($payment->description,10)}}</td>
+                            <td>{{$payment->strip_id}}</td>
                         </tr>
-                        <tr>
-                            <td>Messsy</td>
-                            <td>Flash</td>
-                            <td class="text-danger"> 21.06% <i class="mdi mdi-arrow-down"></i></td>
-                            <td><label class="badge badge-warning">In progress</label></td>
-                            <td>1450</td>
-                            <td>25-07-2022</td>
-                            <td>1561564545454</td>
-                        </tr>
-                        <tr>
-                            <td>John</td>
-                            <td>Premier</td>
-                            <td class="text-danger"> 35.00% <i class="mdi mdi-arrow-down"></i></td>
-                            <td><label class="badge badge-info">Fixed</label></td>
-                            <td>1450</td>
-                            <td>25-07-2022</td>
-                            <td>1561564545454</td>
-                        </tr>
-                        <tr>
-                            <td>Peter</td>
-                            <td>After effects</td>
-                            <td class="text-success"> 82.00% <i class="mdi mdi-arrow-up"></i></td>
-                            <td><label class="badge badge-success">Completed</label></td>
-                            <td>1450</td>
-                            <td>25-07-2022</td>
-                            <td>1561564545454</td>
-                        </tr>
-                        <tr>
-                            <td>Dave</td>
-                            <td>53275535</td>
-                            <td class="text-success"> 98.05% <i class="mdi mdi-arrow-up"></i></td>
-                            <td><label class="badge badge-warning">In progress</label></td>
-                            <td>1450</td>
-                            <td>25-07-2022</td>
-                            <td>1561564545454</td>
-                        </tr>
+                      
+                       
+                        @endforeach
                     </tbody>
                 </table>
             </div>

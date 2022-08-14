@@ -22,7 +22,7 @@
                         <tr>
                             <td style="width: 25%">{{ $loop->iteration }}</td>
                             <td style="width: 50%">{{ $slider->title }}</td>
-                            <td style="width: 50%">{{ $slider->description }}</td>
+                            <td style="width: 50%">{{\Illuminate\Support\Str::limit($slider->description,10)}}</td>
                             <td style="width: 50%"><img src="{{ $slider->image }}" alt=""></td>
                             <td>
                                 <a href="{{ route('slider.edit', $slider->id) }}" class="btn btn-info">Edit</a>
